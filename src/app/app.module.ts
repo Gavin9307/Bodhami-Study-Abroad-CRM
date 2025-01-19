@@ -16,8 +16,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'abouts', component: AboutComponent },
   { path: '**', redirectTo: '/home' } // Fallback route
 ];
+
+
 @NgModule({
   declarations: [
     AppComponent,
