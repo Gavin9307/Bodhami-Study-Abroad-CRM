@@ -1,0 +1,43 @@
+.sidebar {
+    width: 20vw;
+    display: block;
+    z-index: 1000;
+    min-height: 90vh;
+    padding: 10px;
+}
+.sidebarMenu {
+    
+}
+
+.sidebarPanel {
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.sidebarPanel.mat-expanded:hover {
+    background-color: var(--text-white);
+}
+
+.sidebarPanel:hover {
+    background-color: var(--blue-light);
+}
+
+.sidebarPanelItem{
+    text-decoration: none;
+    color: inherit;
+    margin-left: 12px;
+    padding: 12px 0px 12px 4px;
+    transition: background-color 0.2s;
+}
+
+.sidebarPanelItem:hover{
+    text-decoration: none;
+    color: var(--text-white);
+    background-color: var(--blue-light);
+}
+
+.linkDiv {
+    width: 100%;
+    padding-block: 10px;
+}
+

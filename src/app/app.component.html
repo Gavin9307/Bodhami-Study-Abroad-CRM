@@ -1,5 +1,9 @@
 <div>
   <app-header></app-header>
-  <app-sidebar></app-sidebar>
-  <app-main></app-main>
+  <div class="main-content">
+    <app-sidebar></app-sidebar>
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
