@@ -1,3 +1,43 @@
-<p>
-  home works!wdqdqd
-</p>
+<div class="home-container">
+  
+  <div class="home-banner-container">
+    <div *ngFor="let item of homeBannerData" class="home-banner-item">
+      <p class="home-banner-title">{{ item.title }}</p>
+      <div class="home-banner-details">
+        <i [class]="item.icon" [style.color]="item.icon_color" class="home-banner-icon"></i>
+        <h3 class="home-banner-count">{{ item.count }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-quick-links-container">
+    <h2>Quick Links</h2>
+    <div class="quick-links-container">
+      <div class="quick-links">Manage Process</div>
+      <div class="quick-links">Manage Student</div>
+      <div class="quick-links">View Demo</div>
+      <div class="quick-links">Buy Licences</div>
+    </div>
+
+    <div class="additional-links-container">
+      <p class="additional-links">View User Manual</p>
+      <p class="additional-links">Copy Student Login Link</p>
+    </div>
+  </div>
+
+  <div class="home-contact-container">
+    <div class="home-contact-container-left">
+      <i class="fa-solid fa-phone-volume" style="color: var(--blue-dark);"></i>
+      <p>
+        You can call us at +91-8431571855 / +91-8421034493 <br>
+        (Mon - Friday : 10:00am to 6:00pm)
+      </p>
+    </div>
+    <div class="home-contact-container-right">
+      <i class="fa-solid fa-envelope" style="color: var(--blue-dark);"></i>
+      <p>You can write to us at <br>
+      <a href="mailto:admin@gmail.com">admin.email@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</div>

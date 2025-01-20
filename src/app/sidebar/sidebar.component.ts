@@ -11,13 +11,18 @@ export class SidebarComponent implements OnInit {
 
   sidebarData = [
     {
-      title: 'Dashboard',
-      link: '/home', // Direct link
-      subItems: [], // No subitems
+      title: 'Home',
+      link: '/home', 
+      subItems: [
+        {
+          name: 'Dashboard',
+          link: '/abouta',
+          }
+      ]
     },
     {
       title: 'About',
-      link: '/about', // Direct link
+      link: '/about', 
       subItems: [
         {
         name: 'Aboutd',
@@ -27,7 +32,7 @@ export class SidebarComponent implements OnInit {
           name: 'About',
         link: '/abouts',
         }
-      ], // No subitems
+      ],
     },
   ];
 

@@ -22,11 +22,11 @@
       </mat-expansion-panel-header>
       <!-- Sub-items -->
       <div *ngFor="let subItem of item.subItems" class="sidebarPanelItem">
-        <a 
+        <div 
           [routerLink]="subItem.link" 
           style="cursor: pointer; text-decoration: none; color: inherit;">
           {{ subItem.name }}
-        </a>
+        </div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
