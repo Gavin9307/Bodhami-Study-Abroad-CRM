@@ -10,6 +10,9 @@ import { MatExpansionModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { ProfileUpdateComponent } from './account/profile-update/profile-update.component';
+import { CountrySetupComponent } from './study-abroad-setup/country-setup/country-setup.component';
+import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
 
 
 const routes: Routes = [
@@ -17,7 +20,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'abouts', component: AboutComponent },
-  { path: '**', redirectTo: '/home' } // Fallback route
+  { path: 'account/profile-update', component: ProfileUpdateComponent },
+  { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
+  { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
+  { path: '**', redirectTo: '/home' }
 ];
 
 
@@ -28,7 +34,10 @@ const routes: Routes = [
     SidebarComponent,
     MainComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    ProfileUpdateComponent,
+    CountrySetupComponent,
+    CourseSetupComponent
   ],
   imports: [
     BrowserModule,

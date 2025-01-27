@@ -34,6 +34,30 @@ export class SidebarComponent implements OnInit {
         }
       ],
     },
+    {
+      title: 'Account',
+      link: '/account', 
+      subItems: [
+        {
+        name: 'Profile Update',
+        link: '/account/profile-update',
+        }
+      ],
+    },
+    {
+      title: 'Study Abroad Setup',
+      link: '/account', 
+      subItems: [
+        {
+        name: 'Country Setup',
+        link: '/study-abroad-setup/country-setup',
+        },
+        {
+          name: 'Course Setup',
+          link: '/study-abroad-setup/course-setup',
+        }
+      ],
+    }
   ];
 
   ngOnInit() {
