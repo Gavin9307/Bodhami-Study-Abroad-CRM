@@ -19,7 +19,7 @@
 }
 
 .sidebarPanel:hover {
-    background-color: var(--blue-light);
+    background-color: var(--blue-dark);
 }
 
 .sidebarPanelItem{
@@ -33,7 +33,7 @@
 .sidebarPanelItem:hover{
     text-decoration: none;
     color: var(--text-white);
-    background-color: var(--blue-light);
+    background-color: var(--blue-dark);
 }
 
 .linkDiv {
