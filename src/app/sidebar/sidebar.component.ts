@@ -21,20 +21,6 @@ export class SidebarComponent implements OnInit {
       ]
     },
     {
-      title: 'About',
-      link: '/about', 
-      subItems: [
-        {
-        name: 'Aboutd',
-        link: '/abouta',
-        },
-        {
-          name: 'About',
-        link: '/abouts',
-        }
-      ],
-    },
-    {
       title: 'Account',
       link: '/account', 
       subItems: [
