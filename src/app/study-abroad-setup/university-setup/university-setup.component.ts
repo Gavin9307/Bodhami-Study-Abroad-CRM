@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 export interface CourseElement {
-  UniversityName: string;
-  website: string;
-  rating: number;
-  level: string;
-  areaOfStudy: string;
-  exam: string;
+  Name: string;
+  Website: string;
+  NationalRanking: number;
+  StateRanking: number;
+  Address: string;
+  YearofEstablishment: number;
 }
 
 const ELEMENT_DATA: CourseElement[] = [
-  { UniversityName: 'iFM UNI', website: 'https://www.ifmuni.edu', rating: 100, level: 'Master', areaOfStudy: 'AI', exam: 'ABC' },
-  { UniversityName: 'AI University', website: 'https://www.aiuni.edu', rating: 1, level: 'Master', areaOfStudy: 'Data Science', exam: 'ss' }
+  { Name: 'iFM UNI', Website: 'https://www.ifmuni.edu', NationalRanking: 100, StateRanking: 100, Address: 'Goa, India', YearofEstablishment: 1999 },
+  { Name: 'AI University', Website: 'https://www.aiuni.edu', NationalRanking: 1, StateRanking: 1, Address: 'Maharashtara, India', YearofEstablishment: 1986 }
 ];
 
 @Component({
@@ -21,7 +21,7 @@ const ELEMENT_DATA: CourseElement[] = [
 })
 export class UniversitySetupComponent implements OnInit {
   // Add 'broche' to the displayed columns to include the "Broche" column in the table
-  displayedColumns: string[] = ['UniversityName', 'website', 'rating', 'level', 'areaOfStudy', 'exam', 'broche'];
+  displayedColumns: string[] = ['Name', 'Website', 'NationalRanking', 'StateRanking', 'Address', 'YearofEstablishment', 'BrocheLink'];
   dataSource = ELEMENT_DATA;
 
   constructor() { }
