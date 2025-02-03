@@ -27,12 +27,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddCountryComponent } from './study-abroad-setup/add-country/add-country.component';
 import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
 import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
+import { LanguageSetupComponent } from './study-abroad-setup/language-setup/language-setup.component';
+import { AddLanguageComponent } from './study-abroad-setup/add-language/add-language.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'abouts', component: AboutComponent },
   { path: 'account/profile-update', component: ProfileUpdateComponent },
   { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
   { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
@@ -40,6 +40,8 @@ const routes: Routes = [
   { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
   { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
   { path: 'study-abroad-setup/course-setup/add-course', component: AddCourseComponent },
+  { path: 'study-abroad-setup/language-setup', component: LanguageSetupComponent },
+  { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
   { path: '**', redirectTo: '/home' }
 ];
 
@@ -58,7 +60,9 @@ const routes: Routes = [
     AddCountryComponent,
     AddUniversityComponent,
     UniversitySetupComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    LanguageSetupComponent,
+    AddLanguageComponent
   ],
   imports: [
     BrowserModule,
