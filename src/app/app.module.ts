@@ -17,6 +17,7 @@ import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-s
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -28,6 +29,7 @@ import { AddCountryComponent } from './study-abroad-setup/add-country/add-countr
 import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
 import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
 import { ManageStudentsApplicationComponent } from './application-management/manage-students-application/manage-students-application.component';
+import { StudentActionDialogComponent } from './application-management/student-action-dialog/student-action-dialog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -61,7 +63,8 @@ const routes: Routes = [
     AddUniversityComponent,
     UniversitySetupComponent,
     AddCourseComponent,
-    ManageStudentsApplicationComponent
+    ManageStudentsApplicationComponent,
+    StudentActionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,11 @@ const routes: Routes = [
     MatButtonModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule  
+    MatNativeDateModule,
+    MatDialogModule 
+  ],
+  entryComponents: [
+    StudentActionDialogComponent, // Add dialog component to entryComponents in Angular 6
   ],
   exports: [RouterModule],
   providers: [],

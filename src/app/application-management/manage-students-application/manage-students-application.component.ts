@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { StudentActionDialogComponent } from '../student-action-dialog/student-action-dialog.component'; // Corrected the import path
 
-export interface CourseElement {
-  UniversityName: string;
-  website: string;
-  rating: number;
-  level: string;
-  areaOfStudy: string;
-  exam: string;
+export interface StudentElement {
+  firstName: string;
+  lastName: string;
+  email: string;
+  status: string;
+  pendingApplications: string;
+  phoneNumber: string;
 }
 
-const ELEMENT_DATA: CourseElement[] = [
-  { UniversityName: 'iFM UNI', website: 'https://www.ifmuni.edu', rating: 100, level: 'Master', areaOfStudy: 'AI', exam: 'ABC' },
-  { UniversityName: 'AI University', website: 'https://www.aiuni.edu', rating: 1, level: 'Master', areaOfStudy: 'Data Science', exam: 'ss' }
+const ELEMENT_DATA: StudentElement[] = [
+  { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', status: 'Active', pendingApplications: '2', phoneNumber: '9876543210' },
+  { firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com', status: 'Inactive', pendingApplications: '1', phoneNumber: '9123456789' }
 ];
 
 @Component({
@@ -20,21 +22,17 @@ const ELEMENT_DATA: CourseElement[] = [
   styleUrls: ['./manage-students-application.component.css']
 })
 export class ManageStudentsApplicationComponent implements OnInit {
-   // Add 'broche' to the displayed columns to include the "Broche" column in the table
-   displayedColumns: string[] = ['UniversityName', 'website', 'rating', 'level', 'areaOfStudy', 'exam', 'broche'];
-   dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'status', 'pendingApplications', 'phoneNumber', 'broche'];
+  dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
 
-  ngOnInit() {
+  // Method to open the dialog when the button is clicked
+  openDialog(): void {
+    this.dialog.open(StudentActionDialogComponent, {
+      width: '250px' // You can adjust the dialog width as needed
+    });
   }
 
-  
-  downloadFile() {
-    const link = document.createElement('a');
-    link.href = 'assets/myfile.pdf';  // Path to your file in the assets folder
-    link.download = 'myfile.pdf';  // File name for the download
-    link.click();
-  }
-
+  ngOnInit() {}
 }
