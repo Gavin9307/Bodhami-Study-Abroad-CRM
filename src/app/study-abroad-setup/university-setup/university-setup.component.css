@@ -26,6 +26,7 @@ table {
   
   .btn-dark-rounded-outline{
     margin: 6px;
+    /* float: right; */
   }
 
   .example-full-width{

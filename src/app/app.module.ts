@@ -6,12 +6,13 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainComponent } from './main/main.component';
-import { MatExpansionModule } from '@angular/material';
+import { MatExpansionModule, MatTableModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileUpdateComponent } from './account/profile-update/profile-update.component';
 import { CountrySetupComponent } from './study-abroad-setup/country-setup/country-setup.component';
+import { UniversitySetupComponent } from './study-abroad-setup/university-setup/university-setup.component';
 import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -25,6 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AddCountryComponent } from './study-abroad-setup/add-country/add-country.component';
 import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
+import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,8 +36,10 @@ const routes: Routes = [
   { path: 'account/profile-update', component: ProfileUpdateComponent },
   { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
   { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
-  { path: 'study-abroad-setup/add-university', component: AddUniversityComponent },
+  { path: 'study-abroad-setup/university-setup', component: UniversitySetupComponent },
+  { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
   { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
+  { path: 'study-abroad-setup/course-setup/add-course', component: AddCourseComponent },
   { path: '**', redirectTo: '/home' }
 ];
 
@@ -52,7 +56,9 @@ const routes: Routes = [
     CountrySetupComponent,
     CourseSetupComponent,
     AddCountryComponent,
-    AddUniversityComponent
+    AddUniversityComponent,
+    UniversitySetupComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +73,7 @@ const routes: Routes = [
     MatRadioModule,
     MatCardModule,
     MatButtonModule,
+    MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule  
   ],

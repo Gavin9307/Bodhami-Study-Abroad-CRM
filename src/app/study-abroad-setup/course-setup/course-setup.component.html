@@ -1,3 +1,83 @@
-<p>
-  course-setup works!
-</p>
+<div class="main-sub-container">
+    <div class="main-sub-container-header">
+      Course
+      <a [routerLink]="['/study-abroad-setup/course-setup/add-course']">
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Add Course</button>
+    </a>
+    </div>
+    
+    <div class="add-form-container">
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Price</mat-label>
+              <input matInput placeholder="Eg. $2,000" value="">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>University</mat-label>
+                <input matInput placeholder="Eg. GU" value="">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Duration</mat-label>
+                <input matInput placeholder=2 value="">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Level</mat-label>
+                <input matInput placeholder="Eg. Master" value="">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Area of Study</mat-label>
+                <input matInput placeholder="Eg. Computer" value="">
+              </mat-form-field>
+          
+            <button mat-flat-button class="btn-dark-rounded-outline">Search</button>
+            <button mat-flat-button class="btn-dark-rounded-outline">Clear</button>
+          </form>
+
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- Course Name Column -->
+        <ng-container matColumnDef="courseName">
+          <th mat-header-cell *matHeaderCellDef> Course Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.courseName }} </td>
+        </ng-container>
+  
+        <!-- University Column -->
+        <ng-container matColumnDef="university">
+          <th mat-header-cell *matHeaderCellDef> University </th>
+          <td mat-cell *matCellDef="let element"> {{ element.university }} </td>
+        </ng-container>
+  
+        <!-- Duration Column -->
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef> Duration (Years) </th>
+          <td mat-cell *matCellDef="let element"> {{ element.duration }} </td>
+        </ng-container>
+  
+        <!-- Level Column -->
+        <ng-container matColumnDef="level">
+          <th mat-header-cell *matHeaderCellDef> Level </th>
+          <td mat-cell *matCellDef="let element"> {{ element.level }} </td>
+        </ng-container>
+  
+        <!-- Area of Study Column -->
+        <ng-container matColumnDef="areaOfStudy">
+          <th mat-header-cell *matHeaderCellDef> Area of Study </th>
+          <td mat-cell *matCellDef="let element"> {{ element.areaOfStudy }} </td>
+        </ng-container>
+  
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let element"> {{ element.price | currency:'USD' }} </td>
+        </ng-container>
+  
+        <!-- Render Header and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      </table>
+    </div>
+  </div>
+  
