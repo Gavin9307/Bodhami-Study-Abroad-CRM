@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddCountryComponent } from './study-abroad-setup/add-country/add-country.component';
 import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
 import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
+import { ManageStudentsApplicationComponent } from './application-management/manage-students-application/manage-students-application.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
   { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
   { path: 'study-abroad-setup/course-setup/add-course', component: AddCourseComponent },
+  { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent},
   { path: '**', redirectTo: '/home' }
 ];
 
@@ -58,7 +60,8 @@ const routes: Routes = [
     AddCountryComponent,
     AddUniversityComponent,
     UniversitySetupComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    ManageStudentsApplicationComponent
   ],
   imports: [
     BrowserModule,
