@@ -45,6 +45,10 @@ export class SidebarComponent implements OnInit {
         {
           name: 'University Setup',
           link: '/study-abroad-setup/university-setup',
+        },
+        {
+          name: 'Language Setup',
+          link: '/study-abroad-setup/language-setup',
         }
       ],
     },
