@@ -1,35 +1,6 @@
+@import url("../../../styles.css");
 
-.container {
-    width: 90%;
-    height: 90vh;
-    margin-top: 70px;
-    margin-left: 55px;
-    background-color: var(--text-white);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
 
-.header {
-    background-color: #085766;
-    color: white;
-    padding: 30px;
-    font-size: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transform: translate(0px, -50px );
-    height: 100px;
-}
-
-.header button {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    padding: 10px 25px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-right: 20px;
-}
 
 .search-section {
     margin-top: -20px;

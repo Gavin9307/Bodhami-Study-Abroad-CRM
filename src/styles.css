@@ -33,6 +33,13 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     border-radius: 20px;
 }
 
+.btn-dark-rounded-outline-white{
+    background-color: var(--blue-dark);
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
 .main-sub-container {
     width: 90%;
     height: 100vh;
@@ -54,3 +61,25 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     transform: translate(0px, -50px );
     height: 100px;
 }
+
+.add-form{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.add-form-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.form-input{
+    min-width: 350px;
+}
+
+.form-input-full{
+    width: 100%;
+}
+

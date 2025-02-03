@@ -2,11 +2,33 @@
   <div class="main-sub-container-header">
     Add Country
   </div>
-  <form class="add-country-form">
-    <mat-form-field class="form-input">
-      <mat-label>Add Country</mat-label>
-      <input matInput placeholder="Eg. India" value="">
-    </mat-form-field>
+  <form class="add-form">
+    <div class="add-form-container">
+      <mat-form-field class="form-input">
+        <mat-label>Add Country</mat-label>
+        <input matInput placeholder="Eg. India" value="">
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Country Code</mat-label>
+        <input matInput placeholder="Eg. India" value="">
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Currency Name</mat-label>
+        <input matInput placeholder="Eg. India" value="">
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Currency Multiplication Factor</mat-label>
+        <input matInput placeholder="Eg. India" value="">
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label>Select Language</mat-label>
+        <mat-select>
+          <mat-option value="one">Hindi</mat-option>
+          <mat-option value="two">English</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
     <button mat-flat-button class="btn-dark-rounded">Add</button>
   </form>
 </div>

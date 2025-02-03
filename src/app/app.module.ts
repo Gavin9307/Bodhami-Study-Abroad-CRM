@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AddCountryComponent } from './study-abroad-setup/add-country/add-country.component';
+import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'account/profile-update', component: ProfileUpdateComponent },
   { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
   { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
+  { path: 'study-abroad-setup/add-university', component: AddUniversityComponent },
   { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
   { path: '**', redirectTo: '/home' }
 ];
@@ -49,7 +51,8 @@ const routes: Routes = [
     ProfileUpdateComponent,
     CountrySetupComponent,
     CourseSetupComponent,
-    AddCountryComponent
+    AddCountryComponent,
+    AddUniversityComponent
   ],
   imports: [
     BrowserModule,
