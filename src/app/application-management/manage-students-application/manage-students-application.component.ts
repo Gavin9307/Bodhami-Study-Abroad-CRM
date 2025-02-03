@@ -30,7 +30,7 @@ export class ManageStudentsApplicationComponent implements OnInit {
   // Method to open the dialog when the button is clicked
   openDialog(): void {
     this.dialog.open(StudentActionDialogComponent, {
-      width: '250px' // You can adjust the dialog width as needed
+      width: '350px' // You can adjust the dialog width as needed
     });
   }
 
