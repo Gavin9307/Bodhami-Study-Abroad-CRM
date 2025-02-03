@@ -29,6 +29,7 @@ import { AddUniversityComponent } from './study-abroad-setup/add-university/add-
 import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
 import { LanguageSetupComponent } from './study-abroad-setup/language-setup/language-setup.component';
 import { AddLanguageComponent } from './study-abroad-setup/add-language/add-language.component';
+import { ManageStudentsApplicationComponent } from './application-management/manage-students-application/manage-students-application.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'study-abroad-setup/course-setup/add-course', component: AddCourseComponent },
   { path: 'study-abroad-setup/language-setup', component: LanguageSetupComponent },
   { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
+  { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent},
   { path: '**', redirectTo: '/home' }
 ];
 
@@ -62,7 +64,8 @@ const routes: Routes = [
     UniversitySetupComponent,
     AddCourseComponent,
     LanguageSetupComponent,
-    AddLanguageComponent
+    AddLanguageComponent,
+    ManageStudentsApplicationComponent
   ],
   imports: [
     BrowserModule,

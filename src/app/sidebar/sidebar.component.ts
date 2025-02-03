@@ -51,6 +51,16 @@ export class SidebarComponent implements OnInit {
           link: '/study-abroad-setup/language-setup',
         }
       ],
+    },
+    {
+      title: 'Application Management',
+      link: '/account', 
+      subItems: [
+        {
+        name: 'Manage Student Application',
+        link: '/application-management/manage-students-application',
+        }
+      ],
     }
   ];
 
