@@ -27,10 +27,14 @@ export class ManageStudentsApplicationComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  // Method to open the dialog when the button is clicked
+  opescsnDialog(): void {
+    this.dialog.open(StudentActionDialogComponent, {
+      width: '250px'
+    });
+  }
   openDialog(): void {
     this.dialog.open(StudentActionDialogComponent, {
-      width: '250px' // You can adjust the dialog width as needed
+      width: '250px'
     });
   }
 
