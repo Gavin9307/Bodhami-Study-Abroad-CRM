@@ -3,7 +3,7 @@
     display: block;
     z-index: 1000;
     min-height: 90vh;
-    padding: 10px;
+    padding: 30px;
 }
 .sidebarMenu {
     
@@ -25,7 +25,7 @@
 .sidebarPanelItem{
     text-decoration: none;
     color: inherit;
-    margin-left: 12px;
+    margin-left: 2px;
     padding: 12px 0px 12px 4px;
     transition: background-color 0.2s;
 }
@@ -41,3 +41,8 @@
     padding-block: 10px;
 }
 
+.mat-expansion-panel {
+    box-shadow: none !important; 
+    border: none !important; 
+  }
+  
