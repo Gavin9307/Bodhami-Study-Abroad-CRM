@@ -31,6 +31,36 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
+      title: 'Queries & Grievances',
+      link: '/home', 
+      subItems: [
+        {
+          name: 'Dashboard',
+          link: '/abouta',
+          }
+      ]
+    },
+    {
+      title: 'Billing & Cancellation',
+      link: '/home', 
+      subItems: [
+        {
+          name: 'Dashboard',
+          link: '/abouta',
+          }
+      ]
+    },
+    {
+      title: 'Reviews',
+      link: '/home', 
+      subItems: [
+        {
+          name: 'Dashboard',
+          link: '/abouta',
+          }
+      ]
+    },
+    {
       title: 'Study Abroad Setup',
       link: '/account', 
       subItems: [
@@ -61,6 +91,33 @@ export class SidebarComponent implements OnInit {
         link: '/application-management/manage-students-application',
         }
       ],
+    },{
+      title: 'Student Abroad Analysis',
+      link: '/home', 
+      subItems: [
+        {
+          name: 'Dashboard',
+          link: '/abouta',
+          }
+      ]
+    },
+    {
+      title: 'User Management',
+      link: '/home', 
+      subItems: [
+        {
+          name: 'Add Team',
+          link: '/abouta',
+          },
+          {
+            name: 'Add Member',
+            link: '/abouta',
+            },
+            {
+              name: 'Default',
+              link: '/abouta',
+              }  
+      ]
     }
   ];
 
