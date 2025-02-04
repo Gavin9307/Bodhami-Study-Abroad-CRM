@@ -33,6 +33,7 @@ import { AddLanguageComponent } from './study-abroad-setup/add-language/add-lang
 import { ManageStudentsApplicationComponent } from './application-management/manage-students-application/manage-students-application.component';
 import { StudentActionDialogComponent } from './application-management/student-action-dialog/student-action-dialog.component';
 import { ChecklistSetupComponent } from './study-abroad-setup/checklist-setup/checklist-setup.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -90,7 +91,8 @@ const routes: Routes = [
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule 
+    MatDialogModule ,
+    HttpClientModule
   ],
   entryComponents: [
     StudentActionDialogComponent, // Add dialog component to entryComponents in Angular 6
