@@ -34,12 +34,14 @@ import { ManageStudentsApplicationComponent } from './application-management/man
 import { StudentActionDialogComponent } from './application-management/student-action-dialog/student-action-dialog.component';
 import { AddStudentComponent } from './study-abroad-setup/add-student/add-student.component';
 import { StudentRegistrationComponent } from './application-management/student-registration/student-registration.component';
+import { ChecklistSetupComponent } from './study-abroad-setup/checklist-setup/checklist-setup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'account/profile-update', component: ProfileUpdateComponent },
   { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
+  { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
   { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
   { path: 'study-abroad-setup/university-setup', component: UniversitySetupComponent },
   { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
@@ -73,7 +75,8 @@ const routes: Routes = [
     AddLanguageComponent,
     ManageStudentsApplicationComponent,
     AddStudentComponent,
-    StudentRegistrationComponent
+    StudentRegistrationComponent,
+    ChecklistSetupComponent
   ],
   imports: [
     BrowserModule,
