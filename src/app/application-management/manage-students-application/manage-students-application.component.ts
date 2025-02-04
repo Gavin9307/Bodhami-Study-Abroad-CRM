@@ -27,14 +27,9 @@ export class ManageStudentsApplicationComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  opescsnDialog(): void {
-    this.dialog.open(StudentActionDialogComponent, {
-      width: '250px'
-    });
-  }
   openDialog(): void {
     this.dialog.open(StudentActionDialogComponent, {
-      width: '250px'
+      width: '350px' // You can adjust the dialog width as needed
     });
   }
 
