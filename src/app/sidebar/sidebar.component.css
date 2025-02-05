@@ -46,3 +46,11 @@
     border: none !important; 
   }
   
+  .map {
+    width: 100%;
+    height: 160px;
+    background-image: url('/assets/map.0891b8b4804963ff6502.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

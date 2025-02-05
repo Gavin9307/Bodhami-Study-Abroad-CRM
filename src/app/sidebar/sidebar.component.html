@@ -1,4 +1,5 @@
 <div class="sidebar">
+  <!-- Sidebar Menu -->
   <mat-accordion class="sidebarMenu">
     <mat-expansion-panel
       *ngFor="let item of sidebarData"
@@ -6,29 +7,28 @@
       [hideToggle]="item.subItems.length === 0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <!-- Use an anchor tag with routerLink for main items -->
+          <!-- If no sub-items, use routerLink -->
           <div class="linkDiv"
             *ngIf="item.subItems.length === 0" 
-            [routerLink]="item.link" 
-            style="cursor: pointer; text-decoration: none; color: inherit;">
+            [routerLink]="item.link">
             {{ item.title }}
           </div>
-          <div 
-            *ngIf="item.subItems.length !== 0" 
-            style="cursor: pointer;">
+          <!-- If has sub-items, just display title -->
+          <div *ngIf="item.subItems.length !== 0">
             {{ item.title }}
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
+      
       <!-- Sub-items -->
       <div *ngFor="let subItem of item.subItems" class="sidebarPanelItem">
-        <div 
-          [routerLink]="subItem.link" 
-          style="cursor: pointer; text-decoration: none; color: inherit;">
+        <div [routerLink]="subItem.link">
           {{ subItem.name }}
         </div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-</div>
 
+
+  <div class="map"></div>
+</div>

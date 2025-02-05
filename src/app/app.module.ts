@@ -15,6 +15,7 @@ import { CountrySetupComponent } from './study-abroad-setup/country-setup/countr
 import { UniversitySetupComponent } from './study-abroad-setup/university-setup/university-setup.component';
 import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -35,11 +36,14 @@ import { StudentActionDialogComponent } from './application-management/student-a
 import { StudentRegistrationComponent } from './application-management/student-registration/student-registration.component';
 import { ChecklistSetupComponent } from './study-abroad-setup/checklist-setup/checklist-setup.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CountryActionComponent } from './study-abroad-setup/country-action/country-action.component';
+import { ReviewComponent } from './Review/review/review.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'account/profile-update', component: ProfileUpdateComponent },
+  { path: 'Review/review', component: ReviewComponent },
   { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
   { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
   { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
@@ -76,7 +80,9 @@ const routes: Routes = [
     AddLanguageComponent,
     ManageStudentsApplicationComponent,
     StudentRegistrationComponent,
-    ChecklistSetupComponent
+    ChecklistSetupComponent,
+    CountryActionComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -95,10 +101,12 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule ,
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule
   ],
   entryComponents: [
-    StudentActionDialogComponent, // Add dialog component to entryComponents in Angular 6
+    StudentActionDialogComponent,
+    CountryActionComponent
   ],
   exports: [RouterModule],
   providers: [],

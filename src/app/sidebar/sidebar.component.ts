@@ -55,8 +55,8 @@ export class SidebarComponent implements OnInit {
       link: '/home', 
       subItems: [
         {
-          name: 'Dashboard',
-          link: '/abouta',
+          name: 'Review',
+          link: '/Review/review',
           }
       ]
     },
