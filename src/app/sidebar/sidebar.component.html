@@ -7,7 +7,6 @@
       [hideToggle]="item.subItems.length === 0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <!-- If no sub-items, use routerLink -->
           <div class="linkDiv"
             *ngIf="item.subItems.length === 0" 
             [routerLink]="item.link">
@@ -26,9 +25,9 @@
           {{ subItem.name }}
         </div>
       </div>
+      <mat-divider></mat-divider>
     </mat-expansion-panel>
   </mat-accordion>
-
 
   <div class="map"></div>
 </div>

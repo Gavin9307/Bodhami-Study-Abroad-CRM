@@ -16,6 +16,7 @@ import { UniversitySetupComponent } from './study-abroad-setup/university-setup/
 import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -102,7 +103,8 @@ const routes: Routes = [
     MatNativeDateModule,
     MatDialogModule ,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDividerModule
   ],
   entryComponents: [
     StudentActionDialogComponent,
