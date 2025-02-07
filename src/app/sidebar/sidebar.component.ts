@@ -107,7 +107,7 @@ export class SidebarComponent implements OnInit {
       subItems: [
         {
           name: 'Add Team',
-          link: '/abouta',
+          link: '/user-management/add-team',
           },
           {
             name: 'Add Member',

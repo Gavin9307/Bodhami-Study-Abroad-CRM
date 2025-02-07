@@ -39,6 +39,8 @@ import { ChecklistSetupComponent } from './study-abroad-setup/checklist-setup/ch
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CountryActionComponent } from './study-abroad-setup/country-action/country-action.component';
 import { ReviewComponent } from './Review/review/review.component';
+import { AddTeamComponent } from './user-management/add-team/add-team.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -56,7 +58,7 @@ const routes: Routes = [
   { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
   { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent},
   { path: 'application-management/manage-students-application/student-registration', component: StudentRegistrationComponent},
-  { path: '**', redirectTo: '/home' }
+  { path: 'user-management/add-team', component: AddTeamComponent }
 ];
 
 
@@ -83,7 +85,8 @@ const routes: Routes = [
     StudentRegistrationComponent,
     ChecklistSetupComponent,
     CountryActionComponent,
-    ReviewComponent
+    ReviewComponent,
+    AddTeamComponent
   ],
   imports: [
     BrowserModule,
