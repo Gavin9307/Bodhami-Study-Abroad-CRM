@@ -43,6 +43,7 @@ import { AddTeamComponent } from './user-management/add-team/add-team.component'
 import { DocumentSetupComponent } from './study-abroad-setup/document-setup/document-setup.component';
 import { AddMemberComponent } from './user-management/add-member/add-member.component';
 import { TeamActionComponent } from './user-management/team-action/team-action.component';
+import { MemberListComponent } from './user-management/member-list/member-list.component';
 
 
 const routes: Routes = [
@@ -64,7 +65,7 @@ const routes: Routes = [
   { path: 'application-management/manage-students-application/student-registration', component: StudentRegistrationComponent},
   { path: 'user-management/add-team', component: AddTeamComponent },
   { path: 'user-management/add-team/add-member', component: AddMemberComponent },
-  { path: 'user-management/add-member', component: AddMemberComponent }
+  { path: 'user-management/member-list', component: MemberListComponent }
 ];
 
 
@@ -95,7 +96,8 @@ const routes: Routes = [
     AddTeamComponent,
     DocumentSetupComponent,
     AddMemberComponent,
-    TeamActionComponent
+    TeamActionComponent,
+    MemberListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,43 @@
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    List of Member
+    <a [routerLink]="['/study-abroad-setup/country-setup/add-country']">
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Add Member</button>
+    </a>
+  </div>
+  
+  <div class="add-form-container">
+   
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="teamName">
+        <th mat-header-cell *matHeaderCellDef> Team Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.teamName }} </td>
+      </ng-container>
+  
+      <!-- heading Column -->
+      <ng-container matColumnDef="teamLead">
+        <th mat-header-cell *matHeaderCellDef> Team Lead</th>
+        <td mat-cell *matCellDef="let element"> {{ element.teamLead }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Role</th>
+        <td mat-cell *matCellDef="let element"> {{ element.role }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-flat-button class="btn-dark-rounded-outline-white button">Edit</button>
+            <button mat-flat-button class="btn-dark-rounded-outline-white button">Delete</button>
+          </td>
+        </ng-container>
+  
+      <!-- Render Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
