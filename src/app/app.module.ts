@@ -40,6 +40,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CountryActionComponent } from './study-abroad-setup/country-action/country-action.component';
 import { ReviewComponent } from './Review/review/review.component';
 import { AddTeamComponent } from './user-management/add-team/add-team.component';
+import { DocumentSetupComponent } from './study-abroad-setup/document-setup/document-setup.component';
+import { AddMemberComponent } from './user-management/add-member/add-member.component';
+import { TeamActionComponent } from './user-management/team-action/team-action.component';
 
 
 const routes: Routes = [
@@ -49,6 +52,7 @@ const routes: Routes = [
   { path: 'Review/review', component: ReviewComponent },
   { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
   { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
+  { path: 'study-abroad-setup/country-setup/document-setup', component: DocumentSetupComponent },
   { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
   { path: 'study-abroad-setup/university-setup', component: UniversitySetupComponent },
   { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
@@ -86,7 +90,10 @@ const routes: Routes = [
     ChecklistSetupComponent,
     CountryActionComponent,
     ReviewComponent,
-    AddTeamComponent
+    AddTeamComponent,
+    DocumentSetupComponent,
+    AddMemberComponent,
+    TeamActionComponent
   ],
   imports: [
     BrowserModule,
