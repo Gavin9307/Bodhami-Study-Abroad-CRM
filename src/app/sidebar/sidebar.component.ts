@@ -55,8 +55,8 @@ export class SidebarComponent implements OnInit {
       link: '/home', 
       subItems: [
         {
-          name: 'Dashboard',
-          link: '/abouta',
+          name: 'Review',
+          link: '/Review/review',
           }
       ]
     },
@@ -107,7 +107,7 @@ export class SidebarComponent implements OnInit {
       subItems: [
         {
           name: 'Add Team',
-          link: '/abouta',
+          link: '/user-management/add-team',
           },
           {
             name: 'Add Member',

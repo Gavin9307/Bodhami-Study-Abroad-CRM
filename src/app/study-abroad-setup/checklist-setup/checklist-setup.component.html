@@ -1,3 +1,53 @@
-<p>
-  checklist-setup works!
-</p>
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    Cheklist
+    <a [routerLink]="['/study-abroad-setup/country-setup/add-country']">
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Add Checklist</button>
+    </a>
+  </div>
+  
+  <div class="add-form-container">
+   
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!-- Country Name Column -->
+      <ng-container matColumnDef="checklistName">
+        <th mat-header-cell *matHeaderCellDef> Checklist Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.checklistName }} </td>
+      </ng-container>
+  
+      <!-- Country Code Column -->
+      <ng-container matColumnDef="checklistHeading">
+        <th mat-header-cell *matHeaderCellDef> Checklist Heading </th>
+        <td mat-cell *matCellDef="let element"> {{ element.checklistHeading }} </td>
+      </ng-container>
+  
+      <!-- checklistDescription Column -->
+      <ng-container matColumnDef="checklistDescription">
+        <th mat-header-cell *matHeaderCellDef> Checklist Description </th>
+        <td mat-cell *matCellDef="let element" class="Description"> {{ element.checklistDescription }} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.status" class="example-margin"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="openDialog()" class="btn-dark-rounded-outline">
+              Action
+            </button>
+          </td>
+        </ng-container>
+  
+      <!-- Render Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

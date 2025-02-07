@@ -29,7 +29,7 @@ export class ManageStudentsApplicationComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(StudentActionDialogComponent, {
-      width: '350px' // You can adjust the dialog width as needed
+      width: '400px' // You can adjust the dialog width as needed
     });
   }
 

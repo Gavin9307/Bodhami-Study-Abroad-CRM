@@ -26,9 +26,5 @@ table {
   
   .btn-dark-rounded-outline{
     margin: 6px;
-  }
-
-  .SearchFliter{
-    margin-right: 20px;
-    margin-left: 20px;
+    /* float: right; */
   }
