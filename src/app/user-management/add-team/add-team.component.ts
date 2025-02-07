@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { TeamActionComponent } from '../team-action/team-action.component';
 
 export interface CountryElement {
   teamName: string;
@@ -25,11 +26,11 @@ export class AddTeamComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
   
-    // openDialog(): void {
-    //   this.dialog.open(CountryActionComponent, {
-    //     width: '400px' 
-    //   });
-    // }
+    openDialog(): void {
+      this.dialog.open(TeamActionComponent, {
+        width: '400px' 
+      });
+    }
   ngOnInit() {
   }
 

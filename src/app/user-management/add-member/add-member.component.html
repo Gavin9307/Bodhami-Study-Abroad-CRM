@@ -1,3 +1,49 @@
-<p>
-  add-member works!
-</p>
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    Add Counselor/Member
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+      
+      <mat-form-field class="form-input">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Eg. John Doe" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Eg. john.doe@example.com" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Role</mat-label>
+        <mat-select>
+          <mat-option value="one">Hindi</mat-option>
+          <mat-option value="two">English</mat-option>
+        </mat-select>
+      </mat-form-field> <!-- Closing tag was missing here -->
+
+      <mat-form-field class="form-input">
+        <mat-label>Phone No.</mat-label>
+        <input matInput placeholder="Eg. 9876543210" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startPicker" placeholder="Select Start Date">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endPicker" placeholder="Select End Date">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+    <button mat-flat-button class="btn-dark-rounded">Add</button>
+  </form>
+</div>

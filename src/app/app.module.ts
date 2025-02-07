@@ -62,7 +62,9 @@ const routes: Routes = [
   { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
   { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent},
   { path: 'application-management/manage-students-application/student-registration', component: StudentRegistrationComponent},
-  { path: 'user-management/add-team', component: AddTeamComponent }
+  { path: 'user-management/add-team', component: AddTeamComponent },
+  { path: 'user-management/add-team/add-member', component: AddMemberComponent },
+  { path: 'user-management/add-member', component: AddMemberComponent }
 ];
 
 
@@ -118,7 +120,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     StudentActionDialogComponent,
-    CountryActionComponent
+    CountryActionComponent,
+    TeamActionComponent
   ],
   exports: [RouterModule],
   providers: [],

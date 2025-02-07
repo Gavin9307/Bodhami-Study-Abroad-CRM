@@ -111,7 +111,7 @@ export class SidebarComponent implements OnInit {
           },
           {
             name: 'Add Member',
-            link: '/abouta',
+            link: '/user-management/add-member',
             },
             {
               name: 'Default',
