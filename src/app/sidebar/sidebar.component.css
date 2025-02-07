@@ -3,7 +3,8 @@
     display: block;
     z-index: 1000;
     min-height: 90vh;
-    padding: 30px;
+    /* padding: 30px; */
+    padding: 10px;
 }
 .sidebarMenu {
     
@@ -25,7 +26,8 @@
 .sidebarPanelItem{
     text-decoration: none;
     color: inherit;
-    margin-left: 2px;
+    /* margin-left: 2px; */
+    margin-left: 12px; 
     padding: 12px 0px 12px 4px;
     transition: background-color 0.2s;
 }
@@ -40,9 +42,9 @@
     width: 100%;
     padding-block: 10px;
 }
-
+/* 
 .mat-expansion-panel {
     box-shadow: none !important; 
     border: none !important; 
   }
-  
+   */
