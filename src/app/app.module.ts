@@ -17,6 +17,10 @@ import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-s
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -44,6 +48,10 @@ import { DocumentSetupComponent } from './study-abroad-setup/document-setup/docu
 import { AddMemberComponent } from './user-management/add-member/add-member.component';
 import { TeamActionComponent } from './user-management/team-action/team-action.component';
 import { MemberListComponent } from './user-management/member-list/member-list.component';
+import { EditStudentComponent } from './application-management/edit-student/edit-student.component';
+import { EditTeamComponent } from './user-management/edit-team/edit-team.component';
+import { MakeTeamComponent } from './user-management/make-team/make-team.component';
+import { EditMemberComponent } from './user-management/edit-member/edit-member.component';
 
 
 const routes: Routes = [
@@ -62,10 +70,16 @@ const routes: Routes = [
   { path: 'study-abroad-setup/language-setup', component: LanguageSetupComponent },
   { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
   { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent},
+  { path: 'application-management/edit-student', component: EditStudentComponent},
   { path: 'application-management/manage-students-application/student-registration', component: StudentRegistrationComponent},
   { path: 'user-management/add-team', component: AddTeamComponent },
+  { path: 'user-management/add-team/member-list', component: MemberListComponent },
+  { path: 'user-management/edit-team', component: EditTeamComponent },
+  { path: 'user-management/add-team/edit-team', component: EditTeamComponent },
+  { path: 'user-management/make-team', component: MakeTeamComponent },
   { path: 'user-management/add-team/add-member', component: AddMemberComponent },
-  { path: 'user-management/member-list', component: MemberListComponent }
+  { path: 'user-management/member-list', component: MemberListComponent },
+  { path: 'user-management/edit-member', component: EditMemberComponent }
 ];
 
 
@@ -97,7 +111,11 @@ const routes: Routes = [
     DocumentSetupComponent,
     AddMemberComponent,
     TeamActionComponent,
-    MemberListComponent
+    MemberListComponent,
+    EditStudentComponent,
+    EditTeamComponent,
+    MakeTeamComponent,
+    EditMemberComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +136,14 @@ const routes: Routes = [
     MatDialogModule ,
     HttpClientModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatGridListModule,
+    MatDividerModule,
+    // FormBuilder,
+    // FormGroup,
+    // Validators,
+    FormsModule,          
+    ReactiveFormsModule, 
+    MatIconModule 
   ],
   entryComponents: [
     StudentActionDialogComponent,
