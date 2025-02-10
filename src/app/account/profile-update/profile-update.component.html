@@ -11,19 +11,19 @@
         <div class="form-left">
           <div class="form-row">
             
-            <mat-form-field appearance="outline">
+            <mat-form-field >
               <mat-label>First Name</mat-label>
               <input matInput formControlName="firstName">
             </mat-form-field>
   
-            <mat-form-field appearance="outline">
+            <mat-form-field >
               <mat-label>Last Name</mat-label>
               <input matInput formControlName="lastName">
             </mat-form-field>
           </div>
   
           <div class="form-row">
-            <mat-form-field appearance="outline">
+            <mat-form-field >
               <mat-label>Gender</mat-label>
               <mat-select formControlName="gender">
                 <mat-option value="male">Male</mat-option>
@@ -32,7 +32,7 @@
               </mat-select>
             </mat-form-field>
   
-            <mat-form-field appearance="outline">
+            <mat-form-field >
               <mat-label>Date of Birth</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -40,31 +40,31 @@
             </mat-form-field>
           </div>
   
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field  class="full-width">
             <mat-label>Address</mat-label>
             <textarea matInput formControlName="address" rows="3"></textarea>
           </mat-form-field>
   
           <div class="form-row">
-            <mat-form-field appearance="outline">
+            <mat-form-field >
               <mat-label>Country</mat-label>
               <mat-select formControlName="country">
                 <mat-option value="India">India</mat-option>
               </mat-select>
             </mat-form-field>
   
-            <mat-form-field appearance="outline">
+            <mat-form-field >
               <mat-label>Phone</mat-label>
               <input matInput formControlName="phone">
             </mat-form-field>
           </div>
   
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field  class="full-width">
             <mat-label>Email</mat-label>
             <input matInput type="email" formControlName="email">
           </mat-form-field>
   
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field  class="full-width">
             <mat-label>Experience in Years</mat-label>
             <input matInput type="number" formControlName="experienceYears">
           </mat-form-field>
@@ -84,7 +84,7 @@
           <!-- Fields below the avatar -->
           <div class="below-avatar-fields">
             <div class="form-row">
-              <mat-form-field appearance="outline">
+              <mat-form-field >
                 <mat-label>State</mat-label>
                 <mat-select formControlName="state">
                   <mat-option *ngFor="let state of states" [value]="state">
@@ -95,33 +95,33 @@
             </div>
   
             <div class="form-row">
-              <mat-form-field appearance="outline">
+              <mat-form-field >
                 <mat-label>City</mat-label>
                 <input matInput formControlName="city">
               </mat-form-field>
   
-              <mat-form-field appearance="outline">
+              <mat-form-field >
                 <mat-label>Pincode</mat-label>
                 <input matInput formControlName="pincode">
               </mat-form-field>
             </div>
   
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field  class="full-width">
               <mat-label>Institution Name</mat-label>
               <input matInput formControlName="institutionName">
             </mat-form-field>
   
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field  class="full-width">
               <mat-label>Profile Description</mat-label>
               <textarea matInput formControlName="profileDescription" rows="3"></textarea>
             </mat-form-field>
   
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field  class="full-width">
               <mat-label>Designation</mat-label>
               <input matInput formControlName="designation">
             </mat-form-field>
   
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field  class="full-width">
               <mat-label>Profile Headline</mat-label>
               <input matInput formControlName="profileHeadline">
             </mat-form-field>
@@ -130,7 +130,7 @@
       </div>
   
       <div class="form-actions">
-        <button mat-raised-button class="btn-dark-rounded" type="submit">Update</button>
+        <button mat-raised-button class="btn-dark-rounded button" type="submit">Update</button>
       </div>
     </form>
 

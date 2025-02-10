@@ -1,27 +1,16 @@
 @import url(../../../styles.css);
 
+.main-sub-container{
+    min-height: 150vh;
+}
 
-  .profile-header {
-    background-color: #2B8C96;
-    color: white;
-    padding: 20px;
-    border-radius: 4px 4px 0 0;
-    margin-bottom: 20px;
-  }
-  
-  .profile-header h2 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .profile-header p {
-    margin: 5px 0 0;
-    font-size: 14px;
-  }
+.button{
+    margin-bottom: 50px;
+}
+
   
   .profile-form {
     padding: 24px;
-    border-radius: 4px;
   }
   
   .form-layout {
@@ -55,7 +44,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
   }
   
   .avatar-upload {
@@ -98,19 +87,6 @@
   
   .form-actions button {
     min-width: 120px;
-  }
-  
-  /* Material Design Overrides */
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: #e0e0e0;
-  }
-  
-  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: #2B8C96;
-  }
-  
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-    color: #2B8C96;
   }
   
   /* Responsive Design */

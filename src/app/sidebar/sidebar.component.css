@@ -1,18 +1,20 @@
 .sidebar {
-    width: 20vw;
+    width: 18vw;
     display: block;
-    z-index: 1000;
+    z-index: 999999;
     min-height: 90vh;
     /* padding: 30px; */
     padding: 10px;
+    overflow-y: auto;
 }
 .sidebarMenu {
-    
+    overflow-y: auto;
 }
 
 .sidebarPanel {
     transition: background-color 0.2s;
-    position: relative;
+    margin-left: 23px;
+    margin-top: 10px;
 }
 
 .sidebarPanel.mat-expanded:hover {
@@ -26,7 +28,7 @@
 .sidebarPanelItem{
     text-decoration: none;
     color: inherit;
-    /* margin-left: 2px; */
+    /* margin-left: 20px; */
     margin-left: 12px; 
     padding: 12px 0px 12px 4px;
     transition: background-color 0.2s;
@@ -46,14 +48,16 @@
 .mat-expansion-panel {
     box-shadow: none !important; 
     border: none !important; 
+    overflow-y: auto;
   }
   
   
   .map {
-    width: 100%;
+    width: 90%;
     height: 160px;
     background-image: url('/assets/map.0891b8b4804963ff6502.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    margin-left: 20px;
 }

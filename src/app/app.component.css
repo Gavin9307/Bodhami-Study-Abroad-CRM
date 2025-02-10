@@ -4,7 +4,9 @@
 }
 
 .main{
-    background-color: #E6EBEE;
+    background-color: #e6ebee;
     width: 80vw;
-    min-height: 90vh;
+    overflow-y: auto;
+    height: 100vh;
 }
+
