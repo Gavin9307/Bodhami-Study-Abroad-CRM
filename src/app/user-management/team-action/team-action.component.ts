@@ -20,9 +20,16 @@ export class TeamActionComponent implements OnInit {
     onButton2Click(): void {
       console.log('Button 2 clicked');
       // Add any action for Button 2
-      this.router.navigate(['/study-abroad-setup/country-setup/checklist-setup']);
+      this.router.navigate(['/user-management/add-team/member-list']);
       this.dialogRef.close(); // Close the dialog after the action
     }
+
+    onButton3Click(): void {
+      console.log('Button 3 clicked');
+      this.router.navigate(['/user-management/add-team/edit-team']); // Navigate to the route
+      this.dialogRef.close(); // Close the dialog after navigation
+    }
+
 
   ngOnInit() {
   }
