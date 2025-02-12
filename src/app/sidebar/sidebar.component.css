@@ -34,15 +34,18 @@
 .sidebarPanelItem {
     text-decoration: none;
     color: inherit;
-    margin-left: 12px; 
-    padding: 12px 0px 12px 4px;
+    padding: 16px;
     transition: background-color 0.2s;
+    font-size: .9rem !important;
+    border-bottom: 1px solid #d9d2d2;
+    margin-left: 25px;
+    border-radius: 4px;
 }
 
 .sidebarPanelItem:hover {
     text-decoration: none;
     color: var(--text-white);
-    background-color: var(--blue-dark);
+    background-color: #317381;
 }
 
 .linkDiv {
@@ -64,4 +67,13 @@
     background-repeat: no-repeat;
     margin-left: 20px;
     margin-bottom: 50px;
+}
+
+
+.sidebarPanel.mat-expanded .mat-expansion-panel-header {
+    background-color: var(--blue-dark) !important;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
 }
