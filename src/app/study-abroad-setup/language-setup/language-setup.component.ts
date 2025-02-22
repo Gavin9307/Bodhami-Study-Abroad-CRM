@@ -27,15 +27,34 @@ export class LanguageSetupComponent implements OnInit {
   }
 
   fetchLanguages() {
-    this.http.get<LanguageElement[]>('http://localhost:8080/api/language/getAllLanguages')
+    this.http.get<any[]>('http://localhost:8080/api/language/getAllLanguages')
       .subscribe(
         (data) => {
-          this.dataSource = data;
-          console.log(data);
+          this.dataSource = data.map(item => ({
+            ...item,
+            isDeleted: item.deleted // Correct mapping from API response
+          }));
+          console.log(this.dataSource);
         },
         (error) => {
           console.error('Error fetching languages:', error);
         }
       );
+  }
+  
+  toggleDeleteStatus(element: LanguageElement) {
+    const newStatus = !element.isDeleted;
+    const url = newStatus
+      ? `http://localhost:8080/api/language/deleteLanguage/${element.id}`
+      : `http://localhost:8080/api/language/recoverLanguage/${element.id}`;
+
+    this.http.put(url, {}).subscribe(
+      () => {
+        element.isDeleted = newStatus; // Immediate UI update
+      },
+      (error) => {
+        console.error('Error updating delete status:', error);
+      }
+    );
   }
 }
