@@ -1,75 +1,54 @@
 <div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader> 
   <div class="main-sub-container-header">
     Language
     <a [routerLink]="['/study-abroad-setup/language-setup/add-language']">
-    <button mat-flat-button class="btn-dark-rounded-outline-white">Add Language</button>
-  </a>
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Add Language</button>
+    </a>
   </div>
-  
   <div class="add-form-container">
+    <form class="example-form">
+      <mat-form-field class="SearchFliter">
+        <mat-label>Language Name</mat-label>
+        <input matInput placeholder="Eg. English" name="searchText" [(ngModel)]="searchText" (keyup)="applyFilter($event)">
+      </mat-form-field>
+      <button mat-flat-button class="btn-dark-rounded-outline" (click)="applyFilter($event)">Search</button>
+      <button mat-flat-button class="btn-dark-rounded-outline" (click)="clearSearch()">Clear</button>
+    </form>
 
-      <form class="example-form">
-          <mat-form-field class="SearchFliter">
-            <mat-label>Language Name</mat-label>
-            <input matInput placeholder="Eg. English" value="">
-          </mat-form-field>
-          <button mat-flat-button class="btn-dark-rounded-outline">Search</button>
-          <button mat-flat-button class="btn-dark-rounded-outline">Clear</button>
-        </form>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+      </ng-container>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Language Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
 
-          <!-- ID Column -->
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
-          </ng-container>
-        
-          <!-- Language Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Language Name </th>
-            <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
-          </ng-container>
-        
-          <!-- Created By Column -->
-          <ng-container matColumnDef="createdBy">
-            <th mat-header-cell *matHeaderCellDef> Created By </th>
-            <td mat-cell *matCellDef="let element"> {{ element.createdBy }} </td>
-          </ng-container>
-        
-          <!-- Updated By Column -->
-          <ng-container matColumnDef="updatedBy">
-            <th mat-header-cell *matHeaderCellDef> Updated By </th>
-            <td mat-cell *matCellDef="let element"> {{ element.updatedBy }} </td>
-          </ng-container>
-        
-          <!-- Created At Column -->
-          <ng-container matColumnDef="createdAt">
-            <th mat-header-cell *matHeaderCellDef> Created At </th>
-            <td mat-cell *matCellDef="let element"> {{ element.createdAt | date:'medium' }} </td>
-          </ng-container>
-        
-          <!-- Updated At Column -->
-          <ng-container matColumnDef="updatedAt">
-            <th mat-header-cell *matHeaderCellDef> Updated At </th>
-            <td mat-cell *matCellDef="let element"> {{ element.updatedAt | date:'medium' }} </td>
-          </ng-container>
-        
-          <!-- Is Deleted Column with Checkbox -->
-          <ng-container matColumnDef="isDeleted">
-            <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
-            <td mat-cell *matCellDef="let element">
-              <mat-checkbox [checked]="element.isDeleted" (change)="toggleDeleteStatus(element)">
-              </mat-checkbox>
-            </td>
-          </ng-container>
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let element"> {{ element.createdAt | date:'medium' }} </td>
+      </ng-container>
 
-        
-          <!-- Render Header and Rows -->
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-        </table>
-        
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> Updated At </th>
+        <td mat-cell *matCellDef="let element"> {{ element.updatedAt | date:'medium' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isDeleted">
+        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [checked]="element.isDeleted" (change)="toggleDeleteStatus(element)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

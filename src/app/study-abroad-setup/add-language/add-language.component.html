@@ -1,3 +1,19 @@
-<p>
-  add-language works!
-</p>
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    Add Language
+  </div>
+
+  <!-- Loader -->
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <form class="add-form" [formGroup]="languageForm" (ngSubmit)="addLanguage()">
+    <div class="add-form-container">
+      <mat-form-field class="form-input">
+        <mat-label>Language Name</mat-label>
+        <input matInput placeholder="Eg. English" formControlName="name">
+      </mat-form-field>
+    </div>
+    
+    <button mat-flat-button class="btn-dark-rounded" type="submit" [disabled]="languageForm.invalid">Add</button>
+  </form>
+</div>

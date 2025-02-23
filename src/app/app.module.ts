@@ -20,8 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatGridListModule } from '@angular/material/grid-list';
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
@@ -52,7 +51,8 @@ import { EditStudentComponent } from './application-management/edit-student/edit
 import { EditTeamComponent } from './user-management/edit-team/edit-team.component';
 import { MakeTeamComponent } from './user-management/make-team/make-team.component';
 import { EditMemberComponent } from './user-management/edit-member/edit-member.component';
-
+import { LoaderComponent } from './shared/loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -115,7 +115,8 @@ const routes: Routes = [
     EditStudentComponent,
     EditTeamComponent,
     MakeTeamComponent,
-    EditMemberComponent
+    EditMemberComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -143,7 +144,9 @@ const routes: Routes = [
     // Validators,
     FormsModule,          
     ReactiveFormsModule, 
-    MatIconModule 
+    MatIconModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [
     StudentActionDialogComponent,

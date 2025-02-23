@@ -1,0 +1,16 @@
+.loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background-color: rgb(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+}
+
+.custom-loader{
+    filter: brightness(10);
+}
