@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';  // <-- Import ToastrService
 
 @Component({
   selector: 'app-add-language',
@@ -11,7 +12,11 @@ export class AddLanguageComponent {
   languageForm: FormGroup;
   isLoading = false; // Loader
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private toastr: ToastrService   // <-- Inject ToastrService
+  ) {
     this.languageForm = this.fb.group({
       name: ['', Validators.required]
     });
@@ -32,12 +37,12 @@ export class AddLanguageComponent {
     this.http.post('http://localhost:8080/api/language/insertlanguage', payload)
       .subscribe(
         () => {
-          alert('Language added successfully!');
+          this.toastr.success('Language added successfully!', 'Success'); // <-- Success notification
           this.languageForm.reset();
         },
         (error) => {
           console.error('Error adding language:', error);
-          alert('Failed to add language');
+          this.toastr.error('Failed to add language', 'Error'); // <-- Error notification
         }
       )
       .add(() => this.isLoading = false); // Hide Loader
