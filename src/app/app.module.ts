@@ -55,12 +55,24 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'password-reset', component: PasswordResetComponent }
+    ]
+  },
+  {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'account/profile-update', component: ProfileUpdateComponent },
@@ -125,7 +137,9 @@ const routes: Routes = [
     EditMemberComponent,
     LoaderComponent,
     MainLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    LoginComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,
@@ -166,7 +180,7 @@ const routes: Routes = [
     TeamActionComponent
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
