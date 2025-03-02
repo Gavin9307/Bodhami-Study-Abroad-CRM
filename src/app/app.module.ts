@@ -53,35 +53,42 @@ import { MakeTeamComponent } from './user-management/make-team/make-team.compone
 import { EditMemberComponent } from './user-management/edit-member/edit-member.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'account/profile-update', component: ProfileUpdateComponent },
-  { path: 'Review/review', component: ReviewComponent },
-  { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
-  { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
-  { path: 'study-abroad-setup/country-setup/document-setup', component: DocumentSetupComponent },
-  { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
-  { path: 'study-abroad-setup/university-setup', component: UniversitySetupComponent },
-  { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
-  { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
-  { path: 'study-abroad-setup/course-setup/add-course', component: AddCourseComponent },
-  { path: 'study-abroad-setup/language-setup', component: LanguageSetupComponent },
-  { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
-  { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent},
-  { path: 'application-management/edit-student', component: EditStudentComponent},
-  { path: 'application-management/manage-students-application/student-registration', component: StudentRegistrationComponent},
-  { path: 'user-management/add-team', component: AddTeamComponent },
-  { path: 'user-management/add-team/member-list', component: MemberListComponent },
-  { path: 'user-management/edit-team', component: EditTeamComponent },
-  { path: 'user-management/add-team/edit-team', component: EditTeamComponent },
-  { path: 'user-management/make-team', component: MakeTeamComponent },
-  { path: 'user-management/add-team/add-member', component: AddMemberComponent },
-  { path: 'user-management/member-list', component: MemberListComponent },
-  { path: 'user-management/edit-member', component: EditMemberComponent }
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'account/profile-update', component: ProfileUpdateComponent },
+      { path: 'Review/review', component: ReviewComponent },
+      { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
+      { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
+      { path: 'study-abroad-setup/country-setup/document-setup', component: DocumentSetupComponent },
+      { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
+      { path: 'study-abroad-setup/university-setup', component: UniversitySetupComponent },
+      { path: 'study-abroad-setup/university-setup/add-university', component: AddUniversityComponent },
+      { path: 'study-abroad-setup/course-setup', component: CourseSetupComponent },
+      { path: 'study-abroad-setup/course-setup/add-course', component: AddCourseComponent },
+      { path: 'study-abroad-setup/language-setup', component: LanguageSetupComponent },
+      { path: 'study-abroad-setup/language-setup/add-language', component: AddLanguageComponent },
+      { path: 'application-management/manage-students-application', component: ManageStudentsApplicationComponent },
+      { path: 'application-management/edit-student', component: EditStudentComponent },
+      { path: 'application-management/manage-students-application/student-registration', component: StudentRegistrationComponent },
+      { path: 'user-management/add-team', component: AddTeamComponent },
+      { path: 'user-management/add-team/member-list', component: MemberListComponent },
+      { path: 'user-management/edit-team', component: EditTeamComponent },
+      { path: 'user-management/add-team/edit-team', component: EditTeamComponent },
+      { path: 'user-management/make-team', component: MakeTeamComponent },
+      { path: 'user-management/add-team/add-member', component: AddMemberComponent },
+      { path: 'user-management/member-list', component: MemberListComponent },
+      { path: 'user-management/edit-member', component: EditMemberComponent }
+    ]
+  }
 ];
-
 
 @NgModule({
   declarations: [
@@ -116,7 +123,9 @@ const routes: Routes = [
     EditTeamComponent,
     MakeTeamComponent,
     EditMemberComponent,
-    LoaderComponent
+    LoaderComponent,
+    MainLayoutComponent,
+    AuthLayoutComponent
   ],
   imports: [
     BrowserModule,

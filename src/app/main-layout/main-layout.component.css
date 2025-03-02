@@ -1,0 +1,13 @@
+.main-content {
+    width: 100%;
+    display:flex ;
+}
+
+
+.main{
+    background-color: #e6ebee;
+    width: 80vw;
+    overflow-y: auto;
+    height: 100vh;
+}
+
