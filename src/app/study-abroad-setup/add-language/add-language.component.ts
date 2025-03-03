@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';  // <-- Import ToastrService
+import { LanguageService } from '../../services/language/language.service';
 
 @Component({
   selector: 'app-add-language',
@@ -10,12 +10,11 @@ import { ToastrService } from 'ngx-toastr';  // <-- Import ToastrService
 })
 export class AddLanguageComponent {
   languageForm: FormGroup;
-  isLoading = false; // Loader
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private toastr: ToastrService   // <-- Inject ToastrService
+    private languageService: LanguageService
   ) {
     this.languageForm = this.fb.group({
       name: ['', Validators.required]
@@ -25,26 +24,19 @@ export class AddLanguageComponent {
   addLanguage() {
     if (this.languageForm.invalid) return;
 
-    this.isLoading = true; // Show Loader
+    this.isLoading = true;
 
-    const payload = {
-      name: this.languageForm.value.name,
-      deleted: false,
-      createdBy: 1,  // Replace with dynamic user ID if needed
-      updatedBy: 1
-    };
+    const name = this.languageForm.value.name;
+    const createdBy = 1;  
+    const updatedBy = 1;
 
-    this.http.post('http://localhost:8080/api/language/insertlanguage', payload)
-      .subscribe(
-        () => {
-          this.toastr.success('Language added successfully!', 'Success'); // <-- Success notification
-          this.languageForm.reset();
-        },
-        (error) => {
-          console.error('Error adding language:', error);
-          this.toastr.error('Failed to add language', 'Error'); // <-- Error notification
-        }
-      )
-      .add(() => this.isLoading = false); // Hide Loader
+    this.languageService.addLanguage(name, createdBy, updatedBy).subscribe(
+      () => {
+        this.languageForm.reset();
+      },
+      (error) => {
+        console.error('Error adding language:', error);
+      }
+    ).add(() => this.isLoading = false);
   }
 }

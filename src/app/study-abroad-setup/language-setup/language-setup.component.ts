@@ -1,17 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface LanguageElement {
-  id: number;
-  name: string;
-  createdBy: number;
-  updatedBy: number;
-  createdAt: number;
-  updatedAt: number;
-  isDeleted: boolean;
-}
+import { LanguageService, LanguageElement } from '../../services/language/language.service';
 
 @Component({
   selector: 'app-language-setup',
@@ -22,33 +12,33 @@ export class LanguageSetupComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'createdAt', 'updatedAt', 'isDeleted'];
   dataSource = new MatTableDataSource<LanguageElement>([]);
   searchText: string = '';
-  isLoading: boolean = false; // Added loader flag
+  isLoading: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private http: HttpClient) {}
+  constructor(private languageService: LanguageService) {}
 
   ngOnInit() {
     this.fetchLanguages();
   }
 
   fetchLanguages() {
-    this.isLoading = true; // Show loader
-    this.http.get<any[]>('http://localhost:8080/api/language/getAllLanguages')
-      .subscribe(
-        (data) => {
-          this.dataSource.data = data.map(item => ({
-            ...item,
-            isDeleted: item.deleted // Correct mapping from API response
-          }));
-          this.dataSource.paginator = this.paginator;
-          this.isLoading = false; // Hide loader
-        },
-        (error) => {
-          console.error('Error fetching languages:', error);
-          this.isLoading = false; // Hide loader on error
-        }
-      );
+    this.isLoading = true;
+    this.languageService.getLanguages().subscribe(
+      (data) => {
+        this.dataSource.data = data.map(item => ({
+          ...item,
+          isDeleted: item.deleted
+        }));
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error('Error fetching languages:', error);
+        this.languageService.showErrorMessage('Failed to load languages');
+        this.isLoading = false;
+      }
+    );
   }
 
   applyFilter(event: Event) {
@@ -62,20 +52,18 @@ export class LanguageSetupComponent implements OnInit {
   }
 
   toggleDeleteStatus(element: LanguageElement) {
-    const newStatus = !element.isDeleted;
-    const url = newStatus
-      ? `http://localhost:8080/api/language/deleteLanguage/${element.id}`
-      : `http://localhost:8080/api/language/recoverLanguage/${element.id}`;
-
-    this.isLoading = true; // Show loader
-    this.http.put(url, {}).subscribe(
+    this.isLoading = true;
+    this.languageService.toggleDeleteStatus(element.id, element.deleted).subscribe(
       () => {
-        element.isDeleted = newStatus; // Update UI instantly
-        this.isLoading = false; // Hide loader
+        element.deleted = !element.deleted; // Instantly update UI
+        const message = element.deleted ? 'Language deleted successfully!' : 'Language recovered successfully!';
+        this.languageService.showSuccessMessage(message);
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error updating delete status:', error);
-        this.isLoading = false; // Hide loader on error
+        this.languageService.showErrorMessage('Failed to update delete status');
+        this.isLoading = false;
       }
     );
   }
