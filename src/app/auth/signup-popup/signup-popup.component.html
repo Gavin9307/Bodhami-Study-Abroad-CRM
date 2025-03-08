@@ -1,0 +1,84 @@
+<mat-dialog-content>
+  <img src="../../../assets/signuplogo.jpg" class="logo" alt="Signup Logo">
+  <h3 class="logintext" style="line-height:30px;">Signup to Your Bodhami Account!</h3>
+
+  <form [formGroup]="signupForm" (ngSubmit)="createAccount()" class="signup-form">
+    <!-- Form fields go here -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="First Name" formControlName="firstName" maxlength="50">
+      <mat-error *ngIf="signupForm.get('firstName').hasError('required') && (signupForm.get('firstName').dirty || signupForm.get('firstName').touched)" class="error-message mobile-only">
+        Mandatory
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('firstName').hasError('required') && (signupForm.get('firstName').dirty || signupForm.get('firstName').touched) && !isMobile" class="error-message desktop-only">
+        First Name is required
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('firstName').hasError('pattern')">
+        First Name cannot contain special characters or numbers
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('firstName').hasError('maxlength')">
+        First Name is too long
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Last Name" formControlName="lastName" maxlength="50">
+      <mat-error *ngIf="signupForm.get('lastName').hasError('required') && (signupForm.get('lastName').dirty || signupForm.get('lastName').touched)" class="error-message mobile-only">
+        Mandatory
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('lastName').hasError('required') && (signupForm.get('lastName').dirty || signupForm.get('lastName').touched) && !isMobile" class="error-message desktop-only">
+        Last Name is required
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('lastName').hasError('pattern')">
+        Last Name cannot contain special characters or numbers
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('lastName').hasError('maxlength')">
+        Last Name is too long
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="email" placeholder="Email" formControlName="email" maxlength="75">
+      <mat-error *ngIf="signupForm.get('email').hasError('required') && (signupForm.get('email').dirty || signupForm.get('email').touched)" class="error-message mobile-only">
+        Mandatory
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('email').hasError('email') && !(signupForm.get('email').hasError('required') && (signupForm.get('email').dirty || signupForm.get('email').touched))">
+        Invalid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Phone Number" formControlName="phoneNumber" maxlength="10">
+      <mat-error *ngIf="signupForm.get('phoneNumber').hasError('required') && (signupForm.get('phoneNumber').dirty || signupForm.get('phoneNumber').touched)" class="error-message mobile-only">
+        Mandatory
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('phoneNumber').hasError('pattern') && !(signupForm.get('phoneNumber').hasError('required') && (signupForm.get('phoneNumber').dirty || signupForm.get('phoneNumber').touched))">
+        Phone number must be exactly 10 digits
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Country" formControlName="country">
+        <mat-option *ngFor="let country of countries" [value]="country.countryId">
+          {{ country.countryDisp }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="signupForm.get('country').hasError('required') && (signupForm.get('country').dirty || signupForm.get('country').touched)" class="error-message mobile-only">
+        Mandatory
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Pincode" formControlName="pincode" maxlength="6">
+      <mat-error *ngIf="signupForm.get('pincode').hasError('required') && (signupForm.get('pincode').dirty || signupForm.get('pincode').touched)" class="error-message mobile-only">
+        Mandatory
+      </mat-error>
+      <mat-error *ngIf="signupForm.get('pincode').hasError('pattern') && !(signupForm.get('pincode').hasError('required') && (signupForm.get('pincode').dirty || signupForm.get('pincode').touched))">
+        Pincode must be exactly 6 digits
+      </mat-error>
+    </mat-form-field>
+
+    <div class="text-center">
+      <button mat-raised-button color="primary" type="submit">Create</button>
+    </div>
+  </form>
+</mat-dialog-content>

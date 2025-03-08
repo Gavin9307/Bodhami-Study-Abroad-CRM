@@ -1,0 +1,93 @@
+.topheader {
+    background-image: url(/src/assets/signin.png);
+    margin: 0;
+    position: relative;
+    padding: inherit;
+    border-radius: 4px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+    padding-left: 5%; /* Adjust spacing from the left */
+}
+
+.mat-card {
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10% 4%; 
+    align-self: flex-start; 
+}
+  
+  .logo {
+    width: 59px;
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .logintext {
+    font-size: 21px;
+    font-family: roboto, sans-serif;
+    font-weight: 500;
+    text-align: center;
+    color: #000;
+    margin-bottom: 0px;
+  }
+  
+  .mat-form-field {
+    display: block;
+    margin-top: 2%;
+  }
+  
+  .login-button-div {
+    text-align: center;
+    margin: 2% 0;
+  }
+  
+  .login-button {
+    padding: 10px 100px;
+    border-radius: 38px;
+    font-family: roboto, sans-serif;
+    font-weight: 520;
+    color: #fff;
+    font-size: 16px;
+    background-color: #2103f8;
+    border: 1px solid #2103f8;
+  }
+  
+  .forgotpassword {
+    text-align: center;
+    margin: 20px;
+    /* border-bottom: 1px solid #d9d2d2; */
+  }
+  
+  .signup-student {
+    text-align: center;
+    margin-top: 20px;
+    color: #337ab7;
+    text-decoration: underline;
+  }
+
+  .forgotpassword a {
+    color: #2103f8;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .signup a:hover, .forgotpassword a:hover {
+    text-decoration: underline;
+  }
+  
+.centered-hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  width: 20%; /* Adjust the width as needed */
+  margin: 20px auto; /* Center the hr element */
+}

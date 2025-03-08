@@ -58,6 +58,8 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 import { AuthGuard } from './auth.guard';
+import { SignupPopupComponent } from './auth/signup-popup/signup-popup.component';
+import { StudyAbroadAnalysisComponent } from './study-abroad-analysis/study-abroad-analysis/study-abroad-analysis.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -77,6 +79,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'account/profile-update', component: ProfileUpdateComponent },
       { path: 'Review/review', component: ReviewComponent },
+      { path: 'study-abroad-analysis/study-abroad-analysis', component: StudyAbroadAnalysisComponent },
       { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
       { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
       { path: 'study-abroad-setup/country-setup/document-setup', component: DocumentSetupComponent },
@@ -139,7 +142,9 @@ const routes: Routes = [
     MainLayoutComponent,
     AuthLayoutComponent,
     LoginComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    SignupPopupComponent,
+    StudyAbroadAnalysisComponent,
   ],
   imports: [
     BrowserModule,
@@ -162,9 +167,6 @@ const routes: Routes = [
     MatCheckboxModule,
     MatGridListModule,
     MatDividerModule,
-    // FormBuilder,
-    // FormGroup,
-    // Validators,
     FormsModule,          
     ReactiveFormsModule, 
     MatIconModule,
@@ -177,7 +179,8 @@ const routes: Routes = [
   entryComponents: [
     StudentActionDialogComponent,
     CountryActionComponent,
-    TeamActionComponent
+    TeamActionComponent,
+    SignupPopupComponent 
   ],
   exports: [RouterModule],
   providers: [AuthGuard],
