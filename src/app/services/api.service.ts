@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,19 +10,23 @@ export class ApiService {
   private headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
-  serverUrl = environment.serverUrl;
+  private apiUrl = 'http://localhost:8080/api/authentication/login';
 
   constructor(private http: HttpClient) { }
 
-  customerloginauthentication(email: string, password: string) {
-    const data = { 'email': email, 'password': password };
-    const body = JSON.stringify(data);
-    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json', 'no-auth': 'True' });
-    return this.http.post(this.serverUrl + 'authentication/userLogin', body, { headers: reqHeader });
+  councellorLoginAuthentication(email: string, password: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    const requestBody = {
+      email: email,
+      password: password
+    };
+
+    return this.http.post<any>(this.apiUrl, requestBody, { headers });
   }
 
   userSignup(signupData: any) {
     const body = JSON.stringify(signupData);
-    return this.http.post(this.serverUrl + 'user', body, { headers: this.headers });
+    return this.http.post(this.apiUrl + 'user', body, { headers: this.headers });
   }
 }

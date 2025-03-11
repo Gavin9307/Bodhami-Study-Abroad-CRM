@@ -3,25 +3,24 @@
     <img src="/src/assets/signuplogo.jpg" class="logo">
     <h3 class="logintext">Login to Your Bodhami Account!</h3>
 
-    <form [formGroup]="loginForm" class="formpadding">
+    <form [formGroup]="loginForm" class="formpadding" (ngSubmit)="loginform()">
       <mat-form-field class="example-full-width">
-        <input type="email" matInput placeholder="Email" [(ngModel)]="email" autocomplete="off" formControlName="emails" #loginId maxlength="75">
-        <mat-error *ngIf="loginForm.controls.emails.invalid">{{emails()}}</mat-error>
+        <input type="email" matInput placeholder="Email" autocomplete="off" formControlName="email" maxlength="75">
+        <mat-error *ngIf="loginForm.controls.email.invalid">{{ emailError }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input type="password" matInput placeholder="Password" [(ngModel)]="password" autocomplete="off" formControlName="passwords">
-        <mat-error *ngIf="loginForm.controls.passwords.invalid">{{passwords()}}</mat-error>
+        <input type="password" matInput placeholder="Password" autocomplete="off" formControlName="password">
+        <mat-error *ngIf="loginForm.controls.password.invalid">{{ passwordError }}</mat-error>
       </mat-form-field>
 
       <div class="login-button-div">
-        <button mat-raised-button type="submit" (click)="loginform(email,password)" color="primary" class="login-button">LOG IN</button>
+        <button mat-raised-button type="submit" color="primary" class="login-button">LOG IN</button>
       </div>
       
       <p class="forgotpassword"><a class="popup forgot" routerLink="/resetPassword">Forgot Password?</a></p>
-     
+
       <hr class="centered-hr">
-      <!-- New Signup Link -->
       <p class="signup-student">
         <a class="popup-signup" (click)="openSignupPopup()">SIGNUP for Students</a>
       </p>
