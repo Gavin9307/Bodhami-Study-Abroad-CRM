@@ -65,6 +65,10 @@ export class SidebarComponent implements OnInit {
       link: '/account', 
       subItems: [
         {
+          name: 'Checklist Setup',
+          link: '/study-abroad-setup/checklist-setup',
+        },
+        {
         name: 'Country Setup',
         link: '/study-abroad-setup/country-setup',
         },

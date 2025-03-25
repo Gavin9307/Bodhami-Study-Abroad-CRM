@@ -1,0 +1,23 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Add Checklist
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+      <mat-form-field class="form-input">
+        <mat-label>Checklist Name</mat-label>
+        <input matInput [(ngModel)]="checklistName" name="checklistName" placeholder="Eg. India" value="">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Checklist Description</mat-label>
+        <input matInput placeholder="Eg. +91" name="checklistDescription" [(ngModel)]="checklistDescription" value="">
+      </mat-form-field>
+    </div>
+    
+    <button  mat-flat-button class="btn-dark-rounded" (click)="addChecklist()">Add</button>
+  </form>
+</div>

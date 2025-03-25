@@ -60,6 +60,9 @@ import { PasswordResetComponent } from './auth/password-reset/password-reset.com
 import { AuthGuard } from './auth.guard';
 import { SignupPopupComponent } from './auth/signup-popup/signup-popup.component';
 import { StudyAbroadAnalysisComponent } from './study-abroad-analysis/study-abroad-analysis/study-abroad-analysis.component';
+import { EditChecklistComponent } from './study-abroad-setup/edit-checklist/edit-checklist.component';
+import { AddChecklistComponent } from './study-abroad-setup/add-checklist/add-checklist.component';
+import { TeamSetupComponent } from './study-abroad-setup/team-setup/team-setup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -68,7 +71,7 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'password-reset', component: PasswordResetComponent }
+      { path: 'password-reset', component: PasswordResetComponent}
     ]
   },
   {
@@ -81,6 +84,9 @@ const routes: Routes = [
       { path: 'Review/review', component: ReviewComponent },
       { path: 'study-abroad-analysis/study-abroad-analysis', component: StudyAbroadAnalysisComponent },
       { path: 'study-abroad-setup/country-setup', component: CountrySetupComponent },
+      { path: 'study-abroad-setup/checklist-setup', component: ChecklistSetupComponent },
+      { path: 'study-abroad-setup/checklist-setup/edit-checklist/:id', component: EditChecklistComponent },
+      { path: 'study-abroad-setup/checklist-setup/add-checklist', component: AddChecklistComponent },
       { path: 'study-abroad-setup/country-setup/checklist-setup', component: ChecklistSetupComponent },
       { path: 'study-abroad-setup/country-setup/document-setup', component: DocumentSetupComponent },
       { path: 'study-abroad-setup/country-setup/add-country', component: AddCountryComponent },
@@ -145,6 +151,9 @@ const routes: Routes = [
     PasswordResetComponent,
     SignupPopupComponent,
     StudyAbroadAnalysisComponent,
+    EditChecklistComponent,
+    AddChecklistComponent,
+    TeamSetupComponent,
   ],
   imports: [
     BrowserModule,

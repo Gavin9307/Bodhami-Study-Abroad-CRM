@@ -1,0 +1,28 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Edit Checklist
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+      <mat-form-field class="form-input">
+        <mat-label>Checklist Name</mat-label>
+        <input matInput [(ngModel)]="checklist.name" name="checklistName" placeholder="Eg. India" value="">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Checklist Description</mat-label>
+        <input matInput placeholder="Eg. +91" name="checklistDescription" (ngModelChange)="onChecklistNameChange($event)" [(ngModel)]="checklist.description" value="">
+      </mat-form-field>
+
+      <div class="form-input">
+        <mat-checkbox class="">Is Deleted</mat-checkbox>
+      </div>
+      
+    </div>
+    
+    <button  mat-flat-button class="btn-dark-rounded" (click)="editChecklist()">Edit</button>
+  </form>
+</div>

@@ -1,50 +1,55 @@
 <div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    Cheklist
-    <a [routerLink]="['/study-abroad-setup/country-setup/add-country']">
+    Checklist
+    <a [routerLink]="['/study-abroad-setup/checklist-setup/add-checklist']">
       <button mat-flat-button class="btn-dark-rounded-outline-white">Add Checklist</button>
     </a>
   </div>
-  
+
   <div class="add-form-container">
-   
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!-- Country Name Column -->
+
+    <table mat-table [dataSource]="checklists" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr.No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo }} </td>
+      </ng-container>
+
       <ng-container matColumnDef="checklistName">
         <th mat-header-cell *matHeaderCellDef> Checklist Name </th>
-        <td mat-cell *matCellDef="let element"> {{ element.checklistName }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
       </ng-container>
-  
-      <!-- Country Code Column -->
-      <ng-container matColumnDef="checklistHeading">
-        <th mat-header-cell *matHeaderCellDef> Checklist Heading </th>
-        <td mat-cell *matCellDef="let element"> {{ element.checklistHeading }} </td>
-      </ng-container>
-  
-      <!-- checklistDescription Column -->
+
       <ng-container matColumnDef="checklistDescription">
         <th mat-header-cell *matHeaderCellDef> Checklist Description </th>
-        <td mat-cell *matCellDef="let element" class="Description"> {{ element.checklistDescription }} </td>
+        <td mat-cell *matCellDef="let element" class="Description"> {{ element.description }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="checklistCouncellorName">
+        <th mat-header-cell *matHeaderCellDef> Created By </th>
+        <td mat-cell *matCellDef="let element"> {{ element.councellorName }} </td>
       </ng-container>
 
       <!-- Status Column -->
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
+      <ng-container matColumnDef="isDeleted">
+        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
         <td mat-cell *matCellDef="let element">
-          <mat-checkbox [(ngModel)]="element.status" class="example-margin"></mat-checkbox>
+          <mat-checkbox [(ngModel)]="element.deleted" (ngModelChange)="onIsDeletedChange(element)"
+            class="example-margin"></mat-checkbox>
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" (click)="openDialog()" class="btn-dark-rounded-outline">
-              Action
-            </button>
-          </td>
-        </ng-container>
-  
+      <ng-container matColumnDef="editChecklist">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/study-abroad-setup/checklist-setup/edit-checklist',element.checklistID]">
+            <button mat-raised-button color="primary" class="btn-dark-rounded-outline">Edit</button>
+          </a>
+        </td>
+      </ng-container>
+
       <!-- Render Header and Rows -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

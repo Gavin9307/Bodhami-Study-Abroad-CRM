@@ -1,37 +1,86 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { CountryActionComponent } from '../country-action/country-action.component';
-
-export interface CountryElement {
-  checklistName: string;
-  checklistHeading: string;
-  checklistDescription: string;
-}
-
-const ELEMENT_DATA: CountryElement[] = [
-  { checklistName: 'LOR', checklistHeading: 'IN', checklistDescription: 'This is a description that is a bit longer, it may take more than one line depending on the width of the table column. It should wrap properly without breaking the layout of the table.'},
-  { checklistName: 'VISA', checklistHeading: 'US', checklistDescription: 'USD' },
-  { checklistName: 'LOR', checklistHeading: 'DE', checklistDescription: 'EUR' }
-];
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checklist-setup',
   templateUrl: './checklist-setup.component.html',
   styleUrls: ['./checklist-setup.component.css']
 })
-export class ChecklistSetupComponent implements OnInit {
- displayedColumns: string[] = ['checklistName', 'checklistHeading', 'checklistDescription','status','action'];
-  dataSource = ELEMENT_DATA;
 
-  constructor(public dialog: MatDialog) {}
+
+
+export class ChecklistSetupComponent implements OnInit {
   
-    openDialog(): void {
-      this.dialog.open(CountryActionComponent, {
-        width: '400px' 
-      });
-    }
+  checklists:any[]  = [];
+
+  displayedColumns : String[] = ["SrNo","checklistName","checklistDescription","checklistCouncellorName","isDeleted","editChecklist"]
+  
+  isLoading:Boolean = false;
+
+
+  constructor(private http: HttpClient,private toastr : ToastrService) {}
+  
   ngOnInit() {
+    this.getAllChecklists();
   }
 
+  getAllChecklists(){
+    this.isLoading = true;
+    this.http.get<any[]>("http://localhost:8080/api/checklist/getallchecklistsetup")
+    .subscribe(
+      (response)=>{
+        this.checklists = response;
+        console.log(this.checklists);
+        this.checklists.forEach((element,index) => {
+          element["SrNo"] = index+1;
+        });
+        console.log(this.checklists);
+        this.isLoading = false;
+      },
+      (error)=>{
+        console.log("Error Fetching checklists. Reason : " + error.message);
+        this.isLoading = false;
+        this.toastr.error("Error Fetching checklists");
+      }
+    )
+  }
+ 
+  onIsDeletedChange(element : any[]){
+    
+    
+    const isDeleted:Boolean = element["deleted"];
+    const checklistId:Number = element["checklistID"];
+
+    if(isDeleted == true){
+      this.isLoading = true;
+      this.http.put("http://localhost:8080/api/checklist/delete/"+checklistId,{})
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.toastr.success("Checklist Deleted Successfully");
+          this.isLoading = false;
+        },
+        (error) => {
+          this.toastr.error("Checklist Cannot be Deleted");
+          this.isLoading = false;
+        }
+      );
+    }
+    else{
+      this.isLoading = true;
+      this.http.put("http://localhost:8080/api/checklist/restore/"+checklistId,{})
+      .subscribe(
+        response => {
+          this.toastr.success("Checklist Recovered Successfully");
+          this.isLoading = false;
+        },
+        error => {
+          this.toastr.error("Checklist Cannot be Recovered");
+          this.isLoading = false;
+        }
+      );
+    }
+  }
 }
