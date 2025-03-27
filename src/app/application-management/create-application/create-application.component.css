@@ -1,0 +1,92 @@
+@import url(../../../styles.css);
+
+.stepper-container {
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .stepper-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .stepper-header div {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin: 0 10px;
+    font-weight: bold;
+  }
+  
+  .stepper-header div.active {
+    background-color: #0277bd;
+    color: white;
+  }
+  
+  .stepper-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  mat-form-field {
+    width: 300px;
+    display: block;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .form-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .form-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
+  }
+  
+  .form-input {
+    width: 100%;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .btn-dark {
+    background-color: #004d66;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+  }
+  
+  .grid-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .column {
+    flex: 1;
+  }
+  
+  .form-input-full {
+    width: 100%;
+  }

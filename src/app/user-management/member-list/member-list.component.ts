@@ -9,9 +9,9 @@ export interface CountryElement {
 }
 
 const ELEMENT_DATA: CountryElement[] = [
-  { teamName: 'LOR', teamLead: 'IN' ,role: 'senior'},
-  { teamName: 'VISA', teamLead: 'US', role: 'senior'},
-  { teamName: 'LOR', teamLead: 'DE', role: 'senior' }
+  { teamName: 'super', teamLead: 'Langer' ,role: 'senior'},
+  { teamName: 'USA', teamLead: 'Gavin', role: 'senior'},
+  { teamName: 'All Star', teamLead: 'Jessica', role: 'senior' }
 ];
 
 @Component({

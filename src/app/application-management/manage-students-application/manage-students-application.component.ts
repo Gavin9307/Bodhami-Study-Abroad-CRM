@@ -9,11 +9,12 @@ export interface StudentElement {
   status: string;
   pendingApplications: string;
   phoneNumber: string;
+  applicationID : string;
 }
 
 const ELEMENT_DATA: StudentElement[] = [
-  { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', status: 'Active', pendingApplications: '2', phoneNumber: '9876543210' },
-  { firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com', status: 'Inactive', pendingApplications: '1', phoneNumber: '9123456789' }
+  { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', status: 'Active', pendingApplications: '2', phoneNumber: '9876543210', applicationID : '1'},
+  { firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com', status: 'Inactive', pendingApplications: '1', phoneNumber: '9123456789', applicationID : '2' }
 ];
 
 @Component({
@@ -22,7 +23,7 @@ const ELEMENT_DATA: StudentElement[] = [
   styleUrls: ['./manage-students-application.component.css']
 })
 export class ManageStudentsApplicationComponent implements OnInit {
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'status', 'pendingApplications', 'phoneNumber', 'broche'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'status', 'pendingApplications', 'phoneNumber', 'applicationID', 'action'];
   dataSource = ELEMENT_DATA;
 
   constructor(public dialog: MatDialog) {}

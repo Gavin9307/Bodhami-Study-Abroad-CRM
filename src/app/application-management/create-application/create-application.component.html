@@ -1,0 +1,156 @@
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    Create Application
+  </div>
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    
+    <!-- Step 1: Select Country -->
+    <mat-step [stepControl]="firstFormGroup">  
+      <ng-template matStepLabel>Country</ng-template>
+      <form [formGroup]="firstFormGroup">  
+        <mat-form-field>
+          <input type="text" matInput placeholder="Country" formControlName="firstCtrl" required [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+              <mat-option *ngFor="let name of group.names" [value]="name">
+                {{ name }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <!-- Step 2: University Details -->
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>University</ng-template>
+      <form [formGroup]="secondFormGroup">
+        <div class="form-group grid-container">
+          <!-- Column 1 -->
+          <div class="column">
+            <mat-form-field class="form-input">
+              <mat-label>University Name</mat-label>
+              <input matInput placeholder="Eg. IIT Manipal" formControlName="universityName">
+            </mat-form-field>
+
+            <mat-form-field class="form-input">
+              <mat-label>University Website</mat-label>
+              <input matInput placeholder="Eg. iitmanipal.in" formControlName="universityWebsite">
+            </mat-form-field>
+
+            <mat-form-field class="form-input">
+              <mat-label>University Type</mat-label>
+              <mat-select formControlName="universityType">
+                <mat-option value="public">Public</mat-option>
+                <mat-option value="private">Private</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="column">
+            <mat-form-field class="form-input">
+              <mat-label>University National Ranking</mat-label>
+              <input matInput type="number" placeholder="Eg. 2" formControlName="nationalRanking">
+            </mat-form-field>
+
+            <mat-form-field class="form-input">
+              <mat-label>Select Country</mat-label>
+              <mat-select formControlName="selectedCountry">
+                <mat-option value="UK">UK</mat-option>
+                <mat-option value="US">US</mat-option>
+                <mat-option value="Austrila">Austrila</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-input">
+              <mat-label>Programs Offered</mat-label>
+              <mat-select formControlName="programsOffered" multiple>
+                <mat-option value="ug">Undergraduate</mat-option>
+                <mat-option value="pg">Postgraduate</mat-option>
+                <mat-option value="phd">PhD</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <!-- Full-width Description -->
+        <mat-form-field class="form-input-full">
+          <mat-label>University Description</mat-label>
+          <textarea matInput placeholder="Eg. Best college in India" formControlName="universityDescription"></textarea>
+        </mat-form-field>
+
+        <div class="button-group">
+          <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 3: Course Details -->
+    <mat-step [stepControl]="thirdFormGroup">
+      <ng-template matStepLabel>Course</ng-template>  
+      <form [formGroup]="thirdFormGroup">  
+        <div class="form-group">
+          
+          <mat-form-field class="form-input">
+            <mat-label>Course Name</mat-label>
+            <input matInput placeholder="Eg. Computer Science" formControlName="courseName">
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Course Duration</mat-label>
+            <input matInput placeholder="Eg. 4 years" formControlName="courseDuration">
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Course Level</mat-label>
+            <mat-select formControlName="courseLevel">
+              <mat-option value="bachelors">Bachelor's</mat-option>
+              <mat-option value="masters">Master's</mat-option>
+              <mat-option value="phd">PhD</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" placeholder="Eg. $10,000" formControlName="coursePrice">
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Area of Study</mat-label>
+            <mat-select formControlName="areaOfStudy">
+              <mat-option value="cs">Computer Science</mat-option>
+              <mat-option value="ai">Artificial Intelligence</mat-option>
+              <mat-option value="mech">Mechanical Engineering</mat-option>
+              <mat-option value="med">Medicine</mat-option>
+              <mat-option value="law">Law</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
+        <div class="button-group">
+          <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 4: Done -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div class="button-group">
+        <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+        <button mat-button class="btn-dark-rounded" (click)="submitApplication()">Submit</button>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>
