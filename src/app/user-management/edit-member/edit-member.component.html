@@ -1,36 +1,52 @@
 <div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
   <div class="main-sub-container-header">
-    Edit Counselor/Member
+    Edit Counselor Details
   </div>
   <form class="add-form">
     <div class="add-form-container">
-      
+
       <mat-form-field class="form-input">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Eg. John Doe" value="">
+        <mat-label>Councellor Name</mat-label>
+        <input matInput [(ngModel)]="councellor.councellorName" name="councellorName"
+          placeholder="Enter Councellor Name" value="">
       </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Eg. john.doe@example.com" value="">
+        <mat-label>Councellor Email</mat-label>
+        <input matInput [(ngModel)]="councellor.councellorEmail" name="councellorEmail"
+          placeholder="Enter Councellor Email" value="">
       </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label>Role</mat-label>
-        <mat-select>
-          <mat-option value="one">Hindi</mat-option>
-          <mat-option value="two">English</mat-option>
+        <mat-label>Councellor Phone Number</mat-label>
+        <input matInput [(ngModel)]="councellor.councellorPhoneNumber" name="councellorPhoneNumber"
+          placeholder="Enter Councellor Phone Number" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Councellor Department</mat-label>
+        <input matInput [(ngModel)]="councellor.councellorDepartment" name="councellorDepartment"
+          placeholder="Enter Councellor Department" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Councellor Role</mat-label>
+        <mat-select [(ngModel)]="councellor.councellorRole" name="councellorRole">
+          <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
         </mat-select>
-      </mat-form-field> <!-- Closing tag was missing here -->
+      </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label>Phone No.</mat-label>
-        <input matInput placeholder="Eg. 9876543210" value="">
+        <mat-label>Councellor Address</mat-label>
+        <input matInput [(ngModel)]="councellor.councellorAddress" name="councellorAddress"
+          placeholder="Enter Councellor Address" value="">
       </mat-form-field>
 
     </div>
 
-    <button mat-flat-button class="btn-dark-rounded button">Reset</button>
-    <button mat-flat-button class="btn-dark-rounded button">Save Changes</button>
+    <button mat-flat-button (click)="editCouncellor()" class="btn-dark-rounded button">Save</button>
   </form>
 </div>

@@ -143,7 +143,7 @@ const routes: Routes = [
           { path: 'make-team', component: MakeTeamComponent },
           { path: 'add-team/add-member', component: AddMemberComponent },
           { path: 'member-list', component: MemberListComponent },
-          { path: 'edit-member', component: EditMemberComponent }
+          { path: 'edit-member/:id', component: EditMemberComponent }
         ]
       }
     ]

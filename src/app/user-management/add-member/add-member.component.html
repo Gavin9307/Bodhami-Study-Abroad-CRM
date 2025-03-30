@@ -1,49 +1,48 @@
 <div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    Add Counselor/Member
+    Add Counselor
   </div>
   <form class="add-form">
     <div class="add-form-container">
+      <mat-form-field class="form-input">
+        <mat-label>Full Name</mat-label>
+        <input matInput [(ngModel)]="councellorName" name="councellorName" placeholder="Enter Councellor Full Name" value="">
+      </mat-form-field>
       
       <mat-form-field class="form-input">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Eg. John Doe" value="">
-      </mat-form-field>
-
-      <mat-form-field class="form-input">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Eg. john.doe@example.com" value="">
+        <input matInput [(ngModel)]="councellorEmail" name="councellorEmail" placeholder="Enter Councellor Full Name" value="">
       </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label>Role</mat-label>
-        <mat-select>
-          <mat-option value="one">Hindi</mat-option>
-          <mat-option value="two">English</mat-option>
+        <mat-label>Phone Number</mat-label>
+        <input matInput [(ngModel)]="councellorPhoneNumber" name="councellorPhoneNumber" placeholder="Enter Councellor Full Name" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Department Name</mat-label>
+        <input matInput [(ngModel)]="councellorDepartment" name="councellorDepartment" placeholder="Enter Councellor Full Name" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="councellorPassword" name="councellorPassword" placeholder="Enter Councellor Full Name" value="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Councellor Role</mat-label>
+        <mat-select [(ngModel)]="councellorRole" name="councellorRole">
+          <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
         </mat-select>
-      </mat-form-field> <!-- Closing tag was missing here -->
-
-      <mat-form-field class="form-input">
-        <mat-label>Phone No.</mat-label>
-        <input matInput placeholder="Eg. 9876543210" value="">
       </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="startPicker" placeholder="Select Start Date">
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="councellorAddress" name="councellorAddress" placeholder="Enter Councellor Full Name" value="">
       </mat-form-field>
-
-      <mat-form-field class="form-input">
-        <mat-label>End Date</mat-label>
-        <input matInput [matDatepicker]="endPicker" placeholder="Select End Date">
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-datepicker #endPicker></mat-datepicker>
-      </mat-form-field>
-
     </div>
-
-    <button mat-flat-button class="btn-dark-rounded">Add</button>
+    
+    <button  mat-flat-button class="btn-dark-rounded" (click)="addCouncellor()">Add</button>
   </form>
 </div>
