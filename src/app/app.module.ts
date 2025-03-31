@@ -74,6 +74,9 @@ import { ApplicationComponent } from './application-management/application/appli
 
 import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ViewApplicationComponent } from './application-management/view-application/view-application.component';
+import { viewParentEl } from '@angular/core/src/view/util';
+import { ApplicationActionComponent } from './application-management/application-action/application-action.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -125,6 +128,7 @@ const routes: Routes = [
         children: [
           { path: 'manage-students-application', component: ManageStudentsApplicationComponent },
           { path: 'edit-student', component: EditStudentComponent },
+          { path: 'view-application', component: ViewApplicationComponent },
           { path: 'application', component: ApplicationComponent },
           { path: 'create-application', component: CreateApplicationComponent },
           { path: 'manage-students-application/student-registration', component: StudentRegistrationComponent }
@@ -195,7 +199,9 @@ const routes: Routes = [
     TeamSetupComponent,
     ProfileActionComponent,
     CreateApplicationComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    ViewApplicationComponent,
+    ApplicationActionComponent
   ],
   imports: [
     // Core Angular Modules
@@ -238,7 +244,8 @@ const routes: Routes = [
     CountryActionComponent,
     TeamActionComponent,
     SignupPopupComponent,
-    ProfileActionComponent
+    ProfileActionComponent,
+    ApplicationActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

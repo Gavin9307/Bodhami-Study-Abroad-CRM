@@ -20,7 +20,7 @@ export class StudentActionDialogComponent {
   onButton2Click(): void {
     console.log('Button 2 clicked');
     // Add any action for Button 2
-    this.router.navigate(['/study-abroad-setup/country-setup/checklist-setup']);
+    this.router.navigate(['/application-management/view-application']);
     this.dialogRef.close(); // Close the dialog after the action
   }
 }
