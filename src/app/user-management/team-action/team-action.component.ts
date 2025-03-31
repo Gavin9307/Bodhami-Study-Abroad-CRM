@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit,Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,29 +9,24 @@ import { Router } from '@angular/router';
 })
 export class TeamActionComponent implements OnInit {
 
-  constructor(private router: Router,public dialogRef: MatDialogRef<TeamActionComponent>) {}
+  constructor(private router: Router,public dialogRef: MatDialogRef<TeamActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {}
   
+    ngOnInit() {
+      console.log(this.data);
+    }
     onButton1Click(): void {
       console.log('Button 1 clicked');
-      this.router.navigate(['/user-management/add-team/add-member']); // Navigate to the route
-      this.dialogRef.close(); // Close the dialog after navigation
-    }
-  
-    onButton2Click(): void {
-      console.log('Button 2 clicked');
-      // Add any action for Button 2
-      this.router.navigate(['/user-management/add-team/member-list']);
-      this.dialogRef.close(); // Close the dialog after the action
+      this.router.navigate(['/user-management/team-list/add-member/'+this.data.teamId]); 
+      this.dialogRef.close(); 
     }
 
     onButton3Click(): void {
       console.log('Button 3 clicked');
-      this.router.navigate(['/user-management/add-team/edit-team']); // Navigate to the route
-      this.dialogRef.close(); // Close the dialog after navigation
+      this.router.navigate(['/user-management/add-team/edit-team']);
+      this.dialogRef.close();
     }
 
 
-  ngOnInit() {
-  }
+ 
 
 }

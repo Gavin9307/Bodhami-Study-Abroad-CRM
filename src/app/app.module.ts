@@ -74,6 +74,8 @@ import { ApplicationComponent } from './application-management/application/appli
 
 import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TeamListComponent } from './user-management/team-list/team-list.component';
+import { AddTeamMemberComponent } from './user-management/add-team-member/add-team-member.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -135,13 +137,14 @@ const routes: Routes = [
       {
         path: 'user-management',
         children: [
+          { path: 'team-list', component: TeamListComponent },
           { path: 'add-team', component: AddTeamComponent },
+
+          { path: 'team-list/add-member/:id', component: AddTeamMemberComponent },
+          { path: 'team-list/edit-team/:id', component: EditTeamComponent },
+          
+          
           { path: 'add-member', component: AddMemberComponent },
-          { path: 'add-team/member-list', component: MemberListComponent },
-          { path: 'edit-team', component: EditTeamComponent },
-          { path: 'add-team/edit-team', component: EditTeamComponent },
-          { path: 'make-team', component: MakeTeamComponent },
-          { path: 'add-team/add-member', component: AddMemberComponent },
           { path: 'member-list', component: MemberListComponent },
           { path: 'edit-member/:id', component: EditMemberComponent }
         ]
@@ -195,7 +198,9 @@ const routes: Routes = [
     TeamSetupComponent,
     ProfileActionComponent,
     CreateApplicationComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    TeamListComponent,
+    AddTeamMemberComponent
   ],
   imports: [
     // Core Angular Modules
