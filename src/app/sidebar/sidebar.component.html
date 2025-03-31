@@ -12,14 +12,13 @@
             [routerLink]="item.link">
             {{ item.title }}
           </div>
-          <!-- If has sub-items, just display title -->
+          
           <div *ngIf="item.subItems.length !== 0">
             {{ item.title }}
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
       
-      <!-- Sub-items -->
       <div *ngFor="let subItem of item.subItems" class="sidebarPanelItem">
         <div [routerLink]="subItem.link">
           {{ subItem.name }}

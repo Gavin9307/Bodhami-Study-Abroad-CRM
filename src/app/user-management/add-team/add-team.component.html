@@ -1,39 +1,22 @@
 <div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    Team
-    <a [routerLink]="['/user-management/make-team']">
-      <button mat-flat-button class="btn-dark-rounded-outline-white">Add Team</button>
-    </a>
+    Add Team
   </div>
-  
-  <div class="add-form-container">
-   
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="teamName">
-        <th mat-header-cell *matHeaderCellDef> Team Name </th>
-        <td mat-cell *matCellDef="let element"> {{ element.teamName }} </td>
-      </ng-container>
-  
-      <!-- heading Column -->
-      <ng-container matColumnDef="teamLead">
-        <th mat-header-cell *matHeaderCellDef> Team Lead</th>
-        <td mat-cell *matCellDef="let element"> {{ element.teamLead }} </td>
-      </ng-container>
+  <form class="add-form">
+    <div class="add-form-container">
+      
+      <mat-form-field class="form-input">
+        <mat-label>Team Name</mat-label>
+        <input matInput placeholder="Enter Team Name" name="teamName" [(ngModel)]="teamName" value="">
+      </mat-form-field>
 
-      <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" (click)="openDialog()" class="btn-dark-rounded-outline button">
-              Action
-            </button>
-          </td>
-        </ng-container>
-  
-      <!-- Render Header and Rows -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
+      <mat-form-field class="form-input">
+        <mat-label>Team Description</mat-label>
+        <input matInput placeholder="Enter Team Description" name="teamDescription" [(ngModel)]="teamDescription" value="">
+      </mat-form-field>
+    </div>
+
+    <button  mat-flat-button class="btn-dark-rounded" (click)="addTeam()">Add</button>
+  </form>
 </div>

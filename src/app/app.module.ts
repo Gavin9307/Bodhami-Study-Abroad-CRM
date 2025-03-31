@@ -77,6 +77,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ViewApplicationComponent } from './application-management/view-application/view-application.component';
 import { viewParentEl } from '@angular/core/src/view/util';
 import { ApplicationActionComponent } from './application-management/application-action/application-action.component';
+import { TeamListComponent } from './user-management/team-list/team-list.component';
+import { AddTeamMemberComponent } from './user-management/add-team-member/add-team-member.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -139,13 +141,14 @@ const routes: Routes = [
       {
         path: 'user-management',
         children: [
+          { path: 'team-list', component: TeamListComponent },
           { path: 'add-team', component: AddTeamComponent },
+
+          { path: 'team-list/add-member/:id', component: AddTeamMemberComponent },
+          { path: 'team-list/edit-team/:id', component: EditTeamComponent },
+          
+          
           { path: 'add-member', component: AddMemberComponent },
-          { path: 'add-team/member-list', component: MemberListComponent },
-          { path: 'edit-team', component: EditTeamComponent },
-          { path: 'add-team/edit-team', component: EditTeamComponent },
-          { path: 'make-team', component: MakeTeamComponent },
-          { path: 'add-team/add-member', component: AddMemberComponent },
           { path: 'member-list', component: MemberListComponent },
           { path: 'edit-member/:id', component: EditMemberComponent }
         ]
@@ -201,7 +204,9 @@ const routes: Routes = [
     CreateApplicationComponent,
     ApplicationComponent,
     ViewApplicationComponent,
-    ApplicationActionComponent
+    ApplicationActionComponent,
+    TeamListComponent,
+    AddTeamMemberComponent
   ],
   imports: [
     // Core Angular Modules
