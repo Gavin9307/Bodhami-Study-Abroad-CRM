@@ -76,6 +76,7 @@ import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TeamListComponent } from './user-management/team-list/team-list.component';
 import { AddTeamMemberComponent } from './user-management/add-team-member/add-team-member.component';
+import { AddTeamMemberActionComponent } from './user-management/add-team-member-action/add-team-member-action.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -200,7 +201,8 @@ const routes: Routes = [
     CreateApplicationComponent,
     ApplicationComponent,
     TeamListComponent,
-    AddTeamMemberComponent
+    AddTeamMemberComponent,
+    AddTeamMemberActionComponent
   ],
   imports: [
     // Core Angular Modules
@@ -243,7 +245,8 @@ const routes: Routes = [
     CountryActionComponent,
     TeamActionComponent,
     SignupPopupComponent,
-    ProfileActionComponent
+    ProfileActionComponent,
+    AddTeamMemberActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

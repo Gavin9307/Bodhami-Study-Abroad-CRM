@@ -1,0 +1,63 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    Team Members
+  </div>
+  
+  <div class="add-form-container">
+
+    <form class="example-form">
+      <mat-form-field class="SearchFilter">
+        <mat-label>Councellor</mat-label>
+        <mat-select [(ngModel)]="selectedCouncellor" name="selectedCouncellor">
+          <mat-option *ngFor="let councellor of councellorList" [value]="councellor.councellorID">
+            {{ councellor.councellorName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field class="SearchFilter">
+        <mat-label>Position</mat-label>
+        <mat-select [(ngModel)]="selectedPosition" name="selectedPosition">
+          <mat-option *ngFor="let position of positionList" [value]="position.positionId">
+            {{ position.positionName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button class="btn-dark-rounded" (click)="addCouncellor()">Add</button>
+    </form>
+   
+    <table mat-table [dataSource]="teams" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="councellorName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.councellorName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> Position</th>
+        <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+            Action
+          </button>
+        </td>
+      </ng-container>
+  
+      <!-- Render Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
