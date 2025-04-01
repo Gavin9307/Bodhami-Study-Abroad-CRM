@@ -1,0 +1,14 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<h3 mat-dialog-title class="heading">Actions for {{data.councellorName}}</h3>
+<div mat-dialog-actions>
+  <mat-form-field class="SearchFilter">
+    <mat-label>Position</mat-label>
+    <mat-select [(ngModel)]="selectedPosition" name="selectedPosition">
+      <mat-option *ngFor="let position of positionList" [value]="position.positionId">
+        {{ position.positionName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="onUpdatePosition()" class="btn-dark-rounded-outline button">Update Position</button>
+  <button mat-button (click)="onRemoveMember()" class="btn-dark-rounded-outline button">Remove Member</button>
+</div>
