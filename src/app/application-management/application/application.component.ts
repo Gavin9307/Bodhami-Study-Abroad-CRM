@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ApplicationActionComponent } from '../application-action/application-action.component';
 
 @Component({
   selector: 'app-application',
@@ -12,12 +14,14 @@ export class ApplicationComponent implements OnInit {
     { country: 'USA', university: 'IFM University', course:'Mechanical Engineering', email: 'ifmuniversity@gmail.com', location: 'Switzerland', website: 'https://www.ifm.ch' }
   ];
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
   }
 
-  openDialog() {
-    console.log('Action button clicked');
+  openDialog(): void {
+      this.dialog.open(ApplicationActionComponent, {
+        width: '400px' 
+      });
+    }
   }
-}

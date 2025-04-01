@@ -1,0 +1,90 @@
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    View Application
+  </div>
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step label="Basic Details">
+      <div class="Baisc-details">
+        <p>First Name: {{ basicDetails.firstName }}</p>
+        <p>Last Name: {{ basicDetails.lastName }}</p>
+        <p>Email Address: {{ basicDetails.email }}</p>
+        <p>Phone Number: {{ basicDetails.phone }}</p>
+        <p>Expected Salary: {{ basicDetails.expectedSalary }}</p>
+        <p>Date of Joining: {{ basicDetails.dateOfJoining }}</p>
+        <p>Online Profile Link: <a href="{{ basicDetails.onlineProfileLink }}">{{ basicDetails.onlineProfileLink }}</a></p>
+      </div>
+      <div>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Address Details">
+      <div>
+        <p>Country: {{ addressDetails.country }}</p>
+        <p>Postal Code: {{ addressDetails.postalCode }}</p>
+        <p>State: {{ addressDetails.state }}</p>
+        <p>City: {{ addressDetails.city }}</p>
+        <p>Street Address: {{ addressDetails.streetAddress }}</p>
+      </div>
+      <div class="button-group">
+        <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Education Details">
+      <div>
+        <p>Level of Education: {{ educationDetails.levelOfEducation }}</p>
+        <p>Field of Study: {{ educationDetails.fieldOfStudy }}</p>
+        <p>School Name: {{ educationDetails.schoolName }}</p>
+        <p>Country: {{ educationDetails.country }}</p>
+        <p>State: {{ educationDetails.state }}</p>
+        <p>City: {{ educationDetails.city }}</p>
+        <p>Academic Start Year: {{ educationDetails.academicStartYear }}</p>
+        <p>Academic End Year: {{ educationDetails.academicEndYear }}</p>
+      </div>
+      <div class="button-group">
+        <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Experience Details">
+      <div>
+        <p>Total Experience: {{ experienceDetails.totalExperience }}</p>
+      </div>
+      <div class="button-group">
+        <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Language and Certification Details">
+      <div>
+        <p>Languages: {{ languageAndCertificationDetails.languages.join(', ') }}</p>
+        <p>Certifications:</p>
+        <ul>
+          <li *ngFor="let cert of languageAndCertificationDetails.certifications">
+            {{ cert.name }} ({{ cert.startYear }} - {{ cert.endYear }})
+          </li>
+        </ul>
+      </div>
+      <div class="button-group">
+        <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Competency and Achievements Details">
+      <div>
+        <p>Competencies: {{ competencyAndAchievementsDetails.competencies.join(', ') }}</p>
+        <p>Achievements:</p>
+        <ul>
+          <li *ngFor="let ach of competencyAndAchievementsDetails.achievements">
+            {{ ach.title }} ({{ ach.awardedYear }}) - {{ ach.description }}
+          </li>
+        </ul>
+      </div>
+      <div class="button-group">
+        <button mat-button matStepperPrevious class="btn-dark-rounded">Back</button>
+          <button mat-button matStepperNext class="btn-dark-rounded">Next</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

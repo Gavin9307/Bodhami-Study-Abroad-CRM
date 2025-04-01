@@ -74,6 +74,9 @@ import { ApplicationComponent } from './application-management/application/appli
 
 import { AuthGuard } from './auth.guard';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ViewApplicationComponent } from './application-management/view-application/view-application.component';
+import { viewParentEl } from '@angular/core/src/view/util';
+import { ApplicationActionComponent } from './application-management/application-action/application-action.component';
 import { TeamListComponent } from './user-management/team-list/team-list.component';
 import { AddTeamMemberComponent } from './user-management/add-team-member/add-team-member.component';
 import { AddTeamMemberActionComponent } from './user-management/add-team-member-action/add-team-member-action.component';
@@ -128,6 +131,7 @@ const routes: Routes = [
         children: [
           { path: 'manage-students-application', component: ManageStudentsApplicationComponent },
           { path: 'edit-student', component: EditStudentComponent },
+          { path: 'view-application', component: ViewApplicationComponent },
           { path: 'application', component: ApplicationComponent },
           { path: 'create-application', component: CreateApplicationComponent },
           { path: 'manage-students-application/student-registration', component: StudentRegistrationComponent }
@@ -200,6 +204,8 @@ const routes: Routes = [
     ProfileActionComponent,
     CreateApplicationComponent,
     ApplicationComponent,
+    ViewApplicationComponent,
+    ApplicationActionComponent,
     TeamListComponent,
     AddTeamMemberComponent,
     AddTeamMemberActionComponent
@@ -246,7 +252,8 @@ const routes: Routes = [
     TeamActionComponent,
     SignupPopupComponent,
     ProfileActionComponent,
-    AddTeamMemberActionComponent
+    AddTeamMemberActionComponent,
+    ApplicationActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
