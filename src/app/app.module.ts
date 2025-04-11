@@ -80,6 +80,10 @@ import { ApplicationActionComponent } from './application-management/application
 import { TeamListComponent } from './user-management/team-list/team-list.component';
 import { AddTeamMemberComponent } from './user-management/add-team-member/add-team-member.component';
 import { AddTeamMemberActionComponent } from './user-management/add-team-member-action/add-team-member-action.component';
+import { StudentListComponent } from './student-management/student-list/student-list.component';
+import { StudentAddComponent } from './student-management/student-add/student-add.component';
+import { StudentEditComponent } from './student-management/student-edit/student-edit.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -208,7 +212,10 @@ const routes: Routes = [
     ApplicationActionComponent,
     TeamListComponent,
     AddTeamMemberComponent,
-    AddTeamMemberActionComponent
+    AddTeamMemberActionComponent,
+    StudentListComponent,
+    StudentAddComponent,
+    StudentEditComponent
   ],
   imports: [
     // Core Angular Modules

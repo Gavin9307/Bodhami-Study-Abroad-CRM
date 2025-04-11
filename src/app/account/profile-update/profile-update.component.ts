@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 interface Country {
   code: string;
@@ -13,40 +16,56 @@ interface Country {
 })
 export class ProfileUpdateComponent implements OnInit {
 
-  profileForm: FormGroup;
-  states = ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh'];
-  
-  constructor(private fb: FormBuilder) {
-    this.profileForm = this.fb.group({
-      firstName: ['Counselor', Validators.required],
-      lastName: ['Whitelabel', Validators.required],
-      gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      address: [''],
-      country: ['India'],
-      phone: ['9738416689'],
-      email: ['careerfest.goancarl@gmail.com', [Validators.required, Validators.email]],
-      experienceYears: ['0'],
-      state: ['Tamil Nadu'],
-      city: ['Chennai'],
-      pincode: ['600001'],
-      institutionName: [''],
-      profileDescription: [''],
-      designation: [''],
-      profileHeadline: ['']
-    });
+  constructor(private http: HttpClient,private toastr : ToastrService,private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.getCouncellor();
   }
 
-  ngOnInit(): void {}
+  councellor: Object = {}
+  isLoading : Boolean = false;
+
+  getCouncellor(){
+    this.isLoading = true;
+    const councellorId : String = "1";
+    this.http.get("http://localhost:8080/api/councellor/getsinglecouncellor/"+councellorId)
+    .subscribe(
+      (response)=>{
+        this.councellor = response;
+        this.isLoading = false;
+      },
+      (error)=>{
+        this.toastr.error("Error fetching details of councellor");
+        this.isLoading = false;
+      }
+    )
+  }
+  
+  updateDetails() {
+    this.isLoading = true;
+    const councellorId : String = "1";
+    this.http.put("http://localhost:8080/api/councellor/editcouncellor/"+councellorId,this.councellor)
+    .subscribe(
+      (response)=>{
+        this.toastr.success("Councellor Details Updated Successfully");
+        this.getCouncellor();
+        this.isLoading = false;
+        
+      },
+      (error)=>{
+        this.toastr.error("Error Updating Councellor Details");
+        this.getCouncellor();
+        this.isLoading = false;
+      }
+    )
+  }
+  
+  
 
   onSubmit(): void {
-    if (this.profileForm.valid) {
-      console.log(this.profileForm.value);
-    }
   }
 
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
     // Handle file upload logic here
   }
 

@@ -22,11 +22,7 @@ export class TeamActionComponent implements OnInit {
 
     onButton3Click(): void {
       console.log('Button 3 clicked');
-      this.router.navigate(['/user-management/add-team/edit-team']);
+      this.router.navigate(['/user-management/team-list/edit-team/'+this.data.teamId]);
       this.dialogRef.close();
     }
-
-
- 
-
 }

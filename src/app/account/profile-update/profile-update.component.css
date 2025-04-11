@@ -11,6 +11,7 @@
   
   .profile-form {
     padding: 24px;
+    min-width: 100%;
   }
   
   .form-layout {
@@ -81,7 +82,7 @@
   
   .form-actions {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     margin-top: 24px;
   }
   

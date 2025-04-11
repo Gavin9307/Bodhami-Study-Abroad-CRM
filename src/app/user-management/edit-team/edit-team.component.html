@@ -1,4 +1,5 @@
 <div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
     Edit Team
   </div>
@@ -7,21 +8,16 @@
       
       <mat-form-field class="form-input">
         <mat-label>Team Name</mat-label>
-        <input matInput placeholder="Eg. John Doe" value="">
+        <input matInput placeholder="Enter Team Name" name="teamName" [(ngModel)]="team.teamName" value="">
       </mat-form-field>
 
       <mat-form-field class="form-input">
-        <mat-label>Team Lead</mat-label>
-        <input matInput placeholder="Eg. john.doe@example.com" value="">
+        <mat-label>Team Description</mat-label>
+        <input matInput placeholder="Enter Team Description" name="teamDescription" [(ngModel)]="team.teamDescription" value="">
       </mat-form-field>
 
-      <mat-form-field class="form-input">
-        <mat-label> No. of Members</mat-label>
-        <input matInput placeholder="Eg. 9876543210" value="">
-      </mat-form-field>
     </div>
 
-    <button mat-flat-button class="btn-dark-rounded button">Reset</button>
-    <button mat-flat-button class="btn-dark-rounded button">Save Changes</button>
+    <button mat-flat-button class="btn-dark-rounded button" (click)="onSaveClick()">Save</button>
   </form>
 </div>
