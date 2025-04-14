@@ -1,0 +1,23 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Add Document
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+      <mat-form-field class="form-input">
+        <mat-label>Document Type</mat-label>
+        <input matInput [(ngModel)]="documentTypeName" name="documentTypeName" placeholder="Eg. Passport" value="">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Document Description</mat-label>
+        <input matInput placeholder="Eg. +91" name="documentTypeDescription" [(ngModel)]="documentTypeDescription" value="">
+      </mat-form-field>
+    </div>
+    
+    <button  mat-flat-button class="btn-dark-rounded" (click)="addDocumentType()">Add</button>
+  </form>
+</div>

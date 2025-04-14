@@ -12,65 +12,65 @@ export class SidebarComponent implements OnInit {
   sidebarData = [
     {
       title: 'Home',
-      link: '/home', 
+      link: '/home',
       subItems: [
         {
           name: 'Dashboard',
           link: '/home',
-          }
+        }
       ]
     },
     {
       title: 'Account',
-      link: '/account', 
+      link: '/account',
       subItems: [
         {
-        name: 'Profile Update',
-        link: '/account/profile-update',
+          name: 'Profile Update',
+          link: '/account/profile-update',
         }
       ],
     },
     {
       title: 'Queries & Grievances',
-      link: '/home', 
+      link: '/home',
       subItems: [
         {
           name: 'Dashboard',
           link: '/abouta',
-          }
+        }
       ]
     },
     {
       title: 'Billing & Cancellation',
-      link: '/home', 
+      link: '/home',
       subItems: [
         {
           name: 'Dashboard',
           link: '/abouta',
-          }
+        }
       ]
     },
     {
       title: 'Reviews',
-      link: '/home', 
+      link: '/home',
       subItems: [
         {
           name: 'Review',
           link: '/Review/review',
-          }
+        }
       ]
     },
     {
       title: 'Study Abroad Setup',
-      link: '/account', 
+      link: '/account',
       subItems: [
         {
           name: 'Checklist Setup',
           link: '/study-abroad-setup/checklist-setup',
         },
         {
-        name: 'Country Setup',
-        link: '/study-abroad-setup/country-setup',
+          name: 'Country Setup',
+          link: '/study-abroad-setup/country-setup',
         },
         {
           name: 'Course Setup',
@@ -83,44 +83,54 @@ export class SidebarComponent implements OnInit {
         {
           name: 'Language Setup',
           link: '/study-abroad-setup/language-setup',
+        },
+        {
+          name: 'Document Type Setup',
+          link: '/study-abroad-setup/document-type-setup',
         }
       ],
     },
     {
       title: 'Application Management',
-      link: '/account', 
+      link: '/account',
       subItems: [
         {
-        name: 'Manage Student Application',
-        link: '/application-management/manage-students-application',
+          name: 'Manage Student Application',
+          link: '/application-management/manage-students-application',
         }
       ],
-    },{
+    }, {
       title: 'Student Abroad Analysis',
-      link: '/home', 
+      link: '/home',
       subItems: [
         {
           name: 'Dashboard',
           link: '/study-abroad-analysis/study-abroad-analysis',
-          }
+        }
+      ]
+    },
+    {
+      title: 'Student Management',
+      link: '/home',
+      subItems: [
+        {
+          name: 'Students List',
+          link: '/student-management/student-list',
+        }
       ]
     },
     {
       title: 'User Management',
-      link: '/home', 
+      link: '/home',
       subItems: [
         {
           name: 'Teams',
           link: '/user-management/team-list',
-          },
-          {
-            name: 'Councellors',
-            link: '/user-management/member-list',
-            },
-            {
-              name: 'Default',
-              link: '/abouta',
-              }  
+        },
+        {
+          name: 'Councellors',
+          link: '/user-management/member-list',
+        }
       ]
     }
   ];
