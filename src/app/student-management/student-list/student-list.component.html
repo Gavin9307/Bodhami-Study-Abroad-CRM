@@ -1,3 +1,87 @@
-<p>
-  student-list works!
-</p>
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    Students List
+    <a [routerLink]="['/application-management/manage-students-application/student-registration']">
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Create Student</button>
+    </a>    
+  </div>
+
+  <div class="add-form-container">
+    <form class="example-form">
+      <mat-form-field class="SearchFliter">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Enter First Name">
+      </mat-form-field>
+
+      <mat-form-field class="SearchFliter">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Enter Last Name">
+      </mat-form-field>
+
+      <mat-form-field class="SearchFliter">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter Email">
+      </mat-form-field>
+      <button mat-flat-button class="btn-dark-rounded-outline">Search</button>
+      <button mat-flat-button class="btn-dark-rounded-outline" type="reset">Clear</button>
+    </form>
+
+    <table mat-table [dataSource]="students" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="userFirstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.userFirstName }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="userLastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.userLastName }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="userEmail">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.userEmail }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="userUsername">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let element"> {{ element.userUsername }} </td>
+      </ng-container>
+
+      <!-- Phone Number Column -->
+      <ng-container matColumnDef="userPhoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+        <td mat-cell *matCellDef="let element"> {{ element.userPhoneNumber }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isDeleted">
+        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="onIsDeletedChange(element)"
+            class="example-margin"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+            Action
+          </button>
+        </td>
+      </ng-container>
+    
+      <!-- Table Header & Row Rendering -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

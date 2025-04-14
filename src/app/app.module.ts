@@ -34,10 +34,10 @@ import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileUpdateComponent } from './account/profile-update/profile-update.component';
-import { CountrySetupComponent } from './study-abroad-setup/country-setup/country-setup.component';
+import { CountrySetupComponent } from './study-abroad-setup/country/country-setup/country-setup.component';
 import { UniversitySetupComponent } from './study-abroad-setup/university-setup/university-setup.component';
 import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
-import { AddCountryComponent } from './study-abroad-setup/add-country/add-country.component';
+import { AddCountryComponent } from './study-abroad-setup/country/add-country/add-country.component';
 import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
 import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
 import { LanguageSetupComponent } from './study-abroad-setup/language-setup/language-setup.component';
@@ -45,11 +45,11 @@ import { AddLanguageComponent } from './study-abroad-setup/add-language/add-lang
 import { ManageStudentsApplicationComponent } from './application-management/manage-students-application/manage-students-application.component';
 import { StudentActionDialogComponent } from './application-management/student-action-dialog/student-action-dialog.component';
 import { StudentRegistrationComponent } from './application-management/student-registration/student-registration.component';
-import { ChecklistSetupComponent } from './study-abroad-setup/checklist-setup/checklist-setup.component';
-import { CountryActionComponent } from './study-abroad-setup/country-action/country-action.component';
+import { ChecklistSetupComponent } from './study-abroad-setup/checklist/checklist-setup/checklist-setup.component';
+import { CountryActionComponent } from './study-abroad-setup/country/country-action/country-action.component';
 import { ReviewComponent } from './Review/review/review.component';
 import { AddTeamComponent } from './user-management/add-team/add-team.component';
-import { DocumentSetupComponent } from './study-abroad-setup/document-setup/document-setup.component';
+import { DocumentSetupComponent } from './study-abroad-setup/country/document-setup/document-setup.component';
 import { AddMemberComponent } from './user-management/add-member/add-member.component';
 import { TeamActionComponent } from './user-management/team-action/team-action.component';
 import { MemberListComponent } from './user-management/member-list/member-list.component';
@@ -64,8 +64,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 import { SignupPopupComponent } from './auth/signup-popup/signup-popup.component';
 import { StudyAbroadAnalysisComponent } from './study-abroad-analysis/study-abroad-analysis/study-abroad-analysis.component';
-import { EditChecklistComponent } from './study-abroad-setup/edit-checklist/edit-checklist.component';
-import { AddChecklistComponent } from './study-abroad-setup/add-checklist/add-checklist.component';
+import { EditChecklistComponent } from './study-abroad-setup/checklist/edit-checklist/edit-checklist.component';
+import { AddChecklistComponent } from './study-abroad-setup/checklist/add-checklist/add-checklist.component';
 import { TeamSetupComponent } from './study-abroad-setup/team-setup/team-setup.component';
 import { ProfileActionComponent } from './Profile-action/profile-action/profile-action.component';
 import { CreateApplicationComponent } from './application-management/create-application/create-application.component';
@@ -83,6 +83,10 @@ import { AddTeamMemberActionComponent } from './user-management/add-team-member-
 import { StudentListComponent } from './student-management/student-list/student-list.component';
 import { StudentAddComponent } from './student-management/student-add/student-add.component';
 import { StudentEditComponent } from './student-management/student-edit/student-edit.component';
+import { StudentActionComponent } from './student-management/student-action/student-action.component';
+import { DocumentTypeSetupComponent } from './study-abroad-setup/document-type/document-type-setup/document-type-setup.component';
+import { AddDocumentTypeComponent } from './study-abroad-setup/document-type/add-document-type/add-document-type.component';
+import { EditDocumentTypeComponent } from './study-abroad-setup/document-type/edit-document-type/edit-document-type.component';
 
 
 const routes: Routes = [
@@ -125,7 +129,12 @@ const routes: Routes = [
           { path: 'course-setup/add-course', component: AddCourseComponent },
           
           { path: 'language-setup', component: LanguageSetupComponent },
-          { path: 'language-setup/add-language', component: AddLanguageComponent }
+          { path: 'language-setup/add-language', component: AddLanguageComponent },
+
+          { path: 'document-type-setup', component: DocumentTypeSetupComponent },
+          { path: 'document-type-setup/edit-document-type/:id', component: EditDocumentTypeComponent },
+          { path: 'document-type-setup/add-document-type', component: AddDocumentTypeComponent }
+
         ]
       },
       
@@ -156,6 +165,15 @@ const routes: Routes = [
           { path: 'add-member', component: AddMemberComponent },
           { path: 'member-list', component: MemberListComponent },
           { path: 'edit-member/:id', component: EditMemberComponent }
+        ]
+      },
+      // Student Management Routes
+      {
+        path: 'student-management',
+        children: [
+          { path: 'student-list', component: StudentListComponent },
+          { path: 'student-edit/:id', component: StudentEditComponent },
+          { path: 'student-add', component: StudentAddComponent }
         ]
       }
     ]
@@ -215,7 +233,11 @@ const routes: Routes = [
     AddTeamMemberActionComponent,
     StudentListComponent,
     StudentAddComponent,
-    StudentEditComponent
+    StudentEditComponent,
+    StudentActionComponent,
+    DocumentTypeSetupComponent,
+    AddDocumentTypeComponent,
+    EditDocumentTypeComponent
   ],
   imports: [
     // Core Angular Modules
@@ -260,7 +282,8 @@ const routes: Routes = [
     SignupPopupComponent,
     ProfileActionComponent,
     AddTeamMemberActionComponent,
-    ApplicationActionComponent
+    ApplicationActionComponent,
+    StudentActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
