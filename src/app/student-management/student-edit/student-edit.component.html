@@ -1,3 +1,71 @@
-<p>
-  student-edit works!
-</p>
+<div class="main-sub-container">
+  <div class="main-sub-container-header">
+    Edit Student
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+
+      <!-- First Name -->
+      <mat-form-field class="form-input">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Eg. John" [(ngModel)]="student.firstName" name="firstName" required>
+      </mat-form-field>
+
+      <!-- Last Name -->
+      <mat-form-field class="form-input">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Eg. Doe" [(ngModel)]="student.lastName" name="lastName" required>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field class="form-input">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Eg. john.doe@example.com" [(ngModel)]="student.email" name="email" required>
+      </mat-form-field>
+
+      <!-- Mobile Number -->
+      <mat-form-field class="form-input">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput type="tel" placeholder="Eg. 9876543210" [(ngModel)]="student.phoneNumber" name="phoneNumber" required>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field class="form-input">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter a secure password" [(ngModel)]="student.password" name="password" required>
+      </mat-form-field>
+
+      <!-- Multi-Select Country -->
+      <mat-form-field class="form-input">
+        <mat-label>Select Countries</mat-label>
+        <mat-select [(ngModel)]="student.selectedCountries" name="countries" multiple>
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <!-- Multi-Select University -->
+      <mat-form-field class="form-input">
+        <mat-label>Select Universities</mat-label>
+        <mat-select [(ngModel)]="student.selectedUniversities" name="universities" multiple>
+          <mat-option *ngFor="let university of universities" [value]="university">
+            {{ university }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Course (Textarea) -->
+      <mat-form-field class="form-input-full">
+        <mat-label>Course</mat-label>
+        <textarea matInput placeholder="Eg. Computer Science Engineering" [(ngModel)]="student.course" name="course" required></textarea>
+      </mat-form-field>
+
+    </div>
+
+    <!-- Submit Button -->
+    <button mat-flat-button class="btn-dark-rounded button">Add</button>
+
+  </form>
+</div>
