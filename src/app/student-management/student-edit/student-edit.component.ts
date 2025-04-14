@@ -11,5 +11,14 @@ export class StudentEditComponent implements OnInit {
 
   ngOnInit() {
   }
+  student = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    password: '',
+    course: ''
+  };
+
 
 }
