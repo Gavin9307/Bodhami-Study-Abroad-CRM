@@ -4,3 +4,13 @@
 .button {
     float: right;
 }
+
+.medical{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add{
+    padding: 10px;
+    float: right;
+}
