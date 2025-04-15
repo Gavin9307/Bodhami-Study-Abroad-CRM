@@ -15,8 +15,8 @@ export class StudentActionComponent implements OnInit {
     ngOnInit() {
       console.log(this.data);
     }
-    onEditButtonClick(): void {
-      this.router.navigate(['/student-management/student-edit/'+this.data.userId]); 
+    onViewButtonClick(): void {
+      this.router.navigate(['/student-management/student-view/'+this.data.userId]); 
       this.dialogRef.close(); 
     }
 

@@ -82,7 +82,7 @@ import { AddTeamMemberComponent } from './user-management/add-team-member/add-te
 import { AddTeamMemberActionComponent } from './user-management/add-team-member-action/add-team-member-action.component';
 import { StudentListComponent } from './student-management/student-list/student-list.component';
 import { StudentAddComponent } from './student-management/student-add/student-add.component';
-import { StudentEditComponent } from './student-management/student-edit/student-edit.component';
+import { StudentViewComponent } from './student-management/student-view/student-view.component';
 import { StudentActionComponent } from './student-management/student-action/student-action.component';
 import { DocumentTypeSetupComponent } from './study-abroad-setup/document-type/document-type-setup/document-type-setup.component';
 import { AddDocumentTypeComponent } from './study-abroad-setup/document-type/add-document-type/add-document-type.component';
@@ -172,7 +172,7 @@ const routes: Routes = [
         path: 'student-management',
         children: [
           { path: 'student-list', component: StudentListComponent },
-          { path: 'student-edit/:id', component: StudentEditComponent },
+          { path: 'student-view/:id', component: StudentViewComponent },
           { path: 'student-add', component: StudentAddComponent }
         ]
       }
@@ -233,7 +233,7 @@ const routes: Routes = [
     AddTeamMemberActionComponent,
     StudentListComponent,
     StudentAddComponent,
-    StudentEditComponent,
+    StudentViewComponent,
     StudentActionComponent,
     DocumentTypeSetupComponent,
     AddDocumentTypeComponent,
