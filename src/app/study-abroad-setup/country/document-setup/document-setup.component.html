@@ -10,19 +10,16 @@
    
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
-      <!-- document Name Column -->
       <ng-container matColumnDef="documentName">
         <th mat-header-cell *matHeaderCellDef> Document Name </th>
         <td mat-cell *matCellDef="let element"> {{ element.documentName }} </td>
       </ng-container>
   
-      <!-- heading Column -->
       <ng-container matColumnDef="documentHeading">
         <th mat-header-cell *matHeaderCellDef> document Heading </th>
         <td mat-cell *matCellDef="let element"> {{ element.documentHeading }} </td>
       </ng-container>
   
-      <!-- documentDescription Column -->
       <ng-container matColumnDef="documentDescription">
         <th mat-header-cell *matHeaderCellDef> Document Description </th>
         <td mat-cell *matCellDef="let element" class="Description"> {{ element.documentDescription }} </td>
@@ -37,7 +34,6 @@
           </td>
         </ng-container>
   
-      <!-- Render Header and Rows -->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

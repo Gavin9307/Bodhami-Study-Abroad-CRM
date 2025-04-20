@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,22 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./country-action.component.css']
 })
 export class CountryActionComponent implements OnInit {
-constructor(private router: Router,public dialogRef: MatDialogRef<CountryActionComponent>) {}
-
-  onButton1Click(): void {
-    console.log('Button 1 clicked');
-    this.router.navigate(['/study-abroad-setup/country-setup/checklist-setup']); // Navigate to the route
-    this.dialogRef.close(); // Close the dialog after navigation
-  }
-
-  onButton2Click(): void {
-    console.log('Button 2 clicked');
-    // Add any action for Button 2
-    this.router.navigate(['/study-abroad-setup/country-setup/document-setup']);
-    this.dialogRef.close(); // Close the dialog after the action
-  }
+  constructor(private router: Router, public dialogRef: MatDialogRef<CountryActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
   
   ngOnInit() {
+  }
+
+  onChecklistButtonClick(): void {
+    this.router.navigate(['/study-abroad-setup/country-setup/country-checklist-setup/'+this.data.countryId]);
+    this.dialogRef.close();
+  }
+
+  onEditButtonClick(): void {
+    this.router.navigate(['/study-abroad-setup/country-setup/edit-country/'+this.data.countryId]);
+    this.dialogRef.close(); 
+  }
+
+  onDeleteButtonClick(): void {
+    console.log('Button 3 clicked');
+    this.dialogRef.close(); 
   }
 
 }

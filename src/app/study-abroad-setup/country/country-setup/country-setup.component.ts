@@ -4,17 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CountryActionComponent } from '../country-action/country-action.component';
-
-export interface CountryElement {
-  countryId: number;
-  countryName: string;
-  countryCode: string;
-  currencyName: string;
-  multiplicationFactor: number;
-  createdAt: number;
-  updatedAt: number;
-  deleted: boolean;
-}
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-country-setup',
@@ -23,20 +13,21 @@ export interface CountryElement {
 })
 export class CountrySetupComponent implements OnInit {
   displayedColumns: string[] = [
+    'SrNo',
     'countryName',
     'countryCode',
-    'currencyName',
-    'multiplicationFactor',
+    'countryCurrencyName',
+    'countryMultiplicationFactor',
     'isDeleted',
     'action'
   ];
-  
-  dataSource = new MatTableDataSource<CountryElement>([]);
+
+  dataSource = new MatTableDataSource<any>([]);
   isLoading: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private http: HttpClient, public dialog: MatDialog) {}
+  constructor(private http: HttpClient, public dialog: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.fetchCountries();
@@ -44,14 +35,14 @@ export class CountrySetupComponent implements OnInit {
 
   fetchCountries() {
     this.isLoading = true;
-    this.http.get<CountryElement[]>('http://localhost:8080/api/countries/getallcountries')
+    this.http.get<any[]>('http://localhost:8080/api/country/getallcountries')
       .subscribe(
         (data) => {
-          this.dataSource.data = data.map(item => ({
-            ...item,
-            isDeleted: item.deleted
-          }));
-          this.dataSource.paginator = this.paginator; // Set paginator after fetching data
+          data.forEach((element, index) => {
+            element["SrNo"] = index + 1;
+          });
+          this.dataSource.data = data;
+          this.dataSource.paginator = this.paginator;
           this.isLoading = false;
         },
         (error) => {
@@ -61,29 +52,46 @@ export class CountrySetupComponent implements OnInit {
       );
   }
 
-  toggleDeleteStatus(element: CountryElement) {
-    const newStatus = !element.deleted;
-    const url = newStatus
-      ? `http://localhost:8080/api/countries/deletecountry/${element.countryId}`
-      : `http://localhost:8080/api/countries/recovercountry/${element.countryId}`;
+  toggleDeleteStatus(element: any[]) {
 
-    this.isLoading = true;
-    this.http.put(url, {}, { responseType: 'text' }).subscribe(
-      (response) => {
-        console.log('Response:', response); // Log response for debugging
-        element.deleted = newStatus; // Instantly update UI
-        this.isLoading = false;
-      },
-      (error) => {
-        console.error('Error updating delete status:', error);
-        this.isLoading = false;
-      }
-    );
+    const isDeleted: Boolean = element["isDeleted"];
+    const countryId: Number = element["countryId"];
+
+    if (isDeleted == true) {
+      this.isLoading = true;
+      this.http.put("http://localhost:8080/api/country/softdelete/" + countryId, {})
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.toastr.success("Country Deleted Successfully");
+            this.isLoading = false;
+          },
+          (error) => {
+            this.toastr.error("Country Cannot be Deleted");
+            this.isLoading = false;
+          }
+        );
+    }
+    else {
+      this.isLoading = true;
+      this.http.put("http://localhost:8080/api/country/softrecover/" + countryId, {})
+        .subscribe(
+          response => {
+            this.toastr.success("Country Recovered Successfully");
+            this.isLoading = false;
+          },
+          error => {
+            this.toastr.error("Country Cannot be Recovered");
+            this.isLoading = false;
+          }
+        );
+    }
   }
 
-  openDialog(): void {
+  openDialog(element: any): void {
     this.dialog.open(CountryActionComponent, {
-      width: '400px'
+      width: '400px',
+      data: element
     });
   }
 }

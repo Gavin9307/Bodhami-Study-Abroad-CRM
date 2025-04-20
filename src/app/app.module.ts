@@ -87,6 +87,8 @@ import { StudentActionComponent } from './student-management/student-action/stud
 import { DocumentTypeSetupComponent } from './study-abroad-setup/document-type/document-type-setup/document-type-setup.component';
 import { AddDocumentTypeComponent } from './study-abroad-setup/document-type/add-document-type/add-document-type.component';
 import { EditDocumentTypeComponent } from './study-abroad-setup/document-type/edit-document-type/edit-document-type.component';
+import { EditCountryComponent } from './study-abroad-setup/country/edit-country/edit-country.component';
+import { CountryChecklistSetupComponent } from './study-abroad-setup/country/country-checklist/country-checklist-setup/country-checklist-setup.component';
 
 
 const routes: Routes = [
@@ -108,26 +110,27 @@ const routes: Routes = [
       { path: 'account/profile-update', component: ProfileUpdateComponent },
       { path: 'Review/review', component: ReviewComponent },
       { path: 'study-abroad-analysis/study-abroad-analysis', component: StudyAbroadAnalysisComponent },
-      
+
       // Study Abroad Setup Routes
       {
         path: 'study-abroad-setup',
         children: [
           { path: 'country-setup', component: CountrySetupComponent },
           { path: 'country-setup/add-country', component: AddCountryComponent },
-          { path: 'country-setup/checklist-setup', component: ChecklistSetupComponent },
+          { path: 'country-setup/edit-country/:id', component: EditCountryComponent },
+          { path: 'country-setup/country-checklist-setup/:id', component: CountryChecklistSetupComponent },
           { path: 'country-setup/document-setup', component: DocumentSetupComponent },
-          
+
           { path: 'checklist-setup', component: ChecklistSetupComponent },
           { path: 'checklist-setup/edit-checklist/:id', component: EditChecklistComponent },
           { path: 'checklist-setup/add-checklist', component: AddChecklistComponent },
-          
+
           { path: 'university-setup', component: UniversitySetupComponent },
           { path: 'university-setup/add-university', component: AddUniversityComponent },
-          
+
           { path: 'course-setup', component: CourseSetupComponent },
           { path: 'course-setup/add-course', component: AddCourseComponent },
-          
+
           { path: 'language-setup', component: LanguageSetupComponent },
           { path: 'language-setup/add-language', component: AddLanguageComponent },
 
@@ -137,7 +140,7 @@ const routes: Routes = [
 
         ]
       },
-      
+
       // Application Management Routes
       {
         path: 'application-management',
@@ -150,7 +153,7 @@ const routes: Routes = [
           { path: 'manage-students-application/student-registration', component: StudentRegistrationComponent }
         ]
       },
-      
+
       // User Management Routes
       {
         path: 'user-management',
@@ -160,8 +163,8 @@ const routes: Routes = [
 
           { path: 'team-list/add-member/:id', component: AddTeamMemberComponent },
           { path: 'team-list/edit-team/:id', component: EditTeamComponent },
-          
-          
+
+
           { path: 'add-member', component: AddMemberComponent },
           { path: 'member-list', component: MemberListComponent },
           { path: 'edit-member/:id', component: EditMemberComponent }
@@ -237,7 +240,9 @@ const routes: Routes = [
     StudentActionComponent,
     DocumentTypeSetupComponent,
     AddDocumentTypeComponent,
-    EditDocumentTypeComponent
+    EditDocumentTypeComponent,
+    EditCountryComponent,
+    CountryChecklistSetupComponent
   ],
   imports: [
     // Core Angular Modules
@@ -247,7 +252,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
     // Material Modules
     MatExpansionModule,
     MatFormFieldModule,
@@ -268,7 +273,7 @@ const routes: Routes = [
     MatStepperModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    
+
     // Additional Module
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'

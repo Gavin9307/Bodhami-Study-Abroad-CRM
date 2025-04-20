@@ -1,26 +1,11 @@
 <div class="main-sub-container">
   <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    View Student
+    Student - {{userBasicDetails.firstName}} {{userBasicDetails.lastName}}
   </div>
   <h2>Basic Details</h2>
   <form class="add-form">
     <div class="add-form-container">
-
-      <mat-form-field class="form-input">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Eg. John" [(ngModel)]="user.userEmail" name="firstName" readonly>
-      </mat-form-field>
-
-      <mat-form-field class="form-input">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="Eg. Doe" [(ngModel)]="user.userUsername" name="lastName" readonly>
-      </mat-form-field>
-
-      <mat-form-field class="form-input">
-        <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="Eg. Doe" [(ngModel)]="user.userPhoneNo" name="lastName" readonly>
-      </mat-form-field>
 
       <mat-form-field class="form-input">
         <mat-label>First Name</mat-label>
@@ -36,6 +21,22 @@
         <mat-label>Last Name</mat-label>
         <input matInput type="text" [(ngModel)]="userBasicDetails.lastName" name="password" readonly>
       </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Eg. John" [(ngModel)]="user.userEmail" name="firstName" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Eg. Doe" [(ngModel)]="user.userUsername" name="username" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Phone Number</mat-label>
+        <input matInput placeholder="Eg. Doe" [(ngModel)]="user.userPhoneNo" name="lastName" readonly>
+      </mat-form-field>
+
 
       <mat-form-field class="form-input">
         <mat-label>Date of Birth</mat-label>
