@@ -9,7 +9,7 @@ import { LanguageService, LanguageElement } from '../../services/language/langua
   styleUrls: ['./language-setup.component.css']
 })
 export class LanguageSetupComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'createdAt', 'updatedAt', 'isDeleted'];
+  displayedColumns: string[] = ['id', 'name', 'createdAt', 'isDeleted'];
   dataSource = new MatTableDataSource<LanguageElement>([]);
   searchText: string = '';
   isLoading: boolean = false;
@@ -55,7 +55,7 @@ export class LanguageSetupComponent implements OnInit {
     this.isLoading = true;
     this.languageService.toggleDeleteStatus(element.id, element.deleted).subscribe(
       () => {
-        element.deleted = !element.deleted; // Instantly update UI
+        element.deleted = !element.deleted;
         const message = element.deleted ? 'Language deleted successfully!' : 'Language recovered successfully!';
         this.languageService.showSuccessMessage(message);
         this.isLoading = false;

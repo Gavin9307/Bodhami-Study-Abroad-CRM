@@ -35,10 +35,10 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileUpdateComponent } from './account/profile-update/profile-update.component';
 import { CountrySetupComponent } from './study-abroad-setup/country/country-setup/country-setup.component';
-import { UniversitySetupComponent } from './study-abroad-setup/university-setup/university-setup.component';
+import { UniversitySetupComponent } from './study-abroad-setup/university/university-setup/university-setup.component';
 import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
 import { AddCountryComponent } from './study-abroad-setup/country/add-country/add-country.component';
-import { AddUniversityComponent } from './study-abroad-setup/add-university/add-university.component';
+import { AddUniversityComponent } from './study-abroad-setup/university/add-university/add-university.component';
 import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
 import { LanguageSetupComponent } from './study-abroad-setup/language-setup/language-setup.component';
 import { AddLanguageComponent } from './study-abroad-setup/add-language/add-language.component';
@@ -49,7 +49,7 @@ import { ChecklistSetupComponent } from './study-abroad-setup/checklist/checklis
 import { CountryActionComponent } from './study-abroad-setup/country/country-action/country-action.component';
 import { ReviewComponent } from './Review/review/review.component';
 import { AddTeamComponent } from './user-management/add-team/add-team.component';
-import { DocumentSetupComponent } from './study-abroad-setup/country/document-setup/document-setup.component';
+
 import { AddMemberComponent } from './user-management/add-member/add-member.component';
 import { TeamActionComponent } from './user-management/team-action/team-action.component';
 import { MemberListComponent } from './user-management/member-list/member-list.component';
@@ -66,7 +66,7 @@ import { SignupPopupComponent } from './auth/signup-popup/signup-popup.component
 import { StudyAbroadAnalysisComponent } from './study-abroad-analysis/study-abroad-analysis/study-abroad-analysis.component';
 import { EditChecklistComponent } from './study-abroad-setup/checklist/edit-checklist/edit-checklist.component';
 import { AddChecklistComponent } from './study-abroad-setup/checklist/add-checklist/add-checklist.component';
-import { TeamSetupComponent } from './study-abroad-setup/team-setup/team-setup.component';
+
 import { ProfileActionComponent } from './Profile-action/profile-action/profile-action.component';
 import { CreateApplicationComponent } from './application-management/create-application/create-application.component';
 import { ApplicationComponent } from './application-management/application/application.component';
@@ -89,6 +89,8 @@ import { AddDocumentTypeComponent } from './study-abroad-setup/document-type/add
 import { EditDocumentTypeComponent } from './study-abroad-setup/document-type/edit-document-type/edit-document-type.component';
 import { EditCountryComponent } from './study-abroad-setup/country/edit-country/edit-country.component';
 import { CountryChecklistSetupComponent } from './study-abroad-setup/country/country-checklist/country-checklist-setup/country-checklist-setup.component';
+import { UniversityActionComponent } from './study-abroad-setup/university/university-action/university-action.component';
+import { EditUniversityComponent } from './study-abroad-setup/university/edit-university/edit-university.component';
 
 
 const routes: Routes = [
@@ -119,7 +121,6 @@ const routes: Routes = [
           { path: 'country-setup/add-country', component: AddCountryComponent },
           { path: 'country-setup/edit-country/:id', component: EditCountryComponent },
           { path: 'country-setup/country-checklist-setup/:id', component: CountryChecklistSetupComponent },
-          { path: 'country-setup/document-setup', component: DocumentSetupComponent },
 
           { path: 'checklist-setup', component: ChecklistSetupComponent },
           { path: 'checklist-setup/edit-checklist/:id', component: EditChecklistComponent },
@@ -127,6 +128,7 @@ const routes: Routes = [
 
           { path: 'university-setup', component: UniversitySetupComponent },
           { path: 'university-setup/add-university', component: AddUniversityComponent },
+          { path: 'university-setup/edit-university/:id', component: EditUniversityComponent },
 
           { path: 'course-setup', component: CourseSetupComponent },
           { path: 'course-setup/add-course', component: AddCourseComponent },
@@ -208,7 +210,6 @@ const routes: Routes = [
     CountryActionComponent,
     ReviewComponent,
     AddTeamComponent,
-    DocumentSetupComponent,
     AddMemberComponent,
     TeamActionComponent,
     MemberListComponent,
@@ -225,7 +226,6 @@ const routes: Routes = [
     StudyAbroadAnalysisComponent,
     EditChecklistComponent,
     AddChecklistComponent,
-    TeamSetupComponent,
     ProfileActionComponent,
     CreateApplicationComponent,
     ApplicationComponent,
@@ -242,7 +242,9 @@ const routes: Routes = [
     AddDocumentTypeComponent,
     EditDocumentTypeComponent,
     EditCountryComponent,
-    CountryChecklistSetupComponent
+    CountryChecklistSetupComponent,
+    UniversityActionComponent,
+    EditUniversityComponent
   ],
   imports: [
     // Core Angular Modules
@@ -288,7 +290,8 @@ const routes: Routes = [
     ProfileActionComponent,
     AddTeamMemberActionComponent,
     ApplicationActionComponent,
-    StudentActionComponent
+    StudentActionComponent,
+    UniversityActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

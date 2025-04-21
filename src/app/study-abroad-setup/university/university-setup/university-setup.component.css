@@ -1,4 +1,4 @@
-@import url(../../../styles.css);
+@import url(../../../../styles.css);
 
 table {
     width: 100%;
@@ -26,7 +26,6 @@ table {
   
   .btn-dark-rounded-outline{
     margin: 6px;
-    /* float: right; */
   }
 
   .SearchFliter{
