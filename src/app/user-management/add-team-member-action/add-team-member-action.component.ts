@@ -18,11 +18,9 @@ export class AddTeamMemberActionComponent implements OnInit {
   selectedPosition = 0;
 
   ngOnInit() {
-    console.log(this.data);
     this.getPositionDropDown();
   }
   onButton1Click(): void {
-    console.log('Button 1 clicked');
     this.router.navigate(['/user-management/team-list/add-member/' + this.data.teamId]);
     this.dialogRef.close();
   }
@@ -60,6 +58,22 @@ export class AddTeamMemberActionComponent implements OnInit {
           // console.log("Error Fetching Teams. Reason : " + error.message);
           this.isLoading = false;
           this.toastr.error("Error Updating Position");
+        }
+      )
+  }
+
+  onRemoveMember(){
+    this.isLoading = true;
+    this.http.delete<any[]>("http://localhost:8080/api/team/removeteamcouncellor/"+this.data["teamCouncellorId"])
+      .subscribe(
+        (response) => {
+          this.isLoading = false;
+          this.toastr.success("Member Removed Successfully");
+          this.dialogRef.close();
+        },
+        (error) => {
+          this.isLoading = false;
+          this.toastr.error("Error Removing Member");
         }
       )
   }
