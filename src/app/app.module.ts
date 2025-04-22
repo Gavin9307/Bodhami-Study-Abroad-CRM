@@ -93,6 +93,7 @@ import { UniversityActionComponent } from './study-abroad-setup/university/unive
 import { EditUniversityComponent } from './study-abroad-setup/university/edit-university/edit-university.component';
 import { CourseActionComponent } from './study-abroad-setup/course/course-action/course-action.component';
 import { EditCourseComponent } from './study-abroad-setup/course/edit-course/edit-course.component';
+import { UniversityChecklistComponent } from './study-abroad-setup/university/university-checklist/university-checklist.component';
 
 
 const routes: Routes = [
@@ -131,6 +132,7 @@ const routes: Routes = [
           { path: 'university-setup', component: UniversitySetupComponent },
           { path: 'university-setup/add-university', component: AddUniversityComponent },
           { path: 'university-setup/edit-university/:id', component: EditUniversityComponent },
+          { path: 'university-setup/university-checklist-setup/:id', component: UniversityChecklistComponent },
 
           { path: 'course-setup', component: CourseSetupComponent },
           { path: 'course-setup/add-course', component: AddCourseComponent },
@@ -249,7 +251,8 @@ const routes: Routes = [
     UniversityActionComponent,
     EditUniversityComponent,
     CourseActionComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    UniversityChecklistComponent
   ],
   imports: [
     // Core Angular Modules

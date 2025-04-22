@@ -14,7 +14,7 @@ export class UniversityActionComponent implements OnInit {
   }
 
   onChecklistButtonClick(): void {
-    this.router.navigate(['/study-abroad-setup/country-setup/country-checklist-setup/'+this.data.countryId]);
+    this.router.navigate(['/study-abroad-setup/university-setup/university-checklist-setup/'+this.data.universityId]);
     this.dialogRef.close();
   }
 
