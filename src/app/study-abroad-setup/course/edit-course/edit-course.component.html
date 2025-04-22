@@ -1,0 +1,55 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Edit {{course.courseName}} from {{course.universityName}}
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+
+      <mat-form-field class="form-input">
+        <mat-label>Course Name</mat-label>
+        <input matInput disabled="true" [(ngModel)]="course.courseName" name="courseName" placeholder="Eg. Computer Science" required>
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Description</mat-label>
+        <textarea matInput [(ngModel)]="course.courseDescription" name="courseDescription" placeholder="Eg. Introduction to programming..."></textarea>
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Price</mat-label>
+        <input matInput type="number" [(ngModel)]="course.coursePrice" name="coursePrice" placeholder="Eg. 1500">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Duration (months)</mat-label>
+        <input matInput type="number" [(ngModel)]="course.courseDuration" name="courseDuration" placeholder="Eg. 24">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Level</mat-label>
+        <input matInput [(ngModel)]="course.courseLevel" name="courseLevel" placeholder="Eg. Bachelor's / Master's">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Area of Study</mat-label>
+        <input matInput [(ngModel)]="course.courseAreaOfStudy" name="courseAreaOfStudy" placeholder="Eg. Engineering / Arts">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>University</mat-label>
+        <mat-select [(ngModel)]="course.universityId" name="universityId" required>
+          <mat-option *ngFor="let university of universities" [value]="university.universityId">
+            {{ university.universityName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <button mat-flat-button color="primary" class="btn-dark-rounded" (click)="editCourse()">
+      Edit Course
+    </button>
+  </form>
+</div>

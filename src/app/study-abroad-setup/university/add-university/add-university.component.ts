@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-university.component.css']
 })
 export class AddUniversityComponent implements OnInit {
-constructor(private http: HttpClient, private toastr: ToastrService) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.fetchCountries();

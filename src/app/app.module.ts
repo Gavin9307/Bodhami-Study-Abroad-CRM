@@ -36,10 +36,10 @@ import { AboutComponent } from './about/about.component';
 import { ProfileUpdateComponent } from './account/profile-update/profile-update.component';
 import { CountrySetupComponent } from './study-abroad-setup/country/country-setup/country-setup.component';
 import { UniversitySetupComponent } from './study-abroad-setup/university/university-setup/university-setup.component';
-import { CourseSetupComponent } from './study-abroad-setup/course-setup/course-setup.component';
+import { CourseSetupComponent } from './study-abroad-setup/course/course-setup/course-setup.component';
 import { AddCountryComponent } from './study-abroad-setup/country/add-country/add-country.component';
 import { AddUniversityComponent } from './study-abroad-setup/university/add-university/add-university.component';
-import { AddCourseComponent } from './study-abroad-setup/add-course/add-course.component';
+import { AddCourseComponent } from './study-abroad-setup/course/add-course/add-course.component';
 import { LanguageSetupComponent } from './study-abroad-setup/language-setup/language-setup.component';
 import { AddLanguageComponent } from './study-abroad-setup/add-language/add-language.component';
 import { ManageStudentsApplicationComponent } from './application-management/manage-students-application/manage-students-application.component';
@@ -91,6 +91,8 @@ import { EditCountryComponent } from './study-abroad-setup/country/edit-country/
 import { CountryChecklistSetupComponent } from './study-abroad-setup/country/country-checklist/country-checklist-setup/country-checklist-setup.component';
 import { UniversityActionComponent } from './study-abroad-setup/university/university-action/university-action.component';
 import { EditUniversityComponent } from './study-abroad-setup/university/edit-university/edit-university.component';
+import { CourseActionComponent } from './study-abroad-setup/course/course-action/course-action.component';
+import { EditCourseComponent } from './study-abroad-setup/course/edit-course/edit-course.component';
 
 
 const routes: Routes = [
@@ -132,6 +134,7 @@ const routes: Routes = [
 
           { path: 'course-setup', component: CourseSetupComponent },
           { path: 'course-setup/add-course', component: AddCourseComponent },
+          { path: 'course-setup/edit-course/:id', component: EditCourseComponent },
 
           { path: 'language-setup', component: LanguageSetupComponent },
           { path: 'language-setup/add-language', component: AddLanguageComponent },
@@ -244,7 +247,9 @@ const routes: Routes = [
     EditCountryComponent,
     CountryChecklistSetupComponent,
     UniversityActionComponent,
-    EditUniversityComponent
+    EditUniversityComponent,
+    CourseActionComponent,
+    EditCourseComponent
   ],
   imports: [
     // Core Angular Modules
@@ -291,7 +296,8 @@ const routes: Routes = [
     AddTeamMemberActionComponent,
     ApplicationActionComponent,
     StudentActionComponent,
-    UniversityActionComponent
+    UniversityActionComponent,
+    CourseActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
