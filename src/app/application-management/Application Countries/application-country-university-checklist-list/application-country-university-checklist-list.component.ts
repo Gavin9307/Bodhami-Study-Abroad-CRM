@@ -5,20 +5,20 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationCountryUniversityActionComponent } from '../application-country-university-action/application-country-university-action.component';
+import { ApplicationCountryChecklistActionComponent } from '../application-country-checklist-action/application-country-checklist-action.component';
 
 @Component({
-  selector: 'app-application-country-university-list',
-  templateUrl: './application-country-university-list.component.html',
-  styleUrls: ['./application-country-university-list.component.css']
+  selector: 'app-application-country-university-checklist-list',
+  templateUrl: './application-country-university-checklist-list.component.html',
+  styleUrls: ['./application-country-university-checklist-list.component.css']
 })
-export class ApplicationCountryUniversityListComponent implements OnInit {
-  displayedColumns: String[] = ["SrNo", "universityName", "createdAt", "isDeleted", "action"];
+export class ApplicationCountryUniversityChecklistListComponent implements OnInit {
+ displayedColumns: String[] = ["SrNo", "checklistName","checklistDescription", "createdAt", "isDeleted", "action"];
 
   dataSource = new MatTableDataSource<any>([]);
   isLoading: boolean = false;
 
-  country: Object = {};
+  university: Object = {};
   appId = this.route.snapshot.paramMap.get('appId');
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -26,8 +26,8 @@ export class ApplicationCountryUniversityListComponent implements OnInit {
   constructor(private http: HttpClient, public dialog: MatDialog, private toastr: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.fetchUniversities();
-    this.getCountry();
+    this.fetchChecklists();
+    this.getUniversity();
   }
 
   formatDateForNgModel(date: Date): string {
@@ -38,28 +38,27 @@ export class ApplicationCountryUniversityListComponent implements OnInit {
   }
 
 
-  getCountry(){
+  getUniversity(){
     this.isLoading = true;
-    let countryId = this.route.snapshot.paramMap.get('countryId');
-    this.http.get<any[]>('http://localhost:8080/api/country/getsinglecountry/' + countryId)
+    let universityId = this.route.snapshot.paramMap.get('universityId');
+    this.http.get<any[]>('http://localhost:8080/api/university/getsingleuniversity/' + universityId)
       .subscribe(
         (response) => {
-          this.country = response;
-          
+          this.university = response;
           this.isLoading = false;
         },
         (error) => {
-          console.error('Error fetching Country:', error);
+          console.error('Error fetching University:', error);
           this.isLoading = false;
         }
       );
   }
 
-  fetchUniversities() {
+  fetchChecklists() {
     this.isLoading = true;
-    let countryId = this.route.snapshot.paramMap.get('countryId');
+    let universityId = this.route.snapshot.paramMap.get('universityId');
     let appId = this.route.snapshot.paramMap.get('appId');
-    this.http.get<any[]>('http://localhost:8080/api/application/country/'+countryId+'/getallapplicationcountryuniversities/'+appId)
+    this.http.get<any[]>('http://localhost:8080/api/application/university/'+universityId+'/getallapplicationuniversitychecklists/'+appId)
       .subscribe(
         (data) => {
           data.forEach((element, index) => {
@@ -74,7 +73,7 @@ export class ApplicationCountryUniversityListComponent implements OnInit {
           this.isLoading = false;
         },
         (error) => {
-          console.error('Error fetching Universities:', error);
+          console.error('Error fetching Checklists:', error);
           this.isLoading = false;
         }
       );
@@ -117,9 +116,7 @@ export class ApplicationCountryUniversityListComponent implements OnInit {
   }
 
   openDialog(element: any): void {
-    element["appId"] = this.appId;
-    element["countryId"] = this.route.snapshot.paramMap.get('countryId');
-    this.dialog.open(ApplicationCountryUniversityActionComponent, {
+    this.dialog.open(ApplicationCountryChecklistActionComponent, {
       width: '400px',
       data: element
     });

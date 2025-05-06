@@ -102,6 +102,8 @@ import { ApplicationCountryUniversityActionComponent } from './application-manag
 import { ApplicationCountryChecklistActionComponent } from './application-management/Application Countries/application-country-checklist-action/application-country-checklist-action.component';
 import { ApplicationCountryUniversityChecklistActionComponent } from './application-management/Application Countries/application-country-university-checklist-action/application-country-university-checklist-action.component';
 import { ApplicationCountryUniversityChecklistListComponent } from './application-management/Application Countries/application-country-university-checklist-list/application-country-university-checklist-list.component';
+import { ApplicationCountryUniversityCourseListComponent } from './application-management/Application Countries/application-country-university-course-list/application-country-university-course-list.component';
+import { ApplicationCountryUniversityCourseActionComponent } from './application-management/Application Countries/application-country-university-course-action/application-country-university-course-action.component';
 
 
 const routes: Routes = [
@@ -173,7 +175,16 @@ const routes: Routes = [
           {
             path: 'country/:countryId/checklist-list/:appId',
             component: ApplicationCountryChecklistListComponent
+          },
+          {
+            path: 'country/:countryId/university/:universityId/checklist-list/:appId',
+            component: ApplicationCountryUniversityChecklistListComponent
+          },
+          {
+            path: 'country/:countryId/university/:universityId/course-list/:appId',
+            component: ApplicationCountryUniversityCourseListComponent
           }
+
           
         ]
       },
@@ -277,7 +288,9 @@ const routes: Routes = [
     ApplicationCountryUniversityActionComponent,
     ApplicationCountryChecklistActionComponent,
     ApplicationCountryUniversityChecklistActionComponent,
-    ApplicationCountryUniversityChecklistListComponent
+    ApplicationCountryUniversityChecklistListComponent,
+    ApplicationCountryUniversityCourseListComponent,
+    ApplicationCountryUniversityCourseActionComponent
   ],
   imports: [
     // Core Angular Modules

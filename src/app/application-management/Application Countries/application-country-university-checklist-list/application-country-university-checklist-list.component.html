@@ -1,0 +1,53 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader> 
+    <div class="main-sub-container-header">
+      Checklists for {{university.universityName}} — Application ID: {{appId}}
+    </div>
+    
+    <div class="add-form-container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="SrNo">
+          <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+          <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="checklistName">
+          <th mat-header-cell *matHeaderCellDef> Checklist Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.checklistName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="checklistDescription">
+          <th mat-header-cell *matHeaderCellDef> Checklist Description </th>
+          <td mat-cell *matCellDef="let element"> {{ element.checklistDescription}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef> Selected on </th>
+          <td mat-cell *matCellDef="let element"> {{ element.createdAt}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="isDeleted">
+          <th mat-header-cell *matHeaderCellDef> Inactive </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="onIsDeletedChange(element)"
+              class="example-margin"></mat-checkbox>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+              Action
+            </button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  
