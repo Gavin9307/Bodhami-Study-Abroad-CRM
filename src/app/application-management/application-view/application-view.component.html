@@ -1,0 +1,349 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    Student - {{applicationDetails.firstName}} {{applicationDetails.lastName}}
+  </div>
+  <h2>Basic Details</h2>
+  <form class="add-form">
+    <div class="add-form-container">
+
+      <mat-form-field class="form-input">
+        <mat-label>Application Id</mat-label>
+        <input matInput type="number" [(ngModel)]="applicationDetails.appId" name="appId" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [(ngModel)]="applicationDetails.firstName" name="email" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Middle Name</mat-label>
+        <input matInput type="text" [(ngModel)]="applicationDetails.middleName" name="middleName" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" [(ngModel)]="applicationDetails.lastName" name="lastName" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Eg. John" [(ngModel)]="applicationDetails.userEmail" name="userEmail" readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" placeholder="Eg. Doe" [(ngModel)]="applicationDetails.userPhoneNo" name="userPhoneNo" readonly>
+      </mat-form-field>
+
+
+      <mat-form-field class="form-input">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput type="text" name="dateOfBirth" [(ngModel)]="applicationDetails.dateOfBirth"  readonly>
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="applicationDetails.status" name="status" [ngClass]="getStatusClass(applicationDetails.status)">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            {{ status | titlecase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+    </div>
+  </form>
+
+  <h2>Address Details</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="addresses" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef> Country </th>
+        <td mat-cell *matCellDef="let element"> {{ element.country}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef> State. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.state}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> City </th>
+        <td mat-cell *matCellDef="let element"> {{ element.city}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="streetAddress">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{ element.streetAddress}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="landmark">
+        <th mat-header-cell *matHeaderCellDef> Landmark </th>
+        <td mat-cell *matCellDef="let element"> {{ element.landmark}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="pinCode">
+        <th mat-header-cell *matHeaderCellDef> Pin Code </th>
+        <td mat-cell *matCellDef="let element"> {{ element.pinCode}} </td>
+      </ng-container>
+
+      <!-- Render Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="addressesDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: addressesDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #addressesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <h2>Selected Countries</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="countries" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef> Country </th>
+        <td mat-cell *matCellDef="let element"> {{ element.countryName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Selected on </th>
+        <td mat-cell *matCellDef="let element"> {{ element.createdAt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+            Action
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isDeleted">
+        <th mat-header-cell *matHeaderCellDef> Inactive </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="onIsDeletedChange(element)"
+            class="example-margin"></mat-checkbox>
+        </td>
+      </ng-container>
+
+
+      <!-- Render Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="countriesDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: countriesDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #countriesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <h2>Guardians</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="guardians" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> First Name</th>
+        <td mat-cell *matCellDef="let element"> {{ element.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="middleName">
+        <th mat-header-cell *matHeaderCellDef> Middle Name</th>
+        <td mat-cell *matCellDef="let element"> {{ element.middleName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name</th>
+        <td mat-cell *matCellDef="let element"> {{ element.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Phone Number</th>
+        <td mat-cell *matCellDef="let element"> {{ element.phoneNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let element"> {{ element.email}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="guardiansDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: guardiansDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #guardiansPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <h2>Experience</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="experiences" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title</th>
+        <td mat-cell *matCellDef="let element"> {{ element.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="currentDesignation">
+        <th mat-header-cell *matHeaderCellDef> Designation</th>
+        <td mat-cell *matCellDef="let element"> {{ element.currentDesignation}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef> Company</th>
+        <td mat-cell *matCellDef="let element"> {{ element.company}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef> Country</th>
+        <td mat-cell *matCellDef="let element"> {{ element.country}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td mat-cell *matCellDef="let element"> {{ element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef> Start Date</th>
+        <td mat-cell *matCellDef="let element"> {{ element.startDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef> End Date</th>
+        <td mat-cell *matCellDef="let element"> {{ element.endDate}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="experiencesDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: experiencesDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #experiencesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <h2>Education</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="educations" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="school">
+        <th mat-header-cell *matHeaderCellDef> School</th>
+        <td mat-cell *matCellDef="let element"> {{ element.school}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="educationLevel">
+        <th mat-header-cell *matHeaderCellDef> Education Level</th>
+        <td mat-cell *matCellDef="let element"> {{ element.educationLevel}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fieldOfStudy">
+        <th mat-header-cell *matHeaderCellDef> Field of Study</th>
+        <td mat-cell *matCellDef="let element"> {{ element.fieldOfStudy}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef> Country</th>
+        <td mat-cell *matCellDef="let element"> {{ element.country}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef> State</th>
+        <td mat-cell *matCellDef="let element"> {{ element.state}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef> Start Date</th>
+        <td mat-cell *matCellDef="let element"> {{ element.startDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef> End Date</th>
+        <td mat-cell *matCellDef="let element"> {{ element.endDate}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="educationsDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: educationsDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #educationsPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <h2>Optional Courses</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="optionalCourses" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title</th>
+        <td mat-cell *matCellDef="let element"> {{ element.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="certificate">
+        <th mat-header-cell *matHeaderCellDef> Certificate</th>
+        <td mat-cell *matCellDef="let element"> {{ element.certificate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="level">
+        <th mat-header-cell *matHeaderCellDef> Field of Study</th>
+        <td mat-cell *matCellDef="let element"> {{ element.level}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef> Start Date</th>
+        <td mat-cell *matCellDef="let element"> {{ element.startDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef> End Date</th>
+        <td mat-cell *matCellDef="let element"> {{ element.endDate}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="optionalCoursesDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: optionalCoursesDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #optionalCoursesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <h2>Medical Details</h2>
+  <div class="add-form-container">
+    <table mat-table [dataSource]="medicals" class="mat-elevation-z8">
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="medicalIssue">
+        <th mat-header-cell *matHeaderCellDef> Medical Issue</th>
+        <td mat-cell *matCellDef="let element"> {{ element.medicalIssue}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hasDisability">
+        <th mat-header-cell *matHeaderCellDef> Has Disability</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [checked]="element.hasDisability" [disabled]="true" class="example-margin">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="medicalsDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: medicalsDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator #medicalsPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+</div>

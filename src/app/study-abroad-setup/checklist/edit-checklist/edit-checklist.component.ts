@@ -49,9 +49,7 @@ export class EditChecklistComponent implements OnInit {
     this.http.put("http://localhost:8080/api/checklist/update/"+checklistId,
       {
         name:this.checklist["name"],
-        description:this.checklist["description"],
-        required: true,
-        councellorID: 1
+        description:this.checklist["description"]
       }
     )
     .subscribe(

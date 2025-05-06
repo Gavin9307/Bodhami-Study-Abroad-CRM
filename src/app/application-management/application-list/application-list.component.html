@@ -1,8 +1,9 @@
 <div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    Student Listing
+    Applications List
     <a [routerLink]="['/application-management/manage-students-application/student-registration']">
-      <button mat-flat-button class="btn-dark-rounded-outline-white">Create Student</button>
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Create Application</button>
     </a>    
   </div>
 
@@ -47,57 +48,66 @@
       <button mat-flat-button class="btn-dark-rounded-outline" type="reset">Clear</button>
     </form>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="applications" class="mat-elevation-z8">
 
-      <!-- First Name Column -->
-      <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef> First Name </th>
-        <td mat-cell *matCellDef="let element">
-          <a [routerLink]="['/application-management/application']">
-            {{ element.firstName }}
-          </a>
-        </td>
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
       </ng-container>
     
-      <!-- Last Name Column -->
-      <ng-container matColumnDef="lastName">
+      <ng-container matColumnDef="applicationTeamName">
+        <th mat-header-cell *matHeaderCellDef> Team Assigned </th>
+        <td mat-cell *matCellDef="let element"> {{ element.teamName }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="applicationId">
+        <th mat-header-cell *matHeaderCellDef> Application Id </th>
+        <td mat-cell *matCellDef="let element"> {{ element.appId }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="applicationFirstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.firstName }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="applicationLastName">
         <th mat-header-cell *matHeaderCellDef> Last Name </th>
         <td mat-cell *matCellDef="let element"> {{ element.lastName }} </td>
       </ng-container>
     
-      <!-- Email Column -->
-      <ng-container matColumnDef="email">
+      <ng-container matColumnDef="applicationEmail">
         <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.userEmail }} </td>
       </ng-container>
     
-      <!-- Status Column -->
-      <ng-container matColumnDef="status">
+      <ng-container matColumnDef="applicationStatus">
         <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+        <td mat-cell *matCellDef="let element">
+          <span [ngClass]="getStatusClass(element.status)">
+            {{ element.status | titlecase }}
+          </span>
+        </td>
       </ng-container>
-    
-      <!-- Pending Applications Column -->
-      <ng-container matColumnDef="pendingApplications">
-        <th mat-header-cell *matHeaderCellDef> Pending Applications </th>
-        <td mat-cell *matCellDef="let element"> {{ element.pendingApplications }} </td>
-      </ng-container>
-    
+      
+
       <!-- Phone Number Column -->
-      <ng-container matColumnDef="phoneNumber">
+      <ng-container matColumnDef="applicationPhoneNumber">
         <th mat-header-cell *matHeaderCellDef> Phone Number </th>
-        <td mat-cell *matCellDef="let element"> {{ element.phoneNumber }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.userPhoneNo }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="applicationID">
-        <th mat-header-cell *matHeaderCellDef> Application ID </th>
-        <td mat-cell *matCellDef="let element"> {{ element.applicationID }} </td>
+      <ng-container matColumnDef="isDeleted">
+        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="onIsDeletedChange(element)"
+            class="example-margin"></mat-checkbox>
+        </td>
       </ng-container>
-    
+
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="primary" (click)="openDialog()" class="btn-dark-rounded-outline">
+          <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
             Action
           </button>
         </td>
@@ -108,6 +118,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     
   </div>
 </div>

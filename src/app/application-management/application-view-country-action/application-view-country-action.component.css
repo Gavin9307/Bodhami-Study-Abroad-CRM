@@ -1,0 +1,12 @@
+@import url(../../../styles.css);
+
+.heading{
+    font-weight: 500;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.button{
+    margin: 10px;
+    width: 150px;
+}

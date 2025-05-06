@@ -95,8 +95,8 @@ export class SidebarComponent implements OnInit {
       link: '/account',
       subItems: [
         {
-          name: 'Manage Student Application',
-          link: '/application-management/manage-students-application',
+          name: 'Application List',
+          link: '/application-management/application-list',
         }
       ],
     }, {
