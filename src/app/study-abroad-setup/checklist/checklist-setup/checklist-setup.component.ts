@@ -15,7 +15,7 @@ export class ChecklistSetupComponent implements OnInit {
   
   checklists:any[]  = [];
 
-  displayedColumns : String[] = ["SrNo","checklistName","checklistDescription","checklistCouncellorName","isDeleted","editChecklist"]
+  displayedColumns : String[] = ["SrNo","checklistName","checklistDescription","isDeleted","editChecklist"]
   
   isLoading:Boolean = false;
 

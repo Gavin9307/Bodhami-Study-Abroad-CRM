@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,19 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./application-action.component.css']
 })
 export class ApplicationActionComponent implements OnInit {
-constructor(private router: Router,public dialogRef: MatDialogRef<ApplicationActionComponent>) {}
+  constructor(private router: Router,public dialogRef: MatDialogRef<ApplicationActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {}
 
-    updateStatusAppication(): void {
+  viewApplication(): void {
     console.log('Button 1 clicked');
-    this.router.navigate(['']); 
+    this.router.navigate(['/application-management/application-view/'+this.data.appId]); 
     this.dialogRef.close();
-  }
-
-  onButton2Click(): void {
-    console.log('Button 2 clicked');
-    // Add any action for Button 2
-    this.router.navigate(['/application-management/view-application']);
-    this.dialogRef.close(); // Close the dialog after the action
   }
 
   ngOnInit() {

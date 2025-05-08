@@ -13,7 +13,6 @@ export class StudentActionComponent implements OnInit {
   constructor(private router: Router,public dialogRef: MatDialogRef<TeamActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {}
   
     ngOnInit() {
-      console.log(this.data);
     }
     onViewButtonClick(): void {
       this.router.navigate(['/student-management/student-view/'+this.data.userId]); 

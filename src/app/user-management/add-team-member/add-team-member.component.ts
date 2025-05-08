@@ -101,6 +101,8 @@ export class AddTeamMemberComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(() => {
       this.getAllTeamCouncellors();
+      this.getCouncellorDropDown();
+      this.getPositionDropDown();
     });
   }
 

@@ -1,0 +1,64 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    {{country.countryName}} Checklists
+  </div>
+  
+  <div class="add-form-container">
+    <form class="example-form">
+      <mat-form-field class="SearchFilter">
+        <mat-label>Checklist</mat-label>
+        <mat-select [(ngModel)]="selectedChecklist" name="selectedChecklist">
+          <mat-option *ngFor="let checklist of countryChecklistDropdown" [value]="checklist.checklistId">
+            {{ checklist.checklistName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button class="btn-dark-rounded" (click)="addCountryChecklist()">Add</button>
+    </form>
+   
+    <table mat-table [dataSource]="countryChecklists" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="checklistName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.checklistName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="checklistDescription">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.checklistDescription }} </td>
+      </ng-container>
+     
+      <ng-container matColumnDef="isRequired">
+        <th mat-header-cell *matHeaderCellDef> Is Required </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.isRequired" (ngModelChange)="onIsRequiredChange(element)"
+            class="example-margin"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deleteChecklist">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button 
+            mat-raised-button 
+            color="warn" 
+            (click)="removeCountryChecklistBtn(element.checklistMappingId)" 
+            class="btn-dark-rounded-outline">
+            Remove
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

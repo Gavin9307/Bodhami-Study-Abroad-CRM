@@ -1,0 +1,55 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Add Course
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+
+      <mat-form-field class="form-input">
+        <mat-label>Course Name</mat-label>
+        <input matInput [(ngModel)]="courseName" name="courseName" placeholder="Eg. Computer Science" required>
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Description</mat-label>
+        <textarea matInput [(ngModel)]="courseDescription" name="courseDescription" placeholder="Eg. Introduction to programming..."></textarea>
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Price</mat-label>
+        <input matInput type="number" [(ngModel)]="coursePrice" name="coursePrice" placeholder="Eg. 1500">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Duration (months)</mat-label>
+        <input matInput type="number" [(ngModel)]="courseDuration" name="courseDuration" placeholder="Eg. 24">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Course Level</mat-label>
+        <input matInput [(ngModel)]="courseLevel" name="courseLevel" placeholder="Eg. Bachelor's / Master's">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>Area of Study</mat-label>
+        <input matInput [(ngModel)]="courseAreaOfStudy" name="courseAreaOfStudy" placeholder="Eg. Engineering / Arts">
+      </mat-form-field>
+      
+      <mat-form-field class="form-input">
+        <mat-label>University</mat-label>
+        <mat-select [(ngModel)]="universityId" name="universityId" required>
+          <mat-option *ngFor="let university of universities" [value]="university.universityId">
+            {{ university.universityName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <button mat-flat-button color="primary" class="btn-dark-rounded" (click)="addCourse()">
+      Add Course
+    </button>
+  </form>
+</div>

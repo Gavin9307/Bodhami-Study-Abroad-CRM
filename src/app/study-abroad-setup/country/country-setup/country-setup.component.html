@@ -29,51 +29,49 @@
       </form>
   
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    
-        <!-- Country Name Column -->
+        
+        <ng-container matColumnDef="SrNo">
+          <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+          <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="countryName">
           <th mat-header-cell *matHeaderCellDef> Country Name </th>
           <td mat-cell *matCellDef="let element"> {{ element.countryName }} </td>
         </ng-container>
     
-        <!-- Country Code Column -->
         <ng-container matColumnDef="countryCode">
           <th mat-header-cell *matHeaderCellDef> Country Code </th>
           <td mat-cell *matCellDef="let element"> {{ element.countryCode }} </td>
         </ng-container>
     
-        <!-- Currency Column -->
-        <ng-container matColumnDef="currencyName">
+        <ng-container matColumnDef="countryCurrencyName">
           <th mat-header-cell *matHeaderCellDef> Currency </th>
-          <td mat-cell *matCellDef="let element"> {{ element.currencyName }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.countryCurrencyName }} </td>
         </ng-container>
     
-        <!-- Multiplication Factor Column -->
-        <ng-container matColumnDef="multiplicationFactor">
+        <ng-container matColumnDef="countryMultiplicationFactor">
           <th mat-header-cell *matHeaderCellDef> Multiplication Factor </th>
-          <td mat-cell *matCellDef="let element"> {{ element.multiplicationFactor }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.countryMultiplicationFactor }} </td>
         </ng-container>
     
-        <!-- Is Deleted Column -->
-      <ng-container matColumnDef="isDeleted">
-        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-checkbox [checked]="element.isDeleted" (change)="toggleDeleteStatus(element)">
-          </mat-checkbox>
-        </td>
-      </ng-container>
-    
-        <!-- Action Column -->
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Action </th>
+        <ng-container matColumnDef="isDeleted">
+          <th mat-header-cell *matHeaderCellDef> Inactive</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" (click)="openDialog()" class="btn-dark-rounded-outline">
+            <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="toggleDeleteStatus(element)"
+              class="example-margin"></mat-checkbox>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
               Action
             </button>
           </td>
         </ng-container>
     
-        <!-- Render Header and Rows -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

@@ -1,0 +1,67 @@
+@import url(../../../styles.css);
+
+
+.button {
+    float: right;
+}
+
+.medical{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add{
+    padding: 10px;
+    float: right;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .mat-elevation-z8 {
+    background: transparent !important;
+    box-shadow: none !important; 
+  }
+  
+  .mat-table {
+    background: transparent !important;
+  }
+  
+  .mat-header-row, .mat-row {
+    background: transparent !important;
+  }
+  
+  th.mat-header-cell {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--text-black);
+  }
+  
+  .btn-dark-rounded-outline{
+    margin: 6px;
+    float: right;
+  }
+
+  ::ng-deep .status-in-progress .mat-select-value-text {
+    color: orange;
+    font-weight: 500;
+  }
+  
+  ::ng-deep .status-submitted .mat-select-value-text {
+    color: blue;
+    font-weight: 500;
+  }
+  
+  ::ng-deep .status-approved .mat-select-value-text {
+    color: green;
+    font-weight: 600;
+  }
+  
+  ::ng-deep .status-rejected .mat-select-value-text {
+    color: red;
+    font-weight: 600;
+  }
+  
+  

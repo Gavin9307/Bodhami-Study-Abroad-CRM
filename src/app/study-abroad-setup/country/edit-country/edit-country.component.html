@@ -1,0 +1,47 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Edit {{country.countryName}}
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+  
+      <mat-form-field class="form-input">
+        <mat-label>Country Name</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="country.countryName" name="countryName" placeholder="Eg. India" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-input">
+        <mat-label>Country Code</mat-label>
+        <input matInput [(ngModel)]="country.countryCode" name="countryCode" placeholder="Eg. IN" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-input">
+        <mat-label>Currency Name</mat-label>
+        <input matInput [(ngModel)]="country.countryCurrencyName" name="countryCurrencyName" placeholder="Eg. Indian Rupee" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-input">
+        <mat-label>Multiplication Factor</mat-label>
+        <input type="number" matInput [(ngModel)]="country.countryMultiplicationFactor" name="countryMultiplicationFactor" placeholder="Eg. 1.00" required>
+      </mat-form-field>
+  
+      <mat-form-field class="form-input">
+        <mat-label>ISO Country Code</mat-label>
+        <input matInput [(ngModel)]="country.isoCountryCode" name="isoCountryCode" placeholder="Eg. IND">
+      </mat-form-field>
+  
+      <mat-form-field class="form-input">
+        <mat-label>Website Display Currency</mat-label>
+        <input matInput [(ngModel)]="country.websiteDisplayCurrency" name="websiteDisplayCurrency" placeholder="Eg. INR">
+      </mat-form-field>
+  
+    </div>
+  
+    <button mat-flat-button color="primary" class="btn-dark-rounded button" (click)="editCountry()">
+      Edit Country
+    </button>
+  </form>
+</div>

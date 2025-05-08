@@ -39,7 +39,7 @@
       </ng-container>
 
       <ng-container matColumnDef="isDeleted">
-        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
+        <th mat-header-cell *matHeaderCellDef> Inactive </th>
         <td mat-cell *matCellDef="let element">
           <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="onIsDeletedChange(element)"
             class="example-margin"></mat-checkbox>
@@ -50,7 +50,7 @@
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
             <a [routerLink]="['/user-management/edit-member',element.councellorId]">
-            <button mat-flat-button class="btn-dark-rounded-outline-white button">Edit</button>
+            <button mat-flat-button class="btn-dark-rounded-outline button">Edit</button>
             </a>
           </td>
         </ng-container>

@@ -2,8 +2,6 @@
   <div class="main-sub-container-header">
     Add Language
   </div>
-
-  <!-- Loader -->
   <app-loader *ngIf="isLoading"></app-loader>
 
   <form class="add-form" [formGroup]="languageForm" (ngSubmit)="addLanguage()">

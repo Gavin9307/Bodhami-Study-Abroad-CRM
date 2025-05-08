@@ -1,0 +1,81 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader> 
+    <div class="main-sub-container-header">
+      University Setup
+      <a [routerLink]="['/study-abroad-setup/university-setup/add-university']">
+        <button mat-flat-button class="btn-dark-rounded-outline-white">Add University</button>
+      </a>
+    </div>
+    
+    <div class="add-form-container">
+      <form class="example-form">
+        <mat-form-field class="SearchFliter">
+          <mat-label>University Name</mat-label>
+          <input matInput placeholder="Eg. India" value="">
+        </mat-form-field>
+        
+        <mat-form-field class="SearchFliter">
+          <mat-label>University Code</mat-label>
+          <input matInput placeholder="Eg. IN" value="">
+        </mat-form-field>
+  
+        <mat-form-field class="SearchFliter">
+          <mat-label>Currency</mat-label>
+          <input matInput placeholder="Eg. INR" value="">
+        </mat-form-field>
+  
+        <button mat-flat-button class="btn-dark-rounded-outline">Search</button>
+        <button mat-flat-button class="btn-dark-rounded-outline">Clear</button>
+      </form>
+  
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="SrNo">
+          <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+          <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="universityName">
+          <th mat-header-cell *matHeaderCellDef> University Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.universityName }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="universityEmail">
+          <th mat-header-cell *matHeaderCellDef> Email</th>
+          <td mat-cell *matCellDef="let element"> {{ element.universityEmail }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="universityWebsite">
+          <th mat-header-cell *matHeaderCellDef> Website </th>
+          <td mat-cell *matCellDef="let element"> {{ element.universityWebsite }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="countryName">
+          <th mat-header-cell *matHeaderCellDef> Country </th>
+          <td mat-cell *matCellDef="let element"> {{ element.countryName }} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="isDeleted">
+          <th mat-header-cell *matHeaderCellDef> Inactive</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="toggleDeleteStatus(element)"
+              class="example-margin"></mat-checkbox>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+              Action
+            </button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  

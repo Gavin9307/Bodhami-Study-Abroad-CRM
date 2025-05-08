@@ -1,0 +1,75 @@
+<div class="main-sub-container">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+  
+  <div class="main-sub-container-header">
+    Add University
+  </div>
+  <form class="add-form">
+    <div class="add-form-container">
+
+      <mat-form-field class="form-input">
+        <mat-label>University Name</mat-label>
+        <input matInput [(ngModel)]="universityName" name="universityName" placeholder="Eg. Stanford University" required>
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>University Email</mat-label>
+        <input matInput [(ngModel)]="universityEmail" name="universityEmail" type="email" placeholder="Eg. admissions@stanford.edu">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>University Website</mat-label>
+        <input matInput [(ngModel)]="universityWebsite" name="universityWebsite" type="url" placeholder="Eg. https://www.stanford.edu">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>National Ranking</mat-label>
+        <input matInput [(ngModel)]="nationalRanking" name="nationalRanking" type="number" placeholder="Eg. 2">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>State Ranking</mat-label>
+        <input matInput [(ngModel)]="stateRanking" name="stateRanking" type="number" placeholder="Eg. 1">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="description" name="description" placeholder="Eg. Renowned for innovation and entrepreneurship."></textarea>
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>Year of Establishment</mat-label>
+        <input matInput [(ngModel)]="yearOfEstablishment" name="yearOfEstablishment" type="number" placeholder="Eg. 1885">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>Brochure</mat-label>
+        <input matInput [(ngModel)]="brochure" name="brochure" placeholder="Eg. stanford_brochure.pdf">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>University Exam</mat-label>
+        <input matInput [(ngModel)]="universityExam" name="universityExam" placeholder="Eg. GRE, TOEFL">
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>Country</mat-label>
+        <mat-select [(ngModel)]="countryId" name="countryId" required>
+          <mat-option *ngFor="let country of countries" [value]="country.countryId">
+            {{ country.countryName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="form-input">
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="address" name="address" placeholder="Eg. Stanford, California, USA">
+      </mat-form-field>
+    </div>
+    
+    <button mat-flat-button color="primary" class="btn-dark-rounded" (click)="addUniversity()">
+      Add University
+    </button>
+  </form>
+</div>

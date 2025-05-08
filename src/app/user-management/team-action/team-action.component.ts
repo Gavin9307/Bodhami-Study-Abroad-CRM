@@ -12,7 +12,6 @@ export class TeamActionComponent implements OnInit {
   constructor(private router: Router,public dialogRef: MatDialogRef<TeamActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {}
   
     ngOnInit() {
-      console.log(this.data);
     }
     onButton1Click(): void {
       console.log('Button 1 clicked');

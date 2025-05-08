@@ -89,3 +89,25 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 #toast-container {
     z-index: 9999 !important;
 }
+
+
+.status-in-progress {
+    color: orange;
+    font-weight: 500;
+  }
+  
+  .status-submitted {
+    color: blue;
+    font-weight: 500;
+  }
+  
+  .status-approved {
+    color: green;
+    font-weight: 600;
+  }
+  
+  .status-rejected {
+    color: red;
+    font-weight: 600;
+  }
+  
