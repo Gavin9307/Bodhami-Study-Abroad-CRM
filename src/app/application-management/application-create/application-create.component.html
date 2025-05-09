@@ -1,0 +1,52 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    Applications List
+    <a [routerLink]="['/application-management/manage-students-application/student-registration']">
+      <button mat-flat-button class="btn-dark-rounded-outline-white">Create Application</button>
+    </a>    
+  </div>
+
+  <div class="add-form-container">
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Step 1: Enter Name</ng-template>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+    
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Step 2: Address</ng-template>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+    
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+    
+    
+  </div>
+    
+</div>

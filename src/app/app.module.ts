@@ -104,6 +104,7 @@ import { ApplicationCountryUniversityChecklistActionComponent } from './applicat
 import { ApplicationCountryUniversityChecklistListComponent } from './application-management/Application Countries/application-country-university-checklist-list/application-country-university-checklist-list.component';
 import { ApplicationCountryUniversityCourseListComponent } from './application-management/Application Countries/application-country-university-course-list/application-country-university-course-list.component';
 import { ApplicationCountryUniversityCourseActionComponent } from './application-management/Application Countries/application-country-university-course-action/application-country-university-course-action.component';
+import { ApplicationCreateComponent } from './application-management/application-create/application-create.component';
 
 
 const routes: Routes = [
@@ -162,6 +163,7 @@ const routes: Routes = [
       {
         path: 'application-management',
         children: [
+          { path: 'application-create', component: ApplicationCreateComponent },
           { path: 'application-list', component: ApplicationListComponent },
           { path: 'edit-student', component: EditStudentComponent },
           { path: 'application-view/:id', component: ApplicationViewComponent },
@@ -290,7 +292,8 @@ const routes: Routes = [
     ApplicationCountryUniversityChecklistActionComponent,
     ApplicationCountryUniversityChecklistListComponent,
     ApplicationCountryUniversityCourseListComponent,
-    ApplicationCountryUniversityCourseActionComponent
+    ApplicationCountryUniversityCourseActionComponent,
+    ApplicationCreateComponent
   ],
   imports: [
     // Core Angular Modules
@@ -321,11 +324,13 @@ const routes: Routes = [
     MatStepperModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatStepperModule,
 
     // Additional Module
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     })
+
   ],
   schemas: [NO_ERRORS_SCHEMA],
   entryComponents: [
