@@ -1,52 +1,638 @@
 <div class="main-sub-container">
   <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    Applications List
-    <a [routerLink]="['/application-management/manage-students-application/student-registration']">
-      <button mat-flat-button class="btn-dark-rounded-outline-white">Create Application</button>
-    </a>    
+    Create Application
   </div>
 
-  <div class="add-form-container">
-    <mat-vertical-stepper [linear]="isLinear" #stepper>
-      <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Step 1: Enter Name</ng-template>
-          <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+
+    <mat-step [stepControl]="applicationUserForm">
+      <form [formGroup]="applicationUserForm" class="add-form">
+        <ng-template matStepLabel>Step 1: Select Student and Team</ng-template>
+
+        <div class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>Student :</mat-label>
+            <mat-select formControlName="userId" required (selectionChange)="onStudentSelected($event.value)">
+              <mat-option *ngFor="let user of userList" [value]="user.userId">
+                {{ user.userFirstName }} {{ user.userLastName }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-    
-      <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Step 2: Address</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" required>
+
+          <mat-form-field class="form-input">
+            <mat-label>Team : </mat-label>
+            <mat-select formControlName="teamId" required>
+              <mat-option *ngFor="let team of teamList" [value]="team.teamId">
+                {{ team.teamName }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-    
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="applicationBasicDetails">
+      <form [formGroup]="applicationBasicDetails" class="add-form">
+        <ng-template matStepLabel>Step 2: Edit Student Basic Details</ng-template>
+
+        <div class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middleName" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
-      </mat-step>
-    </mat-vertical-stepper>
-    
-    
-  </div>
-    
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form [formGroup]="applicationAddressDetails" class="add-form">
+        <ng-template matStepLabel>Step 3: Edit Student Address Details</ng-template>
+
+        <div class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="state" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>Street Address</mat-label>
+            <input matInput formControlName="streetAddress" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>Landmark</mat-label>
+            <input matInput formControlName="landmark" required>
+          </mat-form-field>
+          <mat-form-field class="form-input">
+            <mat-label>Pin Code</mat-label>
+            <input matInput formControlName="pinCode" required>
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button (click)="addUserAddress()" class="btn-dark-rounded button">Add</button>
+
+        <table mat-table [dataSource]="addresses" class="mat-elevation-z8">
+          <ng-container matColumnDef="SrNo">
+            <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <td mat-cell *matCellDef="let element"> {{ element.country}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef> State. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.state}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef> City </th>
+            <td mat-cell *matCellDef="let element"> {{ element.city}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="streetAddress">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{ element.streetAddress}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="landmark">
+            <th mat-header-cell *matHeaderCellDef> Landmark </th>
+            <td mat-cell *matCellDef="let element"> {{ element.landmark}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="pinCode">
+            <th mat-header-cell *matHeaderCellDef> Pin Code </th>
+            <td mat-cell *matCellDef="let element"> {{ element.pinCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button mat-button color="warn" (click)="removeAddressElement(i)">Remove</button>
+            </td>
+          </ng-container>
+
+          <!-- Render Header and Rows -->
+          <tr mat-header-row *matHeaderRowDef="addressesDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: addressesDisplayedColumns;"></tr>
+        </table>
+        <mat-paginator #addressesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form [formGroup]="applicationEducationDetails" class="add-form">
+        <ng-template matStepLabel>Step 4: Edit Student Education Details</ng-template>
+
+        <div [formGroup]="applicationEducationDetails" class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>School</mat-label>
+            <input matInput formControlName="school" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Education Level</mat-label>
+            <input matInput formControlName="educationLevel" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Field of Study</mat-label>
+            <input matInput formControlName="fieldOfStudy" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="state" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" required>
+          </mat-form-field>
+
+
+          <mat-form-field class="form-input">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="startDate" [matDatepicker]="startPickerEducation" required>
+            <mat-datepicker-toggle matSuffix [for]="startPickerEducation"></mat-datepicker-toggle>
+            <mat-datepicker #startPickerEducation></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>End Date</mat-label>
+            <input matInput formControlName="endDate" [matDatepicker]="endPickerEducation" required>
+            <mat-datepicker-toggle matSuffix [for]="endPickerEducation"></mat-datepicker-toggle>
+            <mat-datepicker #endPickerEducation></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button (click)="addUserEducation()" class="btn-dark-rounded button">Add</button>
+
+        <table mat-table [dataSource]="educations" class="mat-elevation-z8">
+          <ng-container matColumnDef="SrNo">
+            <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="school">
+            <th mat-header-cell *matHeaderCellDef> School</th>
+            <td mat-cell *matCellDef="let element"> {{ element.school}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="educationLevel">
+            <th mat-header-cell *matHeaderCellDef> Education Level</th>
+            <td mat-cell *matCellDef="let element"> {{ element.educationLevel}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fieldOfStudy">
+            <th mat-header-cell *matHeaderCellDef> Field of Study</th>
+            <td mat-cell *matCellDef="let element"> {{ element.fieldOfStudy}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Country</th>
+            <td mat-cell *matCellDef="let element"> {{ element.country}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef> State</th>
+            <td mat-cell *matCellDef="let element"> {{ element.state}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> Start Date</th>
+            <td mat-cell *matCellDef="let element"> {{ element.startDate | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> End Date</th>
+            <td mat-cell *matCellDef="let element"> {{ element.endDate | date: 'dd/MM/yyyy' }} </td>
+          </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <button mat-button color="warn" (click)="removeEducationElement(i)">Remove</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="educationsDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: educationsDisplayedColumns;"></tr>
+        </table>
+        <mat-paginator #educationsPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form [formGroup]="applicationExperienceDetails" class="add-form">
+        <ng-template matStepLabel>Step 5: Edit Student Experience Details</ng-template>
+
+        <div [formGroup]="applicationExperienceDetails" class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>Total Experience</mat-label>
+            <input matInput formControlName="totalExperience" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Current Proficiency</mat-label>
+            <input matInput formControlName="currentProficiency" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Current Designation</mat-label>
+            <input matInput formControlName="currentDesignation" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="state" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="startDate" [matDatepicker]="startPickerExperience" required>
+            <mat-datepicker-toggle matSuffix [for]="startPickerExperience"></mat-datepicker-toggle>
+            <mat-datepicker #startPickerExperience></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>End Date</mat-label>
+            <input matInput formControlName="endDate" [matDatepicker]="endPickerExperience" required>
+            <mat-datepicker-toggle matSuffix [for]="endPickerExperience"></mat-datepicker-toggle>
+            <mat-datepicker #endPickerExperience></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Current Professional Subarea</mat-label>
+            <input matInput formControlName="currentProfessionalSubarea" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" required></textarea>
+          </mat-form-field>
+        </div>
+
+
+        <button mat-flat-button (click)="addUserAddress()" class="btn-dark-rounded button">Add</button>
+        <table mat-table [dataSource]="experiences" class="mat-elevation-z8">
+          <ng-container matColumnDef="SrNo">
+            <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title</th>
+            <td mat-cell *matCellDef="let element"> {{ element.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="currentDesignation">
+            <th mat-header-cell *matHeaderCellDef> Designation</th>
+            <td mat-cell *matCellDef="let element"> {{ element.currentDesignation}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="company">
+            <th mat-header-cell *matHeaderCellDef> Company</th>
+            <td mat-cell *matCellDef="let element"> {{ element.company}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef> Country</th>
+            <td mat-cell *matCellDef="let element"> {{ element.country}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description</th>
+            <td mat-cell *matCellDef="let element"> {{ element.description}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> Start Date</th>
+            <td mat-cell *matCellDef="let element"> {{ element.startDate | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> End Date</th>
+            <td mat-cell *matCellDef="let element"> {{ element.endDate | date: 'dd/MM/yyyy' }} </td>
+          </ng-container>
+          
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <button mat-button color="warn" (click)="removeExperienceElement(i)">Remove</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="experiencesDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: experiencesDisplayedColumns;"></tr>
+        </table>
+        <mat-paginator #experiencesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form [formGroup]="applicationGuardianDetails" class="add-form">
+        <ng-template matStepLabel>Step 6: Edit Student Guardian Details</ng-template>
+
+        <div [formGroup]="applicationGuardianDetails" class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middleName" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" required>
+          </mat-form-field>
+        </div>
+
+
+        <button mat-flat-button (click)="addUserAddress()" class="btn-dark-rounded button">Add</button>
+
+        <table mat-table [dataSource]="guardians" class="mat-elevation-z8">
+          <ng-container matColumnDef="SrNo">
+            <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> First Name</th>
+            <td mat-cell *matCellDef="let element"> {{ element.firstName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="middleName">
+            <th mat-header-cell *matHeaderCellDef> Middle Name</th>
+            <td mat-cell *matCellDef="let element"> {{ element.middleName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name</th>
+            <td mat-cell *matCellDef="let element"> {{ element.lastName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef> Phone Number</th>
+            <td mat-cell *matCellDef="let element"> {{ element.phoneNumber}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email</th>
+            <td mat-cell *matCellDef="let element"> {{ element.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button mat-button color="warn" (click)="removeGuardianElement(i)">Remove</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="guardiansDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: guardiansDisplayedColumns;"></tr>
+        </table>
+        <mat-paginator #guardiansPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form [formGroup]="applicationOptionalCourseDetails" class="add-form">
+        <ng-template matStepLabel>Step 7: Edit Student Optional Course Details</ng-template>
+
+        <div [formGroup]="applicationOptionalCourseDetails" class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Certificate</mat-label>
+            <input matInput formControlName="certificate" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="startDate" [matDatepicker]="startPickerOptional" required>
+            <mat-datepicker-toggle matSuffix [for]="startPickerOptional"></mat-datepicker-toggle>
+            <mat-datepicker #startPickerOptional></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>End Date</mat-label>
+            <input matInput formControlName="endDate" [matDatepicker]="endPickerOptional" required>
+            <mat-datepicker-toggle matSuffix [for]="endPickerOptional"></mat-datepicker-toggle>
+            <mat-datepicker #endPickerOptional></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Level</mat-label>
+            <input matInput formControlName="level" required>
+          </mat-form-field>
+        </div>
+
+
+        <button mat-flat-button (click)="addUserAddress()" class="btn-dark-rounded button">Add</button>
+        <table mat-table [dataSource]="optionalCourses" class="mat-elevation-z8">
+          <ng-container matColumnDef="SrNo">
+            <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title</th>
+            <td mat-cell *matCellDef="let element"> {{ element.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="certificate">
+            <th mat-header-cell *matHeaderCellDef> Certificate</th>
+            <td mat-cell *matCellDef="let element"> {{ element.certificate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef> Field of Study</th>
+            <td mat-cell *matCellDef="let element"> {{ element.level}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> Start Date</th>
+            <td mat-cell *matCellDef="let element"> {{ element.startDate | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> End Date</th>
+            <td mat-cell *matCellDef="let element"> {{ element.endDate | date: 'dd/MM/yyyy' }} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button mat-button color="warn" (click)="removeOptionalCourseElement(i)">Remove</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="optionalCoursesDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: optionalCoursesDisplayedColumns;"></tr>
+        </table>
+        <mat-paginator #optionalCoursesPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form [formGroup]="applicationMedicalDetails" class="add-form">
+        <ng-template matStepLabel>Step 8: Edit Student Medical Details</ng-template>
+
+        <div [formGroup]="applicationMedicalDetails" class="add-form-container">
+          <mat-form-field class="form-input">
+            <mat-label>Medical Issue</mat-label>
+            <input matInput formControlName="medicalIssue" required>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="hasDisability">Has Disability</mat-checkbox>
+        </div>
+
+
+        <button mat-flat-button (click)="addUserAddress()" class="btn-dark-rounded button">Add</button>
+
+        <table mat-table [dataSource]="medicals" class="mat-elevation-z8">
+          <ng-container matColumnDef="SrNo">
+            <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+            <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="medicalIssue">
+            <th mat-header-cell *matHeaderCellDef> Medical Issue</th>
+            <td mat-cell *matCellDef="let element"> {{ element.medicalIssue}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="hasDisability">
+            <th mat-header-cell *matHeaderCellDef> Has Disability</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox [checked]="element.hasDisability" [disabled]="true" class="example-margin">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button mat-button color="warn" (click)="removeMedicalElement(i)">Remove</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="medicalsDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: medicalsDisplayedColumns;"></tr>
+        </table>
+        <mat-paginator #medicalsPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+
 </div>
