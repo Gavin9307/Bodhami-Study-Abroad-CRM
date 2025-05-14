@@ -8,25 +8,17 @@
     </div>
     
     <div class="add-form-container">
-      <form class="example-form">
-        <mat-form-field class="SearchFliter">
-          <mat-label>University Name</mat-label>
-          <input matInput placeholder="Eg. India" value="">
-        </mat-form-field>
-        
-        <mat-form-field class="SearchFliter">
-          <mat-label>University Code</mat-label>
-          <input matInput placeholder="Eg. IN" value="">
-        </mat-form-field>
-  
-        <mat-form-field class="SearchFliter">
-          <mat-label>Currency</mat-label>
-          <input matInput placeholder="Eg. INR" value="">
-        </mat-form-field>
-  
-        <button mat-flat-button class="btn-dark-rounded-outline">Search</button>
-        <button mat-flat-button class="btn-dark-rounded-outline">Clear</button>
-      </form>
+      <form [formGroup]="universityForm" (ngSubmit)="onSearch($event)">
+  <mat-form-field class="SearchFliter">
+    <mat-label>University Name</mat-label>
+    <input matInput placeholder="Eg. India" formControlName="universityName">
+  </mat-form-field>
+
+  <button mat-flat-button class="btn-dark-rounded-outline" type="submit">Search</button>
+  <button mat-flat-button class="btn-dark-rounded-outline" (click)="clearSearch()">Clear</button>
+</form>
+
+
   
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         

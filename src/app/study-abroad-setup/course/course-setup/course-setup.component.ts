@@ -41,6 +41,7 @@ export class CourseSetupComponent implements OnInit {
               data.forEach((element, index) => {
                 element["SrNo"] = index + 1;
               });
+              console.log(data)
               this.dataSource.data = data;
               this.dataSource.paginator = this.paginator;
               this.isLoading = false;
