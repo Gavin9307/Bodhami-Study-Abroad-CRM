@@ -1,14 +1,9 @@
 @import url(../../../styles.css);
 
 .main-sub-container{
-    min-height: 150vh;
+    min-height: 100vh;
 }
 
-.button{
-    margin-bottom: 50px;
-}
-
-  
   .profile-form {
     padding: 24px;
     min-width: 100%;
@@ -106,3 +101,4 @@
       margin: 24px 0;
     }
   }
+  

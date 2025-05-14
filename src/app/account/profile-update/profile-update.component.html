@@ -1,4 +1,6 @@
-<div class="main-sub-container">
+
+<div class="main-sub-container" >
+  
   <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
     Profile
@@ -52,7 +54,7 @@
             </mat-form-field>
           </div>
         
-          <button mat-raised-button class="btn-dark-rounded button" (click)="updateDetails()">Update Details</button>
+          <button mat-raised-button class="btn-dark-rounded " (click)="updateDetails()">Update Details</button>
         </div>
         
 
@@ -79,7 +81,7 @@
               <input matInput >
             </mat-form-field>
 
-              <button mat-raised-button class="btn-dark-rounded button">Change Password</button>
+              <button mat-raised-button class="btn-dark-rounded">Change Password</button>
           </div>
         </div>
       </div>
