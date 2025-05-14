@@ -25,16 +25,17 @@ export class UniversitySetupComponent implements OnInit {
   
     dataSource = new MatTableDataSource<any>([]);
     isLoading: boolean = false;
+    originalData = [];
   
     @ViewChild(MatPaginator) paginator!: MatPaginator;
   
     constructor(private http: HttpClient, public dialog: MatDialog, private toastr: ToastrService) { }
   
     ngOnInit() {
-      this.fetchCountries();
+      this.fetchUniversities();
     }
   
-    fetchCountries() {
+    fetchUniversities() {
       this.isLoading = true;
       this.http.get<any[]>('http://localhost:8080/api/university/getalluniversities')
         .subscribe(
@@ -42,6 +43,7 @@ export class UniversitySetupComponent implements OnInit {
             data.forEach((element, index) => {
               element["SrNo"] = index + 1;
             });
+            this.originalData = data;
             this.dataSource.data = data;
             this.dataSource.paginator = this.paginator;
             this.isLoading = false;
