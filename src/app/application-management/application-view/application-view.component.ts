@@ -46,6 +46,7 @@ export class ApplicationViewComponent implements OnInit {
 
   countries = new MatTableDataSource<any>([]);
   countriesDisplayedColumns: String[] = ["SrNo", "country", "createdAt", "isDeleted", "action"];
+  
 
   ngOnInit() {
     this.getApplicationDetails();
@@ -278,6 +279,21 @@ export class ApplicationViewComponent implements OnInit {
         }
       )
   }
+
+  onStatusUpdate(newStatus: string): void {
+    const appId: String = this.route.snapshot.paramMap.get('id');
+    this.http.put("http://localhost:8080/api/application/updateapplicationstatus/" + appId, { status: newStatus })
+      .subscribe(
+        (response) => {
+          this.toastr.success("Application Status Updated Successfully");
+          this.getApplicationDetails();
+        },
+        (error: HttpErrorResponse) => {
+          this.toastr.error("Error Updating Application Status");
+        }
+      );
+  }
+  
 
 
 }

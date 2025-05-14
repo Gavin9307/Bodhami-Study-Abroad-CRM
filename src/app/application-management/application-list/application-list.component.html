@@ -8,45 +8,47 @@
   </div>
 
   <div class="add-form-container">
-    <form class="example-form">
-      <mat-form-field class="SearchFliter">
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="Enter First Name">
-      </mat-form-field>
-
-      <mat-form-field class="SearchFliter">
-        <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Enter Last Name">
-      </mat-form-field>
-
-      <mat-form-field class="SearchFliter">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Enter Email">
-      </mat-form-field>
-
-      <mat-form-field class="SearchFliter">
-        <mat-label>Batch</mat-label>
-        <input matInput placeholder="Enter Batch">
-      </mat-form-field>
-
-      <mat-form-field class="SearchFliter">
-        <mat-label>Status</mat-label>
-        <input matInput placeholder="Enter Status">
-      </mat-form-field>
-
-      <mat-form-field class="SearchFliter">
-        <mat-label>Tagged to Counselor</mat-label>
-        <input matInput placeholder="Enter Counselor Name">
-      </mat-form-field>
+    <form [formGroup]="searchForm" class="example-form" (ngSubmit)="onSearch()">
 
       <mat-form-field class="SearchFliter">
         <mat-label>Application ID</mat-label>
-        <input matInput placeholder="Enter Application ID">
+        <input matInput placeholder="Enter Application ID" formControlName="appId">
       </mat-form-field>
-
-      <button mat-flat-button class="btn-dark-rounded-outline">Search</button>
-      <button mat-flat-button class="btn-dark-rounded-outline" type="reset">Clear</button>
+    
+      <mat-form-field class="SearchFliter">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Enter First Name" formControlName="firstName">
+      </mat-form-field>
+    
+      <mat-form-field class="SearchFliter">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Enter Last Name" formControlName="lastName">
+      </mat-form-field>
+    
+      <mat-form-field class="SearchFliter">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter Email" formControlName="userEmail">
+      </mat-form-field>
+    
+      <mat-form-field class="SearchFliter">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" placeholder="Select Status">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="SearchFliter">
+        <mat-label>Tagged to Team</mat-label>
+        <input matInput placeholder="Enter Counselor Name" formControlName="taggedToTeam">
+      </mat-form-field>
+    
+      <button mat-flat-button class="btn-dark-rounded-outline" type="submit">Search</button>
+      <button mat-flat-button class="btn-dark-rounded-outline" type="button" (click)="onClear()">Clear</button>
+    
     </form>
+    
 
     <table mat-table [dataSource]="applications" class="mat-elevation-z8">
 

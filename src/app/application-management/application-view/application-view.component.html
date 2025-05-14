@@ -45,12 +45,18 @@
 
       <mat-form-field class="form-input">
         <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="applicationDetails.status" name="status" [ngClass]="getStatusClass(applicationDetails.status)">
+        <mat-select
+          [(ngModel)]="applicationDetails.status"
+          name="status"
+          [ngClass]="getStatusClass(applicationDetails.status)"
+          (selectionChange)="onStatusUpdate($event.value)"
+          required>
           <mat-option *ngFor="let status of statusOptions" [value]="status">
             {{ status | titlecase }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      
       
     </div>
   </form>
