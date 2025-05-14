@@ -25,6 +25,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     background-color: var(--blue-dark);
     color: white;
     border-radius: 20px;
+    padding: 0px 16px;
 }
 
 
@@ -33,6 +34,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     color: var(--blue-dark);
     border: 2px solid var(--blue-dark);
     border-radius: 20px;
+    padding: 0px 16px;
 }
 
 .btn-dark-rounded-outline-white{
@@ -40,6 +42,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     color: white;
     border: 2px solid white;
     border-radius: 20px;
+    padding: 0px 16px;
 }
 
 .main-sub-container {

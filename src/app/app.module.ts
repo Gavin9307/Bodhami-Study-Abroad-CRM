@@ -105,6 +105,7 @@ import { ApplicationCountryUniversityChecklistListComponent } from './applicatio
 import { ApplicationCountryUniversityCourseListComponent } from './application-management/Application Countries/application-country-university-course-list/application-country-university-course-list.component';
 import { ApplicationCountryUniversityCourseActionComponent } from './application-management/Application Countries/application-country-university-course-action/application-country-university-course-action.component';
 import { ApplicationCreateComponent } from './application-management/application-create/application-create.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 
 const routes: Routes = [
@@ -293,7 +294,8 @@ const routes: Routes = [
     ApplicationCountryUniversityChecklistListComponent,
     ApplicationCountryUniversityCourseListComponent,
     ApplicationCountryUniversityCourseActionComponent,
-    ApplicationCreateComponent
+    ApplicationCreateComponent,
+    BackButtonComponent
   ],
   imports: [
     // Core Angular Modules
