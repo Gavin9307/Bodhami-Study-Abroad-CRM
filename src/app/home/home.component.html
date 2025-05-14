@@ -1,5 +1,5 @@
 <div class="home-container">
-  
+  <app-loader *ngIf="isLoading"></app-loader>
   <div class="home-banner-container">
     <div *ngFor="let item of homeBannerData" class="home-banner-item">
       <p class="home-banner-title">{{ item.title }}</p>
@@ -14,7 +14,10 @@
     <h2>Quick Links</h2>
     <div class="quick-links-container">
       <div class="quick-links">Manage Process</div>
-      <div class="quick-links">Manage Student</div>
+      <div class="quick-links" [routerLink]="['/student-management/student-list']">
+        Manage Students
+      </div>
+      
       <div class="quick-links">View Demo</div>
       <div class="quick-links">Buy Licences</div>
     </div>

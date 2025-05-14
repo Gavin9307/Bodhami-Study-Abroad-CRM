@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CountryActionComponent } from '../country-action/country-action.component';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-country-setup',
@@ -22,7 +23,14 @@ export class CountrySetupComponent implements OnInit {
     'action'
   ];
 
+  searchForm = new FormGroup({
+    countryName: new FormControl(''),
+    countryCode: new FormControl(''),
+    countryCurrencyName: new FormControl('')
+  });
+
   dataSource = new MatTableDataSource<any>([]);
+  originalDataSource: any[] = [];
   isLoading: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,6 +39,13 @@ export class CountrySetupComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCountries();
+
+    this.searchForm = new FormGroup({
+      countryName: new FormControl(''),
+      countryCode: new FormControl(''),
+      countryCurrencyName: new FormControl('')
+    });
+  
   }
 
   fetchCountries() {
@@ -42,6 +57,7 @@ export class CountrySetupComponent implements OnInit {
             element["SrNo"] = index + 1;
           });
           this.dataSource.data = data;
+          this.originalDataSource = data;
           this.dataSource.paginator = this.paginator;
           this.isLoading = false;
         },
@@ -93,5 +109,29 @@ export class CountrySetupComponent implements OnInit {
       width: '400px',
       data: element
     });
+  }
+
+  onSearch(): void {
+    const name = this.searchForm.value.countryName
+      ? this.searchForm.value.countryName.toLowerCase()
+      : '';
+    const code = this.searchForm.value.countryCode
+      ? this.searchForm.value.countryCode.toLowerCase()
+      : '';
+    const currency = this.searchForm.value.countryCurrencyName
+      ? this.searchForm.value.countryCurrencyName.toLowerCase()
+      : '';
+  
+    this.dataSource.data = this.originalDataSource.filter(item =>
+      item.countryName.toLowerCase().includes(name) &&
+      item.countryCode.toLowerCase().includes(code) &&
+      item.countryCurrencyName.toLowerCase().includes(currency)
+    );
+  }
+  
+
+  onClear(): void {
+    this.searchForm.reset();
+    this.dataSource.data = this.originalDataSource;
   }
 }
