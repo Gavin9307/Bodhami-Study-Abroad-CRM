@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CountryActionComponent } from '../country-action/country-action.component';
@@ -79,11 +79,11 @@ export class CountrySetupComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log(response);
-            this.toastr.success("Country Deleted Successfully");
+            this.toastr.success("Country Status Set to Inactive");
             this.isLoading = false;
           },
           (error) => {
-            this.toastr.error("Country Cannot be Deleted");
+            this.toastr.error("Failed to Set Country Status to Inactive");
             this.isLoading = false;
           }
         );
@@ -93,11 +93,11 @@ export class CountrySetupComponent implements OnInit {
       this.http.put("http://localhost:8080/api/country/softrecover/" + countryId, {})
         .subscribe(
           response => {
-            this.toastr.success("Country Recovered Successfully");
+            this.toastr.success("Country Status Set to Active");
             this.isLoading = false;
           },
           error => {
-            this.toastr.error("Country Cannot be Recovered");
+            this.toastr.error("Failed to Set Country Status to Active");
             this.isLoading = false;
           }
         );
@@ -105,9 +105,13 @@ export class CountrySetupComponent implements OnInit {
   }
 
   openDialog(element: any): void {
-    this.dialog.open(CountryActionComponent, {
+    const dialogRef: MatDialogRef<CountryActionComponent> = this.dialog.open(CountryActionComponent, {
       width: '400px',
       data: element
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCountries();
     });
   }
 

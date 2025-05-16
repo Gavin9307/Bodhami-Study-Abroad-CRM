@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-country-action',
@@ -8,10 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./country-action.component.css']
 })
 export class CountryActionComponent implements OnInit {
-  constructor(private router: Router, public dialogRef: MatDialogRef<CountryActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private toastr : ToastrService,private http: HttpClient,private router: Router, public dialogRef: MatDialogRef<CountryActionComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
   
   ngOnInit() {
   }
+
+  isLoading : Boolean  = false;
 
   onChecklistButtonClick(): void {
     this.router.navigate(['/study-abroad-setup/country-setup/country-checklist-setup/'+this.data.countryId]);
@@ -24,8 +28,18 @@ export class CountryActionComponent implements OnInit {
   }
 
   onDeleteButtonClick(): void {
-    console.log('Button 3 clicked');
-    this.dialogRef.close(); 
+    this.isLoading = true;
+    this.http.delete('http://localhost:8080/api/country/delete/'+this.data.countryId).subscribe(
+      (response) => {
+        this.toastr.success('Country deleted successfully');
+        this.isLoading = false;
+      },
+      (error) => {
+        this.toastr.error('Error deleting country');
+        this.isLoading = false;
+      }
+    );
+    this.dialogRef.close();
   }
 
 }

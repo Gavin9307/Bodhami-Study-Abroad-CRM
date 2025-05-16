@@ -57,7 +57,7 @@
         </ng-container>
     
         <ng-container matColumnDef="isDeleted">
-          <th mat-header-cell *matHeaderCellDef> Inactive</th>
+          <th mat-header-cell *matHeaderCellDef> Inactive </th>
           <td mat-cell *matCellDef="let element">
             <mat-checkbox [(ngModel)]="element.isDeleted" (ngModelChange)="toggleDeleteStatus(element)"
               class="example-margin"></mat-checkbox>
