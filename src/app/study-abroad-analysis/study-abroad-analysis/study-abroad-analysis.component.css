@@ -19,7 +19,15 @@
     padding: 15px;
     height: 350px;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  
+  .dashboard-box:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    border-color: #bbb;
+  }
+  
 
   .dashboard-grid-full {
     grid-template-columns: 100%;

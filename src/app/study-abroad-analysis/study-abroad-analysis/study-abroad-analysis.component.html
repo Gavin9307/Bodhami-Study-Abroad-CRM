@@ -26,10 +26,37 @@
     </div>
 
     <div class="dashboard-box">
+      <h3>User Applications</h3>
+      <div *ngIf="pieChartLabelsUserApplications.length > 0">
+        <canvas baseChart [data]="pieChartDataUserApplications" [labels]="pieChartLabelsUserApplications" [chartType]="pieChartTypeUserApplications"
+          [options]="pieChartOptionsUserApplications" [colors]="pieChartColorsUserApplications" [legend]="pieChartLegendUserApplications">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-box">
       <h3>Applications by Country</h3>
-      <div *ngIf="barChartLabels.length > 0">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-          [legend]="barChartLegend" [chartType]="barChartType">
+      <div *ngIf="barChartLabelsCountryApplications.length > 0">
+        <canvas baseChart [datasets]="barChartDataCountryApplications" [colors]="barChartColorsCountryApplications" [labels]="barChartLabelsCountryApplications" [options]="barChartOptionsCountryApplications"
+          [legend]="barChartLegendCountryApplications" [chartType]="barChartTypeCountryApplications">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-box">
+      <h3>Applications by University</h3>
+      <div *ngIf="barChartLabelsUniversityApplications.length > 0">
+        <canvas baseChart [datasets]="barChartDataUniversityApplications" [colors]="barChartColorsUniversityApplications" [labels]="barChartLabelsUniversityApplications" [options]="barChartOptionsUniversityApplications"
+          [legend]="barChartLegendUniversityApplications" [chartType]="barChartTypeUniversityApplications">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-box">
+      <h3>Applications by Course</h3>
+      <div *ngIf="barChartLabelsCourseApplications.length > 0">
+        <canvas baseChart [datasets]="barChartDataCourseApplications" [colors]="barChartColorsCourseApplications" [labels]="barChartLabelsCourseApplications" [options]="barChartOptionsCourseApplications"
+          [legend]="barChartLegendCourseApplications" [chartType]="barChartTypeCourseApplications">
         </canvas>
       </div>
     </div>
