@@ -108,6 +108,7 @@ import { ApplicationCreateComponent } from './application-management/application
 import { BackButtonComponent } from './back-button/back-button.component';
 import { ChartsModule } from 'ng2-charts';
 import { ApplicationCountryUniversityChecklistDocumentListComponent } from './application-management/Application Countries/application-country-university-checklist-document-list/application-country-university-checklist-document-list.component';
+import { ChecklistActionComponent } from './study-abroad-setup/checklist/checklist-action/checklist-action.component';
 
 
 const routes: Routes = [
@@ -304,7 +305,8 @@ const routes: Routes = [
     ApplicationCountryUniversityCourseActionComponent,
     ApplicationCreateComponent,
     BackButtonComponent,
-    ApplicationCountryUniversityChecklistDocumentListComponent
+    ApplicationCountryUniversityChecklistDocumentListComponent,
+    ChecklistActionComponent
   ],
   imports: [
     // Core Angular Modules
@@ -359,7 +361,8 @@ const routes: Routes = [
     ApplicationViewCountryActionComponent,
     ApplicationCountryUniversityActionComponent,
     ApplicationCountryChecklistActionComponent,
-    ApplicationCountryUniversityChecklistActionComponent
+    ApplicationCountryUniversityChecklistActionComponent,
+    ChecklistActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -69,11 +69,11 @@ export class StudentListComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log(response);
-          this.toastr.success("Student Deleted Successfully");
+          this.toastr.success("Student Status Set to Inactive");
           this.isLoading = false;
         },
         (error) => {
-          this.toastr.error("Student Cannot be Deleted");
+          this.toastr.error("Failed to Set Student Status to Inactive");
           this.isLoading = false;
         }
       );
@@ -83,11 +83,11 @@ export class StudentListComponent implements OnInit {
       this.http.put("http://localhost:8080/api/user/recover/"+userId,{})
       .subscribe(
         response => {
-          this.toastr.success("Student Recovered Successfully");
+          this.toastr.success("Student Status Set to Active");
           this.isLoading = false;
         },
         error => {
-          this.toastr.error("Student Cannot be Recovered");
+          this.toastr.error("Failed to Set Student Status to Active");
           this.isLoading = false;
         }
       );

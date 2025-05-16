@@ -61,11 +61,11 @@ export class MemberListComponent implements OnInit,AfterViewInit  {
       .subscribe(
         (response) => {
           console.log(response);
-          this.toastr.success("Councellor Deleted Successfully");
+          this.toastr.success("Counsellor Status Set To Inactive");
           this.isLoading = false;
         },
         (error) => {
-          this.toastr.error("Councellor Cannot be Deleted");
+          this.toastr.error("Failed to Set Counsellor Status To Inactive");
           this.isLoading = false;
         }
       );
@@ -75,11 +75,11 @@ export class MemberListComponent implements OnInit,AfterViewInit  {
       this.http.put("http://localhost:8080/api/councellor/softrecovercouncellor/"+councellorId,{})
       .subscribe(
         response => {
-          this.toastr.success("Councellor Recovered Successfully");
+          this.toastr.success("Counsellor Status Set To Active");
           this.isLoading = false;
         },
         error => {
-          this.toastr.error("Councellor Cannot be Recovered");
+          this.toastr.error("Failed to Set Counsellor Status To Active");
           this.isLoading = false;
         }
       );

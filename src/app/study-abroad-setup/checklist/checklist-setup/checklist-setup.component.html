@@ -34,19 +34,19 @@
 
       <!-- Status Column -->
       <ng-container matColumnDef="isDeleted">
-        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
+        <th mat-header-cell *matHeaderCellDef> Inactive </th>
         <td mat-cell *matCellDef="let element">
           <mat-checkbox [(ngModel)]="element.deleted" (ngModelChange)="onIsDeletedChange(element)"
             class="example-margin"></mat-checkbox>
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="editChecklist">
-        <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <a [routerLink]="['/study-abroad-setup/checklist-setup/edit-checklist',element.checklistID]">
-            <button mat-raised-button color="primary" class="btn-dark-rounded-outline">Edit</button>
-          </a>
+          <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+            Action
+          </button>
         </td>
       </ng-container>
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { ChecklistActionComponent } from '../checklist-action/checklist-action.component';
 
 @Component({
   selector: 'app-checklist-setup',
@@ -15,12 +17,12 @@ export class ChecklistSetupComponent implements OnInit {
   
   checklists:any[]  = [];
 
-  displayedColumns : String[] = ["SrNo","checklistName","checklistDescription","isDeleted","editChecklist"]
+  displayedColumns : String[] = ["SrNo","checklistName","checklistDescription","isDeleted","action"]
   
   isLoading:Boolean = false;
 
 
-  constructor(private http: HttpClient,private toastr : ToastrService) {}
+  constructor(private http: HttpClient,private toastr : ToastrService,private dialog : MatDialog) {}
   
   ngOnInit() {
     this.getAllChecklists();
@@ -59,11 +61,11 @@ export class ChecklistSetupComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log(response);
-          this.toastr.success("Checklist Deleted Successfully");
+          this.toastr.success("Checklist Status Set to Inactive");
           this.isLoading = false;
         },
         (error) => {
-          this.toastr.error("Checklist Cannot be Deleted");
+          this.toastr.error("Failed to Set Checklist Status to Inactive");
           this.isLoading = false;
         }
       );
@@ -73,14 +75,27 @@ export class ChecklistSetupComponent implements OnInit {
       this.http.put("http://localhost:8080/api/checklist/restore/"+checklistId,{})
       .subscribe(
         response => {
-          this.toastr.success("Checklist Recovered Successfully");
+          this.toastr.success("Checklist Status Set to Active");
           this.isLoading = false;
         },
         error => {
-          this.toastr.error("Checklist Cannot be Recovered");
+          this.toastr.error("Failed to Set Checklist Status to Active");
           this.isLoading = false;
         }
       );
     }
   }
+
+  openDialog(element: any): void {
+    const dialogRef: MatDialogRef<ChecklistActionComponent> = this.dialog.open(ChecklistActionComponent, {
+      width: '400px',
+      data: element
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllChecklists(); 
+    });
+    }
+
+
 }
