@@ -106,6 +106,8 @@ import { ApplicationCountryUniversityCourseListComponent } from './application-m
 import { ApplicationCountryUniversityCourseActionComponent } from './application-management/Application Countries/application-country-university-course-action/application-country-university-course-action.component';
 import { ApplicationCreateComponent } from './application-management/application-create/application-create.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { ChartsModule } from 'ng2-charts';
+import { ApplicationCountryUniversityChecklistDocumentListComponent } from './application-management/Application Countries/application-country-university-checklist-document-list/application-country-university-checklist-document-list.component';
 
 
 const routes: Routes = [
@@ -126,7 +128,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'account/profile-update', component: ProfileUpdateComponent },
       { path: 'Review/review', component: ReviewComponent },
-      { path: 'study-abroad-analysis/study-abroad-analysis', component: StudyAbroadAnalysisComponent },
+      { path: 'study-abroad-analysis/dashboard', component: StudyAbroadAnalysisComponent },
 
       // Study Abroad Setup Routes
       {
@@ -180,15 +182,21 @@ const routes: Routes = [
             component: ApplicationCountryChecklistListComponent
           },
           {
+            path: 'country/:countryId/checklist/:checklistId/countrychecklist/:countryChecklistId/document-list/:appId',
+            component: ApplicationCountryChecklistDocumentListComponent
+          },
+          {
             path: 'country/:countryId/university/:universityId/checklist-list/:appId',
             component: ApplicationCountryUniversityChecklistListComponent
+          },
+          {
+            path: 'country/:countryId/university/:universityId/checklist/:checklistId/universityChecklist/:universityChecklistId/document-list/:appId',
+            component: ApplicationCountryUniversityChecklistDocumentListComponent
           },
           {
             path: 'country/:countryId/university/:universityId/course-list/:appId',
             component: ApplicationCountryUniversityCourseListComponent
           }
-
-          
         ]
       },
 
@@ -295,7 +303,8 @@ const routes: Routes = [
     ApplicationCountryUniversityCourseListComponent,
     ApplicationCountryUniversityCourseActionComponent,
     ApplicationCreateComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    ApplicationCountryUniversityChecklistDocumentListComponent
   ],
   imports: [
     // Core Angular Modules
@@ -327,6 +336,7 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatStepperModule,
+    ChartsModule,
 
     // Additional Module
     ToastrModule.forRoot({
@@ -348,7 +358,8 @@ const routes: Routes = [
     CourseActionComponent,
     ApplicationViewCountryActionComponent,
     ApplicationCountryUniversityActionComponent,
-    ApplicationCountryChecklistActionComponent
+    ApplicationCountryChecklistActionComponent,
+    ApplicationCountryUniversityChecklistActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

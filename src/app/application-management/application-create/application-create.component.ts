@@ -611,6 +611,10 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   saveApplication() {
+    if(this.applicationSelectedCourses.data.length == 0){
+      this.toastr.error('Please select at least one course.');
+      return;
+    }
     this.isLoading = true;
     const payload = {
       userId: this.applicationUserForm.controls['userId'].value,

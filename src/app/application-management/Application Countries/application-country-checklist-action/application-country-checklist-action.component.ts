@@ -16,7 +16,7 @@ constructor(private router: Router,public dialogRef: MatDialogRef<ApplicationCou
   }
 
   viewDocuments(): void {
-    this.router.navigate(['/application-management/country', this.data.countryId, 'university-list', this.data.appId]);
+    this.router.navigate(['/application-management/country', this.data.countryId,'checklist',this.data.checklistId,'countrychecklist',this.data.appCountryChecklistMappingId, 'document-list', this.data.appId]);
     this.dialogRef.close();
   }
 

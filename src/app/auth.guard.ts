@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
 
     
-    return true; //TO BE REMOVED
+    // return true; //TO BE REMOVED
 
     const userId = localStorage.getItem('userId'); // Check if userToken exists
     const userRole = localStorage.getItem('userRole'); // Check if userRoles exists

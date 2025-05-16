@@ -1,3 +1,38 @@
-<p>
-  study-abroad-analysis works!
-</p>
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    Study Abroad Analysis
+  </div>
+
+  <h3>Applications Analysis</h3>
+  <div class="dashboard-grid">
+
+    <div class="dashboard-box">
+      <h3>Application Status</h3>
+      <div *ngIf="pieChartLabels.length > 0">
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+          [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-box">
+      <h3>Applications by Course Level</h3>
+      <div *ngIf="barChartLabelsApplicationCourseLevel.length > 0">
+        <canvas baseChart [datasets]="barChartDataApplicationCourseLevel" [labels]="barChartLabelsApplicationCourseLevel" [options]="barChartOptionsApplicationCourseLevel"
+          [legend]="barChartLegendApplicationCourseLevel" [chartType]="barChartTypeApplicationCourseLevel">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-box">
+      <h3>Applications by Country</h3>
+      <div *ngIf="barChartLabels.length > 0">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+          [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+</div>

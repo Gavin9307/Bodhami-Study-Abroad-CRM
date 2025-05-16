@@ -16,7 +16,7 @@ export class ApplicationCountryUniversityChecklistActionComponent implements OnI
   }
 
   viewDocuments(): void {
-    this.router.navigate(['/application-management/country', this.data.countryId, 'university-list', this.data.appId]);
+    this.router.navigate(['/application-management/country', this.data.countryId,'university',this.data.universityId,'checklist',this.data.checklistId,'universityChecklist',this.data.appUniversityChecklistMappingId, 'document-list', this.data.appId]);
     this.dialogRef.close();
   }
 

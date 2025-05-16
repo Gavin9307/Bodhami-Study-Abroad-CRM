@@ -13,7 +13,7 @@ import { ApplicationCountryChecklistActionComponent } from '../application-count
   styleUrls: ['./application-country-checklist-list.component.css']
 })
 export class ApplicationCountryChecklistListComponent implements OnInit {
-  displayedColumns: String[] = ["SrNo", "checklistName","checklistDescription", "createdAt", "isDeleted", "action"];
+  displayedColumns: String[] = ["SrNo", "checklistName","checklistDescription", "createdAt", "action"];
 
   dataSource = new MatTableDataSource<any>([]);
   isLoading: boolean = false;
@@ -117,6 +117,8 @@ export class ApplicationCountryChecklistListComponent implements OnInit {
   }
 
   openDialog(element: any): void {
+    element["appId"] = this.appId;
+    element["countryId"] = this.route.snapshot.paramMap.get('countryId');
     this.dialog.open(ApplicationCountryChecklistActionComponent, {
       width: '400px',
       data: element

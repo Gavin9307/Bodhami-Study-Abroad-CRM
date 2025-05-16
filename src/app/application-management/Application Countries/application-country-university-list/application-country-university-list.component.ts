@@ -13,7 +13,7 @@ import { ApplicationCountryUniversityActionComponent } from '../application-coun
   styleUrls: ['./application-country-university-list.component.css']
 })
 export class ApplicationCountryUniversityListComponent implements OnInit {
-  displayedColumns: String[] = ["SrNo", "universityName", "createdAt", "isDeleted", "action"];
+  displayedColumns: String[] = ["SrNo", "universityName", "createdAt",  "action"];
 
   dataSource = new MatTableDataSource<any>([]);
   isLoading: boolean = false;

@@ -45,7 +45,7 @@ export class ApplicationViewComponent implements OnInit {
   optionalCoursesDisplayedColumns: String[] = ["SrNo", "title", "certificate", "level", "startDate", "endDate"];
 
   countries = new MatTableDataSource<any>([]);
-  countriesDisplayedColumns: String[] = ["SrNo", "country", "createdAt", "isDeleted", "action"];
+  countriesDisplayedColumns: String[] = ["SrNo", "country", "createdAt",  "action"];
   
 
   ngOnInit() {

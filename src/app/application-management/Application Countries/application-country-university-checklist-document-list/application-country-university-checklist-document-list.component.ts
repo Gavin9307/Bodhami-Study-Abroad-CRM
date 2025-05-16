@@ -5,18 +5,20 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
-  selector: 'app-application-country-checklist-document-list',
-  templateUrl: './application-country-checklist-document-list.component.html',
-  styleUrls: ['./application-country-checklist-document-list.component.css']
+  selector: 'app-application-country-university-checklist-document-list',
+  templateUrl: './application-country-university-checklist-document-list.component.html',
+  styleUrls: ['./application-country-university-checklist-document-list.component.css']
 })
-export class ApplicationCountryChecklistDocumentListComponent implements OnInit {
+export class ApplicationCountryUniversityChecklistDocumentListComponent implements OnInit {
+
   displayedColumns: String[] = ["SrNo", "documentTypeName","documentTypeDescription", "isVerified", "filePath"];
 
   dataSource = new MatTableDataSource<any>([]);
   isLoading: boolean = false;
 
-  country: Object = {};
+  university: Object = {};
   checklist: Object = {};
   appId = this.route.snapshot.paramMap.get('appId');
 
@@ -26,7 +28,7 @@ export class ApplicationCountryChecklistDocumentListComponent implements OnInit 
 
   ngOnInit() {
     this.fetchDocuments();
-    this.getCountry();
+    this.getUniversity();
     this.getChecklist();
   }
 
@@ -38,16 +40,16 @@ export class ApplicationCountryChecklistDocumentListComponent implements OnInit 
   }
 
 
-  getCountry(){
+  getUniversity(){
     this.isLoading = true;
-    let countryId = this.route.snapshot.paramMap.get('countryId');
-    this.http.get<any[]>('http://localhost:8080/api/country/getsinglecountry/' + countryId)
+    let universityId = this.route.snapshot.paramMap.get('universityId');
+    this.http.get<any[]>('http://localhost:8080/api/university/getsingleuniversity/' + universityId)
       .subscribe(
         (response) => {
-          this.country = response;
+          this.university = response;
         },
         (error) => {
-          console.error('Error fetching Country:', error);
+          console.error('Error fetching University:', error);
         }
       );
   }
@@ -70,8 +72,8 @@ export class ApplicationCountryChecklistDocumentListComponent implements OnInit 
 
   fetchDocuments() {
     this.isLoading = true;
-    let countryChecklistId = this.route.snapshot.paramMap.get('countryChecklistId');
-    this.http.get<any[]>('http://localhost:8080/api/application/country/checklist/getAllApplicationCountryChecklistDocuments/'+countryChecklistId)
+    let universityChecklistId = this.route.snapshot.paramMap.get('universityChecklistId');
+    this.http.get<any[]>('http://localhost:8080/api/application/university/checklist/getAllApplicationUniversityChecklistDocuments/'+universityChecklistId)
       .subscribe(
         (data) => {
           data.forEach((element, index) => {
@@ -93,10 +95,10 @@ export class ApplicationCountryChecklistDocumentListComponent implements OnInit 
   onIsVerifiedChange(element: any[]) {
     this.isLoading = true;
     const isVerified: Boolean = element["isVerified"];
-    const appCountryChecklistDocumentMappingId: Number = element["appCountryChecklistDocumentMappingId"];
+    const appUniversityChecklistDocumentMappingId: Number = element["appUniversityChecklistDocumentMappingId"];
     
-      this.http.put("http://localhost:8080/api/application/updateCountryChecklistDocumentVerifiedStatus", {
-        appCountryChecklistDocumentMappingId: appCountryChecklistDocumentMappingId,
+      this.http.put("http://localhost:8080/api/application/updateUniversityChecklistDocumentVerifiedStatus", {
+        appUniversityChecklistDocumentMappingId: appUniversityChecklistDocumentMappingId,
         isVerified: isVerified
       })
         .subscribe(
@@ -109,41 +111,5 @@ export class ApplicationCountryChecklistDocumentListComponent implements OnInit 
             this.isLoading = false;
           }
         );
-  }
-
-  toggleDeleteStatus(element: any[]) {
-
-    const isDeleted: Boolean = element["isDeleted"];
-    const universityId: Number = element["universityId"];
-
-    if (isDeleted == true) {
-      this.isLoading = true;
-      this.http.put("http://localhost:8080/api/university/softdelete/" + universityId, {})
-        .subscribe(
-          (response) => {
-            console.log(response);
-            this.toastr.success("University Status Set to Inactive");
-            this.isLoading = false;
-          },
-          (error) => {
-            this.toastr.error("Failed to Set University Status to Inactive");
-            this.isLoading = false;
-          }
-        );
-    }
-    else {
-      this.isLoading = true;
-      this.http.put("http://localhost:8080/api/university/softrecover/" + universityId, {})
-        .subscribe(
-          response => {
-            this.toastr.success("University Status Set to Active");
-            this.isLoading = false;
-          },
-          error => {
-            this.toastr.error("Failed to Set University Status to Active");
-            this.isLoading = false;
-          }
-        );
-    }
   }
 }

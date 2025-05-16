@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationCountryChecklistActionComponent } from '../application-country-checklist-action/application-country-checklist-action.component';
+import { ApplicationCountryUniversityChecklistActionComponent } from '../application-country-university-checklist-action/application-country-university-checklist-action.component';
 
 @Component({
   selector: 'app-application-country-university-checklist-list',
@@ -13,7 +14,7 @@ import { ApplicationCountryChecklistActionComponent } from '../application-count
   styleUrls: ['./application-country-university-checklist-list.component.css']
 })
 export class ApplicationCountryUniversityChecklistListComponent implements OnInit {
- displayedColumns: String[] = ["SrNo", "checklistName","checklistDescription", "createdAt", "isDeleted", "action"];
+ displayedColumns: String[] = ["SrNo", "checklistName","checklistDescription", "createdAt", "action"];
 
   dataSource = new MatTableDataSource<any>([]);
   isLoading: boolean = false;
@@ -116,7 +117,10 @@ export class ApplicationCountryUniversityChecklistListComponent implements OnIni
   }
 
   openDialog(element: any): void {
-    this.dialog.open(ApplicationCountryChecklistActionComponent, {
+    element["countryId"] = this.route.snapshot.paramMap.get('countryId');
+    element["universityId"] = this.route.snapshot.paramMap.get('universityId');
+    element["appId"] = this.route.snapshot.paramMap.get('appId');
+    this.dialog.open(ApplicationCountryUniversityChecklistActionComponent, {
       width: '400px',
       data: element
     });
