@@ -1,21 +1,24 @@
-
+<app-loader *ngIf="isLoading"></app-loader>
 <div class="profile-header">
-  <div class="profile-icon">C</div>
+    <img class="profile-icon" [src]="councellor.councellorImage" alt="">
   <div class="profile-info">
-    <div class="profile-name">Counselor Whitelabel</div>
-    <div class="profile-email">careertest.goancart@gmail.com</div>
+    <div class="profile-name">{{councellor.councellorName}}</div>
+    <div class="profile-email">{{councellor.councellorEmail}}</div>
   </div>
 </div>
-<a href="#" class="dashboard-link">Dashboard</a>
+<a (click)="navigateToHome()" class="dashboard-link">Dashboard</a>
+
 <!-- Account Section -->
 <div class="section-title">Account</div>
-<div class="menu-item">My Profile</div>
-<div class="menu-item">Security</div>
+<div class="menu-item" (click)="navigateToProfile()">My Profile</div>
+<!-- <div class="menu-item">Security</div> -->
 
 <!-- Manage Section -->
 <div class="section-title">Manage</div>
-<div class="menu-item">My Courses</div>
-<div class="menu-item">My Sessions</div>
+<div class="menu-item" (click)="navigateToTeams()">My Teams</div>
+<div class="menu-item">Queries and Greviences</div>
+<div class="menu-item">Billing and Cancellations</div>
+<div class="menu-item">Reviews</div>
 
 <!-- Signout -->
-<div class="menu-item signout">Signout</div>
+<div class="menu-item signout" (click)="signout()">Signout</div>

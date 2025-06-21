@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -114,9 +114,13 @@ export class UniversitySetupComponent implements OnInit {
   }
 
   openDialog(element: any): void {
-    this.dialog.open(UniversityActionComponent, {
-      width: '400px',
-      data: element
-    });
+    const dialogRef: MatDialogRef<UniversityActionComponent> = this.dialog.open(UniversityActionComponent, {
+          width: '400px',
+          data: element
+        });
+      
+        dialogRef.afterClosed().subscribe(() => {
+          this.fetchUniversities();
+        });
   }
 }

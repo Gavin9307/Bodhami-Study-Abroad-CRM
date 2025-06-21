@@ -1,0 +1,46 @@
+<div class="main-sub-container">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <div class="main-sub-container-header">
+    My Teams
+  </div>
+  
+  <div class="add-form-container">
+   
+    <table mat-table [dataSource]="teams" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef> Sr. No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.SrNo}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="teamName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.teamName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="teamDescription">
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td mat-cell *matCellDef="let element"> {{ element.teamDescription }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="positionName">
+        <th mat-header-cell *matHeaderCellDef> Position</th>
+        <td mat-cell *matCellDef="let element"> {{ element.positionName }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="openDialog(element)" class="btn-dark-rounded-outline button">
+            Action
+          </button>
+        </td>
+      </ng-container>
+  
+      <!-- Render Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

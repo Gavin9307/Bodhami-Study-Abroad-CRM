@@ -13,7 +13,9 @@
   <div class="home-quick-links-container">
     <h2>Quick Links</h2>
     <div class="quick-links-container">
-      <div class="quick-links">Manage Process</div>
+      <div class="quick-links" [routerLink]="['/application-management/application-list']">
+        Manage Applications
+      </div>
       <div class="quick-links" [routerLink]="['/student-management/student-list']">
         Manage Students
       </div>

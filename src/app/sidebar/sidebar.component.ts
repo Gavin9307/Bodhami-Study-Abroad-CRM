@@ -61,6 +61,16 @@ export class SidebarComponent implements OnInit {
       ]
     },
     {
+      title: 'My Teams',
+      link: '/account',
+      subItems: [
+        {
+          name: 'Team List',
+          link: '/my-teams/team-list'
+        }
+      ],
+    },
+    {
       title: 'Study Abroad Setup',
       link: '/account',
       subItems: [

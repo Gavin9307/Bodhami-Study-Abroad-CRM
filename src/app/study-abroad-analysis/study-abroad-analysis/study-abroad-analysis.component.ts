@@ -307,11 +307,11 @@ export class StudyAbroadAnalysisComponent implements OnInit {
     this.http.get<any[]>("http://localhost:8080/api/analysis/getUserApplicationsInfo")
       .subscribe(
         (response) => {
-          this.pieChartLabelsUserApplications = ["Total Students", "Students With Applications", "Students Without Applications"];
-          this.pieChartDataUserApplications = [response[0].totalUsers, response[0].usersWithApplications, response[0].usersWithoutApplications];
+          this.pieChartLabelsUserApplications = [ "Students With Applications", "Students Without Applications"];
+          this.pieChartDataUserApplications = [ response[0].usersWithApplications, response[0].usersWithoutApplications];
 
           this.pieChartColorsUserApplications = [{
-            backgroundColor: ['#42A5F5', '#66BB6A', '#EF5350']
+            backgroundColor: [ '#66BB6A', '#EF5350']
           }];
           this.isLoading = false;
         },

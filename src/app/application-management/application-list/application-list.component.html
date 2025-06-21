@@ -1,8 +1,8 @@
 <div class="main-sub-container">
   <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
-    Applications List
-    <a [routerLink]="['/application-management/application-create']">
+    <span><span *ngIf="fromTeamPage">{{team.teamName}}</span> Applications List</span>
+    <a [routerLink]="['/application-management/application-create']" *ngIf="!fromTeamPage">
       <button mat-flat-button class="btn-dark-rounded-outline-white">Create Application</button>
     </a>    
   </div>

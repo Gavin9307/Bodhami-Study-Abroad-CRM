@@ -38,7 +38,7 @@
       </ng-container>
 
       <ng-container matColumnDef="isDeleted">
-        <th mat-header-cell *matHeaderCellDef> Is Deleted </th>
+        <th mat-header-cell *matHeaderCellDef> Inactive </th>
         <td mat-cell *matCellDef="let element">
           <mat-checkbox [checked]="element.isDeleted" (change)="toggleDeleteStatus(element)">
           </mat-checkbox>

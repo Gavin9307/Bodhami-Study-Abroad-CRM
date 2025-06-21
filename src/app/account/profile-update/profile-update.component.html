@@ -1,6 +1,5 @@
+<div class="main-sub-container">
 
-<div class="main-sub-container" >
-  
   <app-loader *ngIf="isLoading"></app-loader>
   <div class="main-sub-container-header">
     Profile
@@ -15,59 +14,69 @@
           <div class="form-row">
             <mat-form-field>
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Enter full name" [(ngModel)]="councellor.councellorName" name="councellorName">
+              <input matInput placeholder="Enter full name" [(ngModel)]="councellor.councellorName"
+                name="councellorName">
             </mat-form-field>
           </div>
-        
+
           <div class="form-row">
             <mat-form-field>
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Enter email"  [(ngModel)]="councellor.councellorEmail" name="councellorEmail" disabled>
+              <input matInput placeholder="Enter email" [(ngModel)]="councellor.councellorEmail" name="councellorEmail"
+                disabled>
             </mat-form-field>
           </div>
-        
+
           <div class="form-row">
             <mat-form-field>
               <mat-label>Phone Number</mat-label>
-              <input matInput placeholder="Enter phone number" [(ngModel)]="councellor.councellorPhoneNumber" name="councellorPhoneNumber" >
+              <input matInput placeholder="Enter phone number" [(ngModel)]="councellor.councellorPhoneNumber"
+                name="councellorPhoneNumber">
             </mat-form-field>
           </div>
-        
+
           <div class="form-row">
             <mat-form-field>
               <mat-label>Department</mat-label>
-              <input matInput placeholder="Enter department" [(ngModel)]="councellor.councellorDepartment" name="councellorDepartment">
+              <input matInput placeholder="Enter department" [(ngModel)]="councellor.councellorDepartment"
+                name="councellorDepartment">
             </mat-form-field>
           </div>
-        
+
           <div class="form-row">
             <mat-form-field>
               <mat-label>Role</mat-label>
-              <input matInput placeholder="Enter role" [(ngModel)]="councellor.councellorRole" name="councellorRole" disabled>
+              <input matInput placeholder="Enter role" [(ngModel)]="councellor.councellorRole" name="councellorRole"
+                disabled>
             </mat-form-field>
           </div>
-        
+
           <div class="form-row">
             <mat-form-field>
               <mat-label>Address</mat-label>
-              <input matInput placeholder="Enter address" [(ngModel)]="councellor.councellorAddress" name="councellorAddress">
+              <input matInput placeholder="Enter address" [(ngModel)]="councellor.councellorAddress"
+                name="councellorAddress">
             </mat-form-field>
           </div>
-        
+
           <button mat-raised-button class="btn-dark-rounded " (click)="updateDetails()">Update Details</button>
         </div>
-        
+
 
         <!-- Right Column -->
         <div class="form-right">
           <div class="avatar-container">
-            <div class="avatar-upload">
-              <input type="file" (change)="onFileSelected($event)" id="avatar-input" hidden>
-              <label for="avatar-input" class="avatar-label">
-                <mat-icon>add</mat-icon>
-              </label>
-            </div>
+            <!-- Use label as the clickable wrapper -->
+            <label for="avatar-input" class="avatar-upload">
+              <img *ngIf="councellor && councellor.councellorImage" [src]="councellor.councellorImage" alt="Profile"
+                class="avatar-image" />
+              <mat-icon *ngIf="!councellor?.councellorImage">add</mat-icon>
+            </label>
+
+            <input type="file" (change)="onFileSelected($event)" id="avatar-input" hidden />
           </div>
+
+
 
           <!-- Fields below the avatar -->
           <div class="below-avatar-fields">
@@ -78,10 +87,10 @@
 
             <mat-form-field class="full-width">
               <mat-label>Confirm New Password</mat-label>
-              <input matInput >
+              <input matInput>
             </mat-form-field>
 
-              <button mat-raised-button class="btn-dark-rounded">Change Password</button>
+            <button mat-raised-button class="btn-dark-rounded">Change Password</button>
           </div>
         </div>
       </div>

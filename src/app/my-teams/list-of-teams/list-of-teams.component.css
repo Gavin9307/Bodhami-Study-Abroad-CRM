@@ -1,0 +1,31 @@
+@import url(../../../styles.css);
+
+table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .mat-elevation-z8 {
+    background: transparent !important;
+    box-shadow: none !important; 
+  }
+  
+  .mat-table {
+    background: transparent !important;
+  }
+  
+  .mat-header-row, .mat-row {
+    background: transparent !important;
+  }
+  
+  th.mat-header-cell {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--text-black);
+  }
+  
+  .btn-dark-rounded-outline{
+    margin: 6px;
+    float: right;
+  }
+

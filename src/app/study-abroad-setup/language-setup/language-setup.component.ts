@@ -9,7 +9,7 @@ import { LanguageService, LanguageElement } from '../../services/language/langua
   styleUrls: ['./language-setup.component.css']
 })
 export class LanguageSetupComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'createdAt', 'isDeleted'];
+  displayedColumns: string[] = ['id', 'name',  'isDeleted'];
   dataSource = new MatTableDataSource<LanguageElement>([]);
   searchText: string = '';
   isLoading: boolean = false;

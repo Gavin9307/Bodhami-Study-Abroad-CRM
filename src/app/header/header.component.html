@@ -1,11 +1,11 @@
 <header>
     <img class="headerLogo" src="../../assets/HeaderLogo.png" alt="">
   <div class="headerRightSection">
-    <div class="headerMainMenu">Main Menu</div>
-    <i class="fas fa-cog headerIcons"></i>
-    <i class="fas fa-bell headerIcons"></i>
+    <div class="headerMainMenu" (click)="navigateToHome()">Main Menu</div>
+    <!-- <i class="fas fa-cog headerIcons"></i> -->
+    <!-- <i class="fas fa-bell headerIcons"></i> -->
     <a class="profile-icon" (click)="openProfileMenu($event)">
-      <img class="headerUserImage" src="../../assets/HeaderLogo.png" alt="">
+      <img class="headerUserImage" [src]="councellor.councellorImage" alt="">
     </a>
   </div>
 </header>

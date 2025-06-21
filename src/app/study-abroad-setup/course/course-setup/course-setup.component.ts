@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
@@ -90,9 +90,13 @@ export class CourseSetupComponent implements OnInit {
       }
     
       openDialog(element: any): void {
-        this.dialog.open(CourseActionComponent, {
-          width: '400px',
-          data: element
-        });
+        const dialogRef: MatDialogRef<CourseActionComponent> = this.dialog.open(CourseActionComponent, {
+              width: '400px',
+              data: element
+            });
+          
+            dialogRef.afterClosed().subscribe(() => {
+              this.fetchCourses();
+            });
       }
 }

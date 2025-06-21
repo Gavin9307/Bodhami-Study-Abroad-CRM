@@ -27,11 +27,18 @@ export class ProfileUpdateComponent implements OnInit {
 
   getCouncellor(){
     this.isLoading = true;
-    const councellorId : String = "1";
+    let councellorId = 0;
+    const userId = localStorage.getItem('userId'); // returns a string or null
+    if (userId) {
+      councellorId = +userId; // converts to number if needed
+    } else {
+      console.warn('User ID not found in localStorage');
+    }
     this.http.get("http://localhost:8080/api/councellor/getsinglecouncellor/"+councellorId)
     .subscribe(
       (response)=>{
         this.councellor = response;
+        // console.log(this.councellor);
         this.isLoading = false;
       },
       (error)=>{
@@ -43,7 +50,13 @@ export class ProfileUpdateComponent implements OnInit {
   
   updateDetails() {
     this.isLoading = true;
-    const councellorId : String = "1";
+    let councellorId = 0;
+    const userId = localStorage.getItem('userId'); // returns a string or null
+    if (userId) {
+      councellorId = +userId; // converts to number if needed
+    } else {
+      console.warn('User ID not found in localStorage');
+    }
     this.http.put("http://localhost:8080/api/councellor/editcouncellor/"+councellorId,this.councellor)
     .subscribe(
       (response)=>{
@@ -66,7 +79,7 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
-    // Handle file upload logic here
+    console.log("File selected:", event.target.files[0]);
   }
 
 }

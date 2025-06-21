@@ -15,7 +15,13 @@ export class ChecklistActionComponent implements OnInit {
   ngOnInit() {
   }
 
+
   isLoading : Boolean = false;
+
+  onDocumentsButtonClick(): void {
+    this.router.navigate(['/study-abroad-setup/checklist-setup/checklist-document-setup/'+this.data.checklistID]);
+    this.dialogRef.close();
+  }
 
   onEditButtonClick(): void {
     this.router.navigate(['/study-abroad-setup/checklist-setup/edit-checklist/'+this.data.checklistID]);

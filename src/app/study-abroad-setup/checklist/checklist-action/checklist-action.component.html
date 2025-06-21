@@ -1,6 +1,7 @@
 <app-loader *ngIf="isLoading"></app-loader>
 <h3 mat-dialog-title class="heading">Actions for {{data.name}}</h3>
 <div mat-dialog-actions>
+  <button mat-button (click)="onDocumentsButtonClick()" class="btn-dark-rounded-outline button">Documents</button>
   <button mat-button (click)="onEditButtonClick()" class="btn-dark-rounded-outline button">Edit Checklist</button>
   <button mat-button (click)="onDeleteButtonClick()" class="btn-dark-rounded-outline button">Delete Checklist</button>
 </div>

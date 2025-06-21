@@ -11,15 +11,9 @@
   .profile-icon {
     width: 60px;
     height: 60px;
-    background-color: var(--blue-dark);
     color: white;
-    font-size: 20px;
-    font-weight: bold;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+    object-fit: cover;
   }
   
   .profile-info {
@@ -73,6 +67,7 @@
   
   .signout {
     border-top: 1px solid #ddd;
- margin-top: 20px;
+    margin-top: 20px;
+    color: red;
   }
   

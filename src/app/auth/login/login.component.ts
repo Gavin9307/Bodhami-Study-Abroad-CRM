@@ -51,11 +51,12 @@ export class LoginComponent implements OnInit {
   
       this.apiService.councellorLoginAuthentication(email, password).subscribe(
         (data: any) => {
+          console.log(data);
           if (data.status === 'INACTIVE') {
             this.toastr.error('Your Account has been blocked! Please Contact Admin', 'Error');
             return; 
           }
-          localStorage.setItem('userId', window.btoa(data.councellorID));
+          localStorage.setItem('userId', data.id);
           localStorage.setItem('userRole', window.btoa(data.role));
           this.toastr.success('Login successful!', 'Success'); // ✅ Show success message
           this.router.navigate(['/home']);

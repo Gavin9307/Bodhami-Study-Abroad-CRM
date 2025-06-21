@@ -109,7 +109,10 @@ import { BackButtonComponent } from './back-button/back-button.component';
 import { ChartsModule } from 'ng2-charts';
 import { ApplicationCountryUniversityChecklistDocumentListComponent } from './application-management/Application Countries/application-country-university-checklist-document-list/application-country-university-checklist-document-list.component';
 import { ChecklistActionComponent } from './study-abroad-setup/checklist/checklist-action/checklist-action.component';
-
+import { ChecklistDocumentSetupComponent } from './study-abroad-setup/checklist/checklist-document/checklist-document-setup/checklist-document-setup.component';
+import { ListOfTeamsComponent } from './my-teams/list-of-teams/list-of-teams.component';
+import { MyTeamsActionComponent } from './my-teams/my-teams-action/my-teams-action.component';
+import { MyTeamMembersComponent } from './my-teams/my-team-members/my-team-members.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -130,7 +133,13 @@ const routes: Routes = [
       { path: 'account/profile-update', component: ProfileUpdateComponent },
       { path: 'Review/review', component: ReviewComponent },
       { path: 'study-abroad-analysis/dashboard', component: StudyAbroadAnalysisComponent },
-
+      {
+        path: 'my-teams',
+        children: [
+          { path: 'team-list', component:ListOfTeamsComponent },
+          { path: 'team-member-list/:id', component: MyTeamMembersComponent },
+        ]
+      },
       // Study Abroad Setup Routes
       {
         path: 'study-abroad-setup',
@@ -143,6 +152,7 @@ const routes: Routes = [
           { path: 'checklist-setup', component: ChecklistSetupComponent },
           { path: 'checklist-setup/edit-checklist/:id', component: EditChecklistComponent },
           { path: 'checklist-setup/add-checklist', component: AddChecklistComponent },
+          { path: 'checklist-setup/checklist-document-setup/:id', component: ChecklistDocumentSetupComponent },
 
           { path: 'university-setup', component: UniversitySetupComponent },
           { path: 'university-setup/add-university', component: AddUniversityComponent },
@@ -169,6 +179,8 @@ const routes: Routes = [
         children: [
           { path: 'application-create', component: ApplicationCreateComponent },
           { path: 'application-list', component: ApplicationListComponent },
+          { path: 'application-list/:teamId', component: ApplicationListComponent },
+
           { path: 'edit-student', component: EditStudentComponent },
           { path: 'application-view/:id', component: ApplicationViewComponent },
           { path: 'application', component: ApplicationComponent },
@@ -306,7 +318,11 @@ const routes: Routes = [
     ApplicationCreateComponent,
     BackButtonComponent,
     ApplicationCountryUniversityChecklistDocumentListComponent,
-    ChecklistActionComponent
+    ChecklistActionComponent,
+    ChecklistDocumentSetupComponent,
+    ListOfTeamsComponent,
+    MyTeamsActionComponent,
+    MyTeamMembersComponent
   ],
   imports: [
     // Core Angular Modules
@@ -362,7 +378,8 @@ const routes: Routes = [
     ApplicationCountryUniversityActionComponent,
     ApplicationCountryChecklistActionComponent,
     ApplicationCountryUniversityChecklistActionComponent,
-    ChecklistActionComponent
+    ChecklistActionComponent,
+    MyTeamsActionComponent
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

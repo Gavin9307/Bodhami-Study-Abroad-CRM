@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApplicationActionComponent } from '../application-action/application-action.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-application-list',
@@ -23,10 +24,15 @@ export class ApplicationListComponent implements OnInit {
     
     isLoading:Boolean = false; 
     searchForm : FormGroup;
+
+    fromTeamPage:Boolean = false;
+
+    team: Object = {};
+
   
     @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-    constructor(private http: HttpClient,private toastr : ToastrService,private dialog:MatDialog) {}
+    constructor(private http: HttpClient,private toastr : ToastrService,private dialog:MatDialog, private route: ActivatedRoute) {}
   
     openDialog(element : any): void {
       this.dialog.open(ApplicationActionComponent, {
@@ -36,7 +42,6 @@ export class ApplicationListComponent implements OnInit {
     }
   
     ngOnInit() {
-      this.getAllApplications();
       this.searchForm = new FormGroup({
         appId: new FormControl(''),
         firstName: new FormControl(''),
@@ -45,6 +50,16 @@ export class ApplicationListComponent implements OnInit {
         status: new FormControl(''),
         taggedToTeam: new FormControl('')
       });
+      const teamId: String = this.route.snapshot.paramMap.get('teamId');
+      if(teamId){
+        this.fromTeamPage = true;
+        this.getAllApplicationsByTeamId();
+        this.getTeam();
+      }
+      else{
+        this.fromTeamPage = false;
+        this.getAllApplications();
+      }
     }
 
     onSearch(): void {
@@ -61,9 +76,6 @@ export class ApplicationListComponent implements OnInit {
 
       console.log(this.applications.data);
     }
-    
-    
-    
     
   
     onClear(): void {
@@ -89,6 +101,24 @@ export class ApplicationListComponent implements OnInit {
         },
         (error)=>{
           this.isLoading = false;
+          this.toastr.error("Error Fetching Applications");
+        }
+      )
+    }
+
+    getAllApplicationsByTeamId(){
+      this.isLoading = true;
+      const teamId: String = this.route.snapshot.paramMap.get('teamId');
+      this.http.get<any[]>("http://localhost:8080/api/application/getallteamapplicationlist/"+teamId)
+      .subscribe(
+        (response)=>{
+          response.forEach((element,index) => {
+            element["SrNo"] = index+1;
+          });
+          this.originalDataSource = response;
+          this.applications.data = response;
+        },
+        (error)=>{
           this.toastr.error("Error Fetching Applications");
         }
       )
@@ -143,6 +173,28 @@ export class ApplicationListComponent implements OnInit {
         default:
           return '';
       }
+    }
+
+    getTeam(){
+      this.isLoading = true;
+      this.http.get<any[]>("http://localhost:8080/api/team/getsingleteam/"+this.route.snapshot.paramMap.get('teamId'))
+      .subscribe(
+        (response)=>{
+          this.searchForm.patchValue({
+            taggedToTeam: response["teamName"]
+          });
+          if (this.searchForm.get('taggedToTeam')) {
+            this.searchForm.get('taggedToTeam').disable();
+          }
+
+          this.team = response;
+          this.isLoading = false;
+        },
+         (error) => {
+            this.toastr.error("Error Fetching Team");
+            this.isLoading = false;
+          }
+      );  
     }
     
   
